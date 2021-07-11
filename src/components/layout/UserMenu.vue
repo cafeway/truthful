@@ -4,18 +4,18 @@
       <!-- The user image in the navbar-->
       <img :src="user.avatar" class="user-image" alt="User Image">
       <!-- hidden-xs hides the username on small devices so only the image appears. -->
-      <span class="hidden-xs">{{user.displayName}}</span>
+      <span class="hidden-xs">{{this.username}}</span>
     </a>
     <!-- Account Info and Menu -->
     <ul class="dropdown-menu">
       <li class="user-header" style="height:auto;min-height:85px;padding-bottom:15px;">
         <p>
-          <span>{{user.displayName}}</span>
-          <small v-for="role in user.roles" :key="role">{{role}}</small>
+          <span>{{this.username}}</span>
+          <small>Activated: {{ this.status }}</small>
         </p>
       </li>
       <li class="user-footer">
-        <a href="javascript:;" class="btn btn-default btn-flat btn-block">
+        <a href="javascript:;" class="btn btn-default btn-flat btn-block" @click="logout()">
           <i class="fa fa-sign-out"></i>
           <span>Logout</span>
         </a>
@@ -25,8 +25,31 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
   name: 'UserMenu',
-  props: ['user']
+  props: ['user'],
+  data() {
+    return {
+      username: '',
+      status: ''
+    }
+  },
+  mounted() {
+    firebase.auth().onAuthStateChanged(user => {
+      let db = firebase.firestore()
+      db.collection('users').doc(user.uid).get().then(snapshot => {
+        let data = snapshot.data()
+        this.username = data.username
+        this.status = data.activated
+      })
+    })
+  },
+  methods: {
+    logout: function () {
+      firebase.auth().signOut()
+      this.$router.push('/login')
+    }
+  }
 }
 </script>

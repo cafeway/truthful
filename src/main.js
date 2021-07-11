@@ -8,7 +8,8 @@ import VueRouter from 'vue-router'
 import { sync } from 'vuex-router-sync'
 import routes from './routes'
 import store from './store'
-
+import firebase from 'firebase'
+import VueSweetalert2 from 'vue-sweetalert2'
 // Import Helpers for filters
 import { domain, count, prettyDate, pluralize } from './filters'
 
@@ -22,7 +23,7 @@ Vue.filter('prettyDate', prettyDate)
 Vue.filter('pluralize', pluralize)
 
 Vue.use(VueRouter)
-
+Vue.use(VueSweetalert2)
 // Routing logic
 var router = new VueRouter({
   routes: routes,
@@ -32,7 +33,18 @@ var router = new VueRouter({
     return savedPosition || { x: 0, y: 0 }
   }
 })
-
+var firebaseConfig = {
+  apiKey: 'AIzaSyDcHGP7Z-Kky0OhDxah0OMv8qrCvEyAjM8',
+  authDomain: 'imperium-cash.firebaseapp.com',
+  projectId: 'imperium-cash',
+  storageBucket: 'imperium-cash.appspot.com',
+  messagingSenderId: '207868627366',
+  appId: '1:207868627366:web:6288611ccccf18a3da2767',
+  measurementId: 'G-K4NTLBGB23'
+}
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig)
+firebase.analytics()
 // Some middleware to help us ensure the user is authenticated.
 router.beforeEach((to, from, next) => {
   if (

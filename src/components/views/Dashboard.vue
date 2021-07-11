@@ -7,10 +7,10 @@
         <alert :dismissible="true"
                type="success"
                :iconClasses="['fa', 'fa-check']"
-               title="CoPilot is open source!">
-          <span>Click on icon to check it out on github.</span>
-          <a href="https://github.com/misterGF/CoPilot" target="_blank">
-            <i class="fa fa-github fa-2x"></i>
+               title="Imperium Cash comming soon on playstore">
+          <span>Click on icon to check it out in alpha mode.</span>
+          <a href="#" target="_blank">
+            <i class="fa fa-play fa-2x"></i>
           </a>
         </alert>
       </div>
@@ -18,16 +18,16 @@
       <!-- Info boxes -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-aqua"
-                  :icon-classes="['ion', 'ion-ios-gear-outline']"
-                  text="CPU Traffic"
-                  number="90%"></info-box>
+                  :icon-classes="['fa', 'fa-university']"
+                  text="Account Balance"
+                  :number= this.balance></info-box>
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-red"
-                  :icon-classes="['fa', 'fa-google-plus']"
-                  text="Likes"
-                  number="41,410"></info-box>
+                  :icon-classes="['fa', 'fa-credit-card ']"
+                  text="Revenue"
+                  :number= this.revenue ></info-box>
       </div>
       <!-- /.col -->
 
@@ -36,22 +36,22 @@
       
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-green"
-                  :icon-classes="['ion', 'ion-ios-cart-outline']"
-                  text="Sales"
-                  number="760"></info-box>
+                  :icon-classes="['fa', 'fa-database']"
+                  text="Slot Earnings"
+                  :number= this.slot></info-box>
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-yellow"
                   :icon-classes="['ion', 'ion-ios-people-outline']"
-                  text="New Members"
-                  number="2,000"></info-box>
+                  text="Downlines"
+                  :number= this.downlines></info-box>
       </div>
       <!-- /.col -->
     </div>
     <!-- /.row -->
 
-    <div class="col-xs-12">
+    <!-- <div class="col-xs-12">
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title"></h3>
@@ -75,47 +75,40 @@
           <small><b>Pro Tip</b> Don't forget to star us on github!</small>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- /.row -->
 
     <!-- Main row -->
     <div class="row">
       <div class="col-md-3 col-sm-6 col-xs-12">
         <process-info-box color-class="bg-yellow"
-                          :icon-classes="['ion', 'ion-ios-pricetag-outline']"
-                          text="Inventory"
-                          number="5,200"
-                          :progress="50"
-                          description="50% increase since May"></process-info-box>
-      </div>
-      <!-- /.col -->
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <process-info-box color-class="bg-green"
-                          :icon-classes="['ion', 'ion-ios-heart-outline']"
-                          text="Mentions"
-                          number="92,050"
-                          :progress="20"
-                          description="20% increase in 30 days"></process-info-box>
+                          :icon-classes="['fa', 'fa-question-circle']"
+                          text="trivia Earnings"
+                          :number= this.trivia
+                      
+                          description="comming soon"></process-info-box>
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <process-info-box color-class="bg-red"
-                          :icon-classes="['ion', 'ion-ios-cloud-download-outline']"
-                          text="Downloads"
-                          number="114,381"
-                          :progress="70"
-                          description="70% increase since yesterday"></process-info-box>
+                          :icon-classes="['fa', 'fa-btc']"
+                          text="Bitcoin Balance"
+                          :number= this.bitcoin
+                    
+                          description="30% increase in 3 days"></process-info-box>
       </div>
-      <!-- /.col -->
+
+    
+    
       <div class="col-md-3 col-sm-6 col-xs-12">
         <process-info-box color-class="bg-aqua"
-                          :icon-classes="['ion', 'ion-ios-chatbubble-outline']"
-                          text="Direct Messages"
-                          number="163,921"
-                          :progress="40"
-                          description="40% increase compared to last year"></process-info-box>
+                          :icon-classes="['fa', 'fa-comments']"
+                          text="Auction Earnings"
+                          :number= this.auction
+                         
+                          description="comming soon"></process-info-box>
       </div>
-      <!-- /.col -->
+    
     </div>
     <!-- /.row -->
   </section>
@@ -123,11 +116,10 @@
 </template>
 
 <script>
-import Chart from 'chart.js'
 import Alert from '../widgets/Alert'
 import InfoBox from '../widgets/InfoBox'
 import ProcessInfoBox from '../widgets/ProcessInfoBox'
-
+import firebase from 'firebase'
 export default {
   name: 'Dashboard',
   components: {
@@ -143,7 +135,17 @@ export default {
           a.push(Math.floor(Math.random() * (max - min + 1)) + max)
         }
         return a
-      }
+      },
+      username: '',
+      balance: 0,
+      revenue: 0,
+      phonenumber: '',
+      auction: 0,
+      bitcoin: 0,
+      downlines: 0,
+      trivia: 0,
+      user_email: '',
+      slot: 0
     }
   },
   computed: {
@@ -158,67 +160,32 @@ export default {
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      var ctx = document.getElementById('trafficBar').getContext('2d')
-      var config = {
-        type: 'line',
-        data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-          datasets: [{
-            label: 'CoPilot',
-            fill: false,
-            borderColor: '#284184',
-            pointBackgroundColor: '#284184',
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            data: this.coPilotNumbers
-          }, {
-            label: 'Personal Site',
-            borderColor: '#4BC0C0',
-            pointBackgroundColor: '#4BC0C0',
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            data: this.personalNumbers
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: !this.isMobile,
-          legend: {
-            position: 'bottom',
-            display: true
-          },
-          tooltips: {
-            mode: 'label',
-            xPadding: 10,
-            yPadding: 10,
-            bodySpacing: 10
-          }
-        }
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        let db = firebase.firestore()
+        db.collection('users').doc(user.uid).get().then(snapshot => {
+          let data = snapshot.data()
+          this.balance = data.balance
+          this.revenue = data.revenue
+          this.phonenumber = data.phonenumber
+          this.auction = data.auction
+          this.bitcoin = data.bitcoin
+          this.downlines = data.downlines
+          this.trivia = data.trivia
+          this.slot = data.slot
+        })
+        db.collection('users').doc(user.uid).collection('lv1').get().then(snapshot => {
+          this.downlines = this.downlines + snapshot.size
+        })
+        db.collection('users').doc(user.uid).collection('lv2').get().then(snapshot => {
+          this.downlines = this.downlines + snapshot.size
+        })
+        db.collection('users').doc(user.uid).collection('lv3').get().then(snapshot => {
+          this.downlines = this.downlines + snapshot.size
+        })
+      } else {
+        this.$router.push('/login')
       }
-
-      new Chart(ctx, config) // eslint-disable-line no-new
-
-      var pieChartCanvas = document.getElementById('languagePie').getContext('2d')
-      var pieConfig = {
-        type: 'pie',
-        data: {
-          labels: ['HTML', 'JavaScript', 'CSS'],
-          datasets: [{
-            data: [56.6, 37.7, 4.1],
-            backgroundColor: ['#00a65a', '#f39c12', '#00c0ef'],
-            hoverBackgroundColor: ['#00a65a', '#f39c12', '#00c0ef']
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: !this.isMobile,
-          legend: {
-            position: 'bottom',
-            display: true
-          }
-        }
-      }
-
-      new Chart(pieChartCanvas, pieConfig) // eslint-disable-line no-new
     })
   }
 }

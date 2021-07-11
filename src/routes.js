@@ -1,5 +1,5 @@
 import DashView from './components/Dash.vue'
-import LoginView from './components/Login.vue'
+import LoginView from './components/login.vue'
 import NotFoundView from './components/404.vue'
 
 // Import Views - Dash
@@ -10,12 +10,17 @@ import SettingView from './components/views/Setting.vue'
 import AccessView from './components/views/Access.vue'
 import ServerView from './components/views/Server.vue'
 import ReposView from './components/views/Repos.vue'
-
+import register from './components/register.vue'
+import payments from './components/views/payments.vue'
 // Routes
 const routes = [
   {
     path: '/login',
     component: LoginView
+  },
+  {
+    path: '/register',
+    component: register
   },
   {
     path: '/',
@@ -26,22 +31,22 @@ const routes = [
         alias: '',
         component: DashboardView,
         name: 'Dashboard',
-        meta: {description: 'Overview of environment'}
+        meta: {description: 'Homepage'}
       }, {
         path: 'tables',
         component: TablesView,
-        name: 'Tables',
-        meta: {description: 'Simple and advance table in CoPilot'}
+        name: 'Downlines',
+        meta: {description: 'Downlines'}
       }, {
         path: 'tasks',
         component: TasksView,
-        name: 'Tasks',
-        meta: {description: 'Tasks page in the form of a timeline'}
+        name: 'Timeine',
+        meta: {description: 'User logs in the form of a timeline'}
       }, {
         path: 'setting',
         component: SettingView,
-        name: 'Settings',
-        meta: {description: 'User settings page'}
+        name: 'User Profile',
+        meta: {description: 'User Information'}
       }, {
         path: 'access',
         component: AccessView,
@@ -55,8 +60,12 @@ const routes = [
       }, {
         path: 'repos',
         component: ReposView,
-        name: 'Repository',
-        meta: {description: 'List of popular javascript repos'}
+        name: 'Packages',
+        meta: {description: 'List of popular queue investment packages'}
+      }, {
+        path: 'payments',
+        component: payments,
+        name: ''
       }
     ]
   }, {

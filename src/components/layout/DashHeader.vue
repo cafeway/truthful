@@ -14,8 +14,6 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <messages-menu></messages-menu>
-          <notifications-menu></notifications-menu>
-          <tasks-menu></tasks-menu>
           <user-menu :user="user"></user-menu>
         </ul>
       </div>
@@ -27,7 +25,6 @@
 import { mapState } from 'vuex'
 import MessagesMenu from './MessagesMenu'
 import NotificationsMenu from './NotificationsMenu'
-import TasksMenu from './TasksMenu'
 import UserMenu from './UserMenu'
 
 export default {
@@ -35,7 +32,6 @@ export default {
   components: {
     MessagesMenu,
     NotificationsMenu,
-    TasksMenu,
     UserMenu
   },
   props: ['user'],

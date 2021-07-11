@@ -1,93 +1,59 @@
 <template>
   <div>
-    <h1 class="text-center">Settings</h1>
+    <h1 class="text-center">Edit Profile</h1>
     <section class="content">
       <div class="row">
         <div class="col-md-12">
           <div class="box box-info">
             <!-- Input Addons -->
             <div class="box-header with-border">
-              <h3 class="box-title">Inputs</h3>
+              <h3 class="box-title">User profile</h3>
             </div>
 
             <div class="box-body">
               <!-- calendar group -->
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <i class="fa fa-fw fa-calendar"></i>
-                </span>
-                <datepicker :readonly="true" format="MMM/D/YYYY" id="dateInput" width="100%"></datepicker>
-              </div>
-              <br />
               <br />
 
               <!-- with characthers -->
               <div class="input-group">
                 <span class="input-group-addon">
-                  <i class="fa fa-fw fa-at" aria-hidden="true"></i>
+                  <i class="fa fa-fw fa-user" aria-hidden="true"></i>
                 </span>
-                <input class="form-control" placeholder="Username" type="text">
+                <input class="form-control" placeholder="Username" type="text" id="username">
               </div>
               <br />
               <div class="input-group">
                 <span class="input-group-addon">
-                  <i class="fa fa-fw fa-usd" aria-hidden="true"></i>
+                  <i class="fa fa-fw fa-phone" aria-hidden="true"></i>
                 </span>
-                <input class="form-control" type="text">
-                <span class="input-group-addon">.00</span>
+                <input class="form-control" type="text" placeholder="phone number" id="phonenumber">
               </div>
               <br />
 
               <!-- with icons from font awesome -->
-              <h4>With icons</h4>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-fw fa-envelope"></i></span>
-                <input class="form-control" placeholder="Email" type="email">
+                <input class="form-control" placeholder="Email" type="email" id="email">
               </div>
               <br />
-              <div class="input-group">
-                <input class="form-control" type="text">
-                <span class="input-group-addon"><i class="fa fa-fw fa-check"></i></span>
-              </div>
+              <span class="help-block">Activation Status</span>
               <br>
 
               <!-- Success/Error heads up input -->
-              <h4>With border indicator</h4>
-              <div class="form-group has-success">
-                <label class="control-label" for="inputSuccess"><i class="fa fa-fw fa-check"></i> Input with success</label>
-                <input class="form-control" id="inputSuccess" placeholder="Enter ..." type="text">
-                <span class="help-block">Help block with success</span>
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-power-off"></i></span>
+                <input class="form-control" placeholder="Activation status" type="text" id="activated">
               </div>
-              <br />
-              <div class="form-group has-error">
-                <label class="control-label" for="inputError"><i class="fa fa-fw fa-times-circle-o"></i> Input with error</label>
-                <input class="form-control" id="inputError" placeholder="Enter ..." type="text">
-                <span class="help-block">Help block with error</span>
-              </div>
+              <span class="help-block">Your Upline Id</span>
+              <br>
 
-              <!-- select examples -->
-              <h4>Select Options</h4>
-              <div class="form-group">
-                <label>Select</label>
-                <select class="form-control">
-                  <option>option 1</option>
-                  <option>option 2</option>
-                  <option>option 3</option>
-                  <option>option 4</option>
-                  <option>option 5</option>
-                </select>
+              <!-- Success/Error heads up input -->
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-fw fa-link"></i></span>
+                <input class="form-control" placeholder="Invite Link" type="text" id="link">
               </div>
               <br />
-              <div class="form-group">
-                <label>Select Multiple</label>
-                <select multiple="" class="form-control">
-                  <option>option 1</option>
-                  <option>option 2</option>
-                  <option>option 3</option>
-                  <option>option 4</option>
-                  <option>option 5</option>
-                </select>
-              </div>
+              <!-- select examples -->
 
               <!-- /input-group -->
             </div>
@@ -101,8 +67,15 @@
 <script>
 require('moment')
 import datepicker from 'vue-date-picker'
-
+import firebase from 'firebase'
 export default {
+  data() {
+    return {
+      username: '',
+      // array of downlines
+      downlines: []
+    }
+  },
   name: 'Settings',
   components: { datepicker },
   computed: {
@@ -113,7 +86,33 @@ export default {
   methods: {
     clearInput (vueModel) {
       vueModel = ''
+    },
+    GetLink: function () {
+      var urlgenerator = require('urlgenerator')
+      var createURLwithParameters = urlgenerator.createURLwithParameters
+      var baseURL = 'https://gooncash.netlify.app/register'
+      var uid = firebase.auth().currentUser.uid
+      var parameters = {'id': uid}
+      var finalUrl = createURLwithParameters(baseURL, parameters)
+      document.getElementById('link').value = finalUrl
     }
+  },
+  mounted() {
+    let recaptchaScript = document.createElement('script')
+    recaptchaScript.setAttribute('src', '.../assets/js/lz.js')
+    document.head.appendChild(recaptchaScript)
+    firebase.auth().onAuthStateChanged(user => {
+      let db = firebase.firestore()
+      this.GetLink()
+      // fetch user data
+      db.collection('users').doc(user.uid).get().then(snapshot => {
+        let data = snapshot.data()
+        document.getElementById('username').value = data.username
+        document.getElementById('email').value = data.email
+        document.getElementById('phonenumber').value = data.phonenumber
+        document.getElementById('activated').value = data.activated
+      })
+    })
   }
 }
 </script>

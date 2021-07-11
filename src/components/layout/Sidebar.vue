@@ -11,11 +11,8 @@
         </div>
         <div class="pull-left info">
           <div>
-            <p class="white">{{user.displayName}}</p>
+            <p class="white">{{this.username}}</p>
           </div>
-          <a href="javascript:;">
-            <i class="fa fa-circle text-success"></i> Online
-          </a>
         </div>
       </div>
 
@@ -47,8 +44,13 @@
 </template>
 <script>
 import SidebarMenu from './SidebarMenu'
-
+import firebase from 'firebase'
 export default {
+  data() {
+    return {
+      username: ''
+    }
+  },
   name: 'Sidebar',
   props: ['user'],
   components: { SidebarMenu },
@@ -57,6 +59,13 @@ export default {
       .jQuery('[data-toggle="hideseek"]')
       .off()
       .hideseek()
+    firebase.auth().onAuthStateChanged(user => {
+      let db = firebase.firestore()
+      db.collection('users').doc(user.uid).get().then(snapshot => {
+        let data = snapshot.data()
+        this.username = data.username
+      })
+    })
   }
 }
 </script>
