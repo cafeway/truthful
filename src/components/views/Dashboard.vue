@@ -77,40 +77,6 @@
       </div>
     </div> -->
     <!-- /.row -->
-
-    <!-- Main row -->
-    <div class="row">
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <process-info-box color-class="bg-yellow"
-                          :icon-classes="['fa', 'fa-question-circle']"
-                          text="trivia Earnings"
-                          :number= this.trivia
-                      
-                          description="comming soon"></process-info-box>
-      </div>
-      <!-- /.col -->
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <process-info-box color-class="bg-red"
-                          :icon-classes="['fa', 'fa-btc']"
-                          text="Bitcoin Balance"
-                          :number= this.bitcoin
-                    
-                          description="30% increase in 3 days"></process-info-box>
-      </div>
-
-    
-    
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <process-info-box color-class="bg-aqua"
-                          :icon-classes="['fa', 'fa-comments']"
-                          text="Auction Earnings"
-                          :number= this.auction
-                         
-                          description="comming soon"></process-info-box>
-      </div>
-    
-    </div>
-    <!-- /.row -->
   </section>
   <!-- /.content -->
 </template>

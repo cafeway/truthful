@@ -4,7 +4,7 @@
     </div>
 
     <div class="row center-block">
-      <h2>LEVEL ONE DOWNLINES  <i class="fa fa-users" aria-hidden="true"></i></h2>
+      <h2>INVESTMENTS</h2>
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -25,11 +25,11 @@
                   <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
                     <thead>
                       <tr role="row">
-                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Username</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Downline Id</th>
-                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Phone Number</th>
-                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Amount</th>
-                         <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Activation Status</th>
+                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">id</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Amount</th>
+                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">State</th>
+                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Timer</th>
+                         <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Cashed</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -38,7 +38,24 @@
                         <td>{{downline.downlineId}}</td>
                         <td>{{downline.phonenumber}}</td>
                         <td>{{ downline.amount}}</td>
-                        <td>null</td>
+                        <td
+                        >
+                         <vue-countdown-timer
+      @start_callback="startCallBack('event started')"
+      @end_callback="endCallBack('event ended')"
+      :start-time="'2018-10-10 00:00:00'"
+      :end-time="1481450115"
+      :interval="1000"
+      :start-label="'Until start:'"
+      :end-label="'Until end:'"
+      label-position="begin"
+      :end-text="'Event ended!'"
+      :day-txt="'days'"
+      :hour-txt="'hours'"
+      :minutes-txt="'minutes'"
+      :seconds-txt="'seconds'">
+    </vue-countdown-timer>
+                        </td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -58,7 +75,7 @@
     </div>
     <!-- LEVEL TWO DOWNLINES -->
     <div class="row center-block">
-      <h2>LEVEL TWO DOWNLINES <i class="fa fa-users" aria-hidden="true"></i></h2>
+      <h2>DOWNLINES BONUS <i class="fa fa-users" aria-hidden="true"></i></h2>
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -112,7 +129,7 @@
     </div>
     <!-- LEVEL 3-->
     <div class="row center-block">
-      <h2>LEVEL THREE DOWNLINES <i class="fa fa-users" aria-hidden="true"></i></h2>
+      <h2>Downlines<i class="fa fa-users" aria-hidden="true"></i></h2>
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -183,13 +200,21 @@ export default {
     }
   },
   name: 'Tables',
+  methods: {
+    startCallBack: function(x) {
+      console.log(x)
+    },
+    endCallBack: function(x) {
+      console.log(x)
+    }
+  },
   mounted() {
     this.$nextTick(() => {
       $('#example1').DataTable()
     })
     firebase.auth().onAuthStateChanged(user => {
       let db = firebase.firestore()
-      db.collection('users').doc(user.uid).collection('lv1').get().then(snapshot => {
+      db.collection('investments').where(user.uid).collection('lv1').get().then(snapshot => {
         snapshot.forEach(doc => {
           this.downlines.push(doc.data())
         })

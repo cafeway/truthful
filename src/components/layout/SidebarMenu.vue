@@ -11,7 +11,7 @@
      <router-link tag="li" class="pageLink" to="/tables">
       <a>
         <i class="fa fa-table"></i>
-        <span class="page">Downlines</span>
+        <span class="page">User Data</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/tasks">

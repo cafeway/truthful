@@ -4,7 +4,7 @@ import 'es6-promise/auto'
 // Import System requirements
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import VueCountdownTimer from 'vuejs-countdown-timer'
 import { sync } from 'vuex-router-sync'
 import routes from './routes'
 import store from './store'
@@ -24,6 +24,7 @@ Vue.filter('pluralize', pluralize)
 
 Vue.use(VueRouter)
 Vue.use(VueSweetalert2)
+Vue.use(VueCountdownTimer)
 // Routing logic
 var router = new VueRouter({
   routes: routes,

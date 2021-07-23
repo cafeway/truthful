@@ -6,9 +6,9 @@
     <article class="card__content grid">
       <div class="card__pricing">
         <div class="card__pricing-number">
-          <span class="card__pricing-symbol">$</span>0
+          <span class="card__pricing-symbol"></span>10
         </div>
-        <span class="card__pricing-month">/month</span>
+        <span class="card__pricing-month">/day</span>
       </div>
 
       <header class="card__header">
@@ -17,29 +17,23 @@
         </div>
 
         <span class="card__header-subtitle">Panda plan</span>
-        <h1 class="card__header-title">Panda Plan</h1>
+        <h1 class="card__header-title">10% ROI</h1>
       </header>
-
-      <ul class="card__list grid">
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description text-secondary">3 user request</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">10 downloads por day</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Daily content updates</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Fully editable files</p>
-        </li>
-      </ul>
-
-      <button class="card__button">Choose this plan</button>
+        <span class="help-block">Choose number of days</span>
+       <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-3 days" type="number" id="activated">
+              </div>
+       
+                <span class="help-block">Enter Amount</span>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input  v-model="form.amount" class="form-control" placeholder="Choose Amount" type="number" min="0" id="activated">
+              </div>
+     <hr>
+      <button class="card__button" @click="mpesa(1)">Invest From Mpesa</button>
+      <hr>
+      <button class="card__button" @click="wallet(1)">Invest From Wallet</button>
     </article>
 
     <!--==================== CARD 2 ====================-->
@@ -56,33 +50,23 @@
          <span class="iconify" style="height:100px; width:50px" data-icon="emojione:rabbit-face" data-inline="false"></span>
         </div>
           <hr>
-        <h1 class="card__header-title">Bunny Plan</h1>
+        <h1 class="card__header-title">25% Roi</h1>
       </header>
-
-      <ul class="card__list grid">
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">100 user request</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Unlimited downloads</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Unlock all features from our site</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Daily content updates</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Fully editable files</p>
-        </li>
-      </ul>
-
-      <button class="card__button">Choose this plan</button>
+ <span class="help-block">Choose number of days</span>
+       <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-3 days" type="number" id="activated">
+              </div>
+       
+                <span class="help-block">Enter Amount</span>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input  v-model="form.amount" class="form-control" placeholder="Choose Amount" type="number" min="0" id="activated">
+              </div>
+     <hr>
+      <button class="card__button" @click="mpesa(2)">Invest From Mpesa</button>
+      <hr>
+      <button class="card__button" @click="wallet(2)">Invest From Wallet</button>
     </article>
 
     <!--==================== CARD 3 ====================-->
@@ -100,33 +84,24 @@
         </div>
         <hr>
         <span class="card__header-subtitle"></span>
-        <h1 class="card__header-title">Fox Plan</h1>
+        <h1 class="card__header-title">30% Roi</h1>
       </header>
 
-      <ul class="card__list grid">
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Unlimited  user request</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Unlimited downloads</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Unlock all features from our site</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Daily content updates</p>
-        </li>
-        <li class="card__list-item">
-          <i class="uil uil-check card__list-icon"></i>
-          <p class="card__list-description">Fully editable files</p>
-        </li>
-      </ul>
-
-      <button class="card__button">Choose this plan</button>
+       <span class="help-block">Choose number of days</span>
+       <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-3 days" type="number" id="activated">
+              </div>
+       
+                <span class="help-block">Enter Amount</span>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input  v-model="form.amount" class="form-control" placeholder="Choose Amount" type="number" min="0" id="activated">
+              </div>
+     <hr>
+      <button class="card__button" @click="mpesa(3)">Invest From Mpesa</button>
+      <hr>
+      <button class="card__button" @click="wallet(3)">Invest From Wallet</button>
     </article>
     
   </div>
@@ -135,17 +110,145 @@
 </template> 
 <script>
 import axios from 'axios'
-
+import firebase from 'firebase'
 export default {
   name: 'Repository',
   data () {
     return {
       githubUrl: 'https://api.github.com/search/repositories?q=language%3Ajavascript&sort=stars',
       response: null,
-      error: null
+      error: null,
+      email: null,
+      username: null,
+      phonenumber: null,
+      balance: null,
+      form: {
+        rate: null,
+        amount: null
+      }
     }
   },
   methods: {
+    mpesa: function (x) {
+      let username = this.username
+      let phonenumber = this.phonenumber
+      let email = this.email
+      let db = firebase.firestore()
+      if (this.form.rate >= 1 && this.form.rate <= 3) {
+        window.FlutterwaveCheckout({
+          public_key: 'FLWPUBK-6adfe081d70c4de8b32b60ba48a6297a-X',
+          tx_ref: 'registration fees' + new Date(),
+          amount: this.form.amount,
+          currency: 'KES',
+          country: 'KE',
+          payment_option: 'mpesa,card,ussd,account',
+          customer: {
+            email: email,
+            phone_number: phonenumber,
+            name: username
+          },
+          callback: function () {
+            let user = this.username
+            let mail = this.email
+            let phone = this.phonenumber
+            let startdate = firebase.firestore.Timestamp.now().seconds
+            if (x === 1) {
+              db.collection('investments').add({
+                user: user,
+                phone: phone,
+                mail: mail,
+                amount: this.form.amount,
+                id: Math.floor(Math.random() * 10000) + 1,
+                state: 'running',
+                cashed: 'false',
+                start: startdate,
+                stop: startdate + 86400,
+                mpesa: 'not sent'
+              })
+            } else if (x === 2) {
+              db.collection('investments').add({
+                user: user,
+                phone: phone,
+                mail: mail,
+                amount: this.form.amount,
+                id: Math.floor(Math.random() * 10000) + 1,
+                state: 'running',
+                cashed: 'false',
+                start: startdate,
+                stop: startdate + 172800,
+                mpesa: 'not sent'
+              })
+            } else {
+              db.collection('investments').add({
+                user: user,
+                phone: phone,
+                mail: mail,
+                amount: this.form.amount,
+                id: Math.floor(Math.random() * 10000) + 1,
+                state: 'running',
+                cashed: 'false',
+                start: startdate,
+                stop: startdate + 345600,
+                mpesa: 'not sent'
+              })
+            }
+          }
+        })
+      } else {
+        alert('choose btwn 1-3')
+      }
+    },
+    wallet: function (x) {
+      let username = this.username
+      let phonenumber = this.phonenumber
+      let email = this.email
+      let db = firebase.firestore()
+      if (this.form.rate >= 1 && this.form.rate <= 3 && this.form.amount <= this.balance) {
+        let startdate = firebase.firestore.Timestamp.now().seconds
+        if (x === 1) {
+          db.collection('investments').add({
+            user: username,
+            phone: phonenumber,
+            mail: email,
+            amount: this.form.amount,
+            id: Math.floor(Math.random() * 10000) + 1,
+            state: 'running',
+            cashed: 'false',
+            start: startdate,
+            stop: startdate + 86400,
+            mpesa: 'not sent'
+          })
+        } else if (x === 2) {
+          db.collection('investments').add({
+            user: username,
+            phone: phonenumber,
+            mail: email,
+            amount: this.form.amount,
+            id: Math.floor(Math.random() * 10000) + 1,
+            state: 'running',
+            cashed: 'false',
+            start: startdate,
+            stop: startdate + 172800,
+            mpesa: 'not sent'
+          })
+        } else {
+          db.collection('investments').add({
+            user: username,
+            phone: phonenumber,
+            mail: email,
+            amount: this.form.amount,
+            id: Math.floor(Math.random() * 10000) + 1,
+            state: 'running',
+            cashed: 'false',
+            start: startdate,
+            stop: startdate + 345600,
+            mpesa: 'not sent'
+          })
+        }
+      } else {
+        alert('choose btwn 1-3')
+      }
+    },
     callGitHub () {
       axios.get(this.githubUrl)
         .then(response => {
@@ -169,6 +272,19 @@ export default {
     let recaptchaScript = document.createElement('script')
     recaptchaScript.setAttribute('src', 'https://code.iconify.design/1/1.0.7/iconify.min.js')
     document.head.appendChild(recaptchaScript)
+    firebase.auth().onAuthStateChanged(user => {
+      let db = firebase.firestore()
+      this.GetLink()
+      // fetch user data
+      db.collection('users').doc(user.uid).get().then(snapshot => {
+        let data = snapshot.data()
+        this.username = data.username
+        this.email = data.email
+        this.phonenumber = data.phonenumber
+        this.balance = data.balance
+        document.getElementById('activated').value = data.activated
+      })
+    })
   }
 }
 </script>

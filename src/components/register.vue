@@ -93,16 +93,10 @@ export default {
     }
   },
   mounted() {
-    let db = firebase.firestore()
     let url = window.location.href
     let split = url.split('id=')
     let uid = split[1]
-    db.collection('users').doc(uid).get().then(snaphot => {
-      let data = snaphot.data()
-      this.upline = data.uid
-      this.lv1 = data.upline
-      this.lv2 = data.lv1
-    })
+    this.upline = uid
   },
   methods: {
     register: function () {
@@ -126,48 +120,7 @@ export default {
           auction: 0,
           slot: 0,
           uid: data.user.uid,
-          upline: this.upline,
-          lv1: this.lv1,
-          lv2: this.lv2
-        })
-        db.collection('users').doc(this.upline).collection('lv1').add({
-          username: this.form.username,
-          phonenumber: this.form.phonenumber,
-          downlineId: data.user.uid,
-          amount: 200,
-          level: 1
-        })
-        db.collection('users').doc(this.upline).collection('timeline').add({
-          type: 'lv1 downline registration',
-          message: this.form.username + '  ' + 'joined using your id' + ' ' + 'at lv1'
-        })
-          // level 2
-        db.collection('users').doc(this.lv1).collection('lv2').add({
-          username: this.form.username,
-          phonenumber: this.form.phonenumber,
-          downlineId: data.user.uid,
-          amount: 150,
-          level: 1
-        })
-        db.collection('users').doc(this.lv1).collection('timeline').add({
-          type: 'lv2 downline registration',
-          message: this.form.username + '  ' + 'joined using your id' + ' ' + 'at lv2'
-        })
-          // level3
-        db.collection('users').doc(this.lv2).collection('lv3').add({
-          username: this.form.username,
-          phonenumber: this.form.phonenumber,
-          downlineId: data.user.uid,
-          amount: 100,
-          level: 1
-        })
-        db.collection('users').doc(this.lv2).collection('timeline').add({
-          type: 'lv3 downline registration',
-          message: this.form.username + '  ' + 'joined using your id' + ' ' + 'at lv3'
-        })
-        this.$swal({
-          icon: 'success',
-          text: 'Your account was created successfully'
+          upline: this.upline
         })
       })
       .catch(err => {
