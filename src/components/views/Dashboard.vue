@@ -37,7 +37,7 @@
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-green"
                   :icon-classes="['fa', 'fa-database']"
-                  text="Slot Earnings"
+                  text="Bonus"
                   :number= this.slot></info-box>
       </div>
       <!-- /.col -->
