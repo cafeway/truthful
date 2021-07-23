@@ -140,14 +140,8 @@ export default {
           this.trivia = data.trivia
           this.slot = data.slot
         })
-        db.collection('users').doc(user.uid).collection('lv1').get().then(snapshot => {
-          this.downlines = this.downlines + snapshot.size
-        })
-        db.collection('users').doc(user.uid).collection('lv2').get().then(snapshot => {
-          this.downlines = this.downlines + snapshot.size
-        })
-        db.collection('users').doc(user.uid).collection('lv3').get().then(snapshot => {
-          this.downlines = this.downlines + snapshot.size
+        db.collection('users').doc(user.uid).collection('downlines').get().then(snapshot => {
+          this.downlines = snapshot.size
         })
       } else {
         this.$router.push('/login')
