@@ -116,17 +116,14 @@ export default {
           uid: data.user.uid,
           upline: this.upline
         })
-        db.collection('users').doc(data.user.uid).collection('downlines').add({
-          name: this.form.name,
+        db.collection('users').doc(this.upline).collection('downlines').add({
+          name: this.form.username,
           phone: this.form.phonenumber,
           id: data.user.uid
         })
       })
       .catch(err => {
-        this.$swal({
-          icon: 'warning',
-          text: err.message
-        })
+        alert(err.message)
       })
     }
   }

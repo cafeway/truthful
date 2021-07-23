@@ -22,7 +22,7 @@
         <span class="help-block">Choose number of days</span>
        <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-percent"></i></span>
-                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-3 days" type="number" id="activated">
+                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-2 days" type="number" id="activated">
               </div>
        
                 <span class="help-block">Enter Amount</span>
@@ -55,7 +55,7 @@
  <span class="help-block">Choose number of days</span>
        <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-percent"></i></span>
-                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-3 days" type="number" id="activated">
+                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-2 days" type="number" id="activated">
               </div>
        
                 <span class="help-block">Enter Amount</span>
