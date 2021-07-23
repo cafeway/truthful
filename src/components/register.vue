@@ -18,12 +18,6 @@
        
     </p>
 	<form>
-  <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-link"></i> </span>
-		 </div>
-        <input name="" class="form-control" placeholder="Upline Id" type="text" id="uid" v-model="form.UplineUid" require="required">
-    </div>
 	<div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -121,6 +115,11 @@ export default {
           slot: 0,
           uid: data.user.uid,
           upline: this.upline
+        })
+        db.collection('users').doc(data.user.uid).collection('downlines').add({
+          name: this.form.name,
+          phone: this.form.phonenumber,
+          id: data.user.uid
         })
       })
       .catch(err => {

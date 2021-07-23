@@ -50,7 +50,7 @@
          <span class="iconify" style="height:100px; width:50px" data-icon="emojione:rabbit-face" data-inline="false"></span>
         </div>
           <hr>
-        <h1 class="card__header-title">25% Roi</h1>
+        <h1 class="card__header-title">30% Roi</h1>
       </header>
  <span class="help-block">Choose number of days</span>
        <div class="input-group">
@@ -70,39 +70,6 @@
     </article>
 
     <!--==================== CARD 3 ====================-->
-    <article class="card__content grid">
-      <div class="card__pricing">
-        <div class="card__pricing-number">
-          <span class="card__pricing-symbol">$</span>29
-        </div>
-        <span class="card__pricing-month">/month</span>
-      </div>
-
-      <header class="card__header">
-        <div class="card__header-circle grid">
-         <span class="iconify" style="height:100px; width:50px" data-icon="noto:fox" data-inline="false"></span>
-        </div>
-        <hr>
-        <span class="card__header-subtitle"></span>
-        <h1 class="card__header-title">30% Roi</h1>
-      </header>
-
-       <span class="help-block">Choose number of days</span>
-       <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-percent"></i></span>
-                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-3 days" type="number" id="activated">
-              </div>
-       
-                <span class="help-block">Enter Amount</span>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input  v-model="form.amount" class="form-control" placeholder="Choose Amount" type="number" min="0" id="activated">
-              </div>
-     <hr>
-      <button class="card__button" @click="mpesa(3)">Invest From Mpesa</button>
-      <hr>
-      <button class="card__button" @click="wallet(3)">Invest From Wallet</button>
-    </article>
     
   </div>
 </section>
@@ -115,13 +82,18 @@ export default {
   name: 'Repository',
   data () {
     return {
-      githubUrl: 'https://api.github.com/search/repositories?q=language%3Ajavascript&sort=stars',
-      response: null,
-      error: null,
-      email: null,
-      username: null,
-      phonenumber: null,
-      balance: null,
+      username: '',
+      balance: 0,
+      revenue: 0,
+      phonenumber: '',
+      auction: 0,
+      bitcoin: 0,
+      downlines: 0,
+      trivia: 0,
+      user_email: '',
+      email: '',
+      slot: 0,
+      id: '',
       form: {
         rate: null,
         amount: null
@@ -134,7 +106,7 @@ export default {
       let phonenumber = this.phonenumber
       let email = this.email
       let db = firebase.firestore()
-      if (this.form.rate >= 1 && this.form.rate <= 3) {
+      if (this.form.rate >= 1 && this.form.rate <= 2) {
         window.FlutterwaveCheckout({
           public_key: 'FLWPUBK-6adfe081d70c4de8b32b60ba48a6297a-X',
           tx_ref: 'registration fees' + new Date(),
@@ -143,14 +115,14 @@ export default {
           country: 'KE',
           payment_option: 'mpesa,card,ussd,account',
           customer: {
-            email: email,
-            phone_number: phonenumber,
-            name: username
+            email: this.email,
+            phone_number: this.phonenumber,
+            name: this.username
           },
           callback: function () {
-            let user = this.username
-            let mail = this.email
-            let phone = this.phonenumber
+            let user = username
+            let mail = email
+            let phone = phonenumber
             let startdate = firebase.firestore.Timestamp.now().seconds
             if (x === 1) {
               db.collection('investments').add({
@@ -163,7 +135,8 @@ export default {
                 cashed: 'false',
                 start: startdate,
                 stop: startdate + 86400,
-                mpesa: 'not sent'
+                mpesa: 'not sent',
+                profit: this.form.amount + (0.01 * this.form.amount)
               })
             } else if (x === 2) {
               db.collection('investments').add({
@@ -176,7 +149,8 @@ export default {
                 cashed: 'false',
                 start: startdate,
                 stop: startdate + 172800,
-                mpesa: 'not sent'
+                mpesa: 'not sent',
+                profit: this.form.amount + (0.3 * this.form.amount)
               })
             } else {
               db.collection('investments').add({
@@ -195,7 +169,7 @@ export default {
           }
         })
       } else {
-        alert('choose btwn 1-3')
+        alert('choose btwn 1-2 days')
       }
     },
     wallet: function (x) {
@@ -204,6 +178,14 @@ export default {
       let email = this.email
       let db = firebase.firestore()
       if (this.form.rate >= 1 && this.form.rate <= 3 && this.form.amount <= this.balance) {
+        let newbalance = this.balance - this.form.amount
+        db.collection('users').doc(this.id).update({
+          balance: newbalance
+        })
+        db.collection('users').doc(this.id).collection('timeline').add({
+          message: 'you invested' + this.form.amount,
+          type: 'successfull investment'
+        })
         let startdate = firebase.firestore.Timestamp.now().seconds
         if (x === 1) {
           db.collection('investments').add({
@@ -211,6 +193,7 @@ export default {
             phone: phonenumber,
             mail: email,
             amount: this.form.amount,
+            profit: this.form.amount + (0.01 * this.form.amount),
             id: Math.floor(Math.random() * 10000) + 1,
             state: 'running',
             cashed: 'false',
@@ -224,6 +207,7 @@ export default {
             phone: phonenumber,
             mail: email,
             amount: this.form.amount,
+            profit: this.form.amount + (0.3 * this.form.amount),
             id: Math.floor(Math.random() * 10000) + 1,
             state: 'running',
             cashed: 'false',
@@ -246,7 +230,7 @@ export default {
           })
         }
       } else {
-        alert('choose btwn 1-3')
+        alert('choose btwn 1-2 OR you have insufficient balance')
       }
     },
     callGitHub () {
@@ -268,22 +252,43 @@ export default {
         })
     }
   },
+  created() {
+    const script = document.createElement('script')
+    script.src = 'https://checkout.flutterwave.com/v3.js'
+    document.getElementsByTagName('head')[0].appendChild(script)
+  },
   mounted () {
     let recaptchaScript = document.createElement('script')
     recaptchaScript.setAttribute('src', 'https://code.iconify.design/1/1.0.7/iconify.min.js')
     document.head.appendChild(recaptchaScript)
     firebase.auth().onAuthStateChanged(user => {
-      let db = firebase.firestore()
-      this.GetLink()
-      // fetch user data
-      db.collection('users').doc(user.uid).get().then(snapshot => {
-        let data = snapshot.data()
-        this.username = data.username
-        this.email = data.email
-        this.phonenumber = data.phonenumber
-        this.balance = data.balance
-        document.getElementById('activated').value = data.activated
-      })
+      if (user) {
+        let db = firebase.firestore()
+        db.collection('users').doc(user.uid).get().then(snapshot => {
+          let data = snapshot.data()
+          this.balance = data.balance
+          this.email = data.email
+          this.revenue = data.revenue
+          this.phonenumber = data.phonenumber
+          this.auction = data.auction
+          this.bitcoin = data.bitcoin
+          this.downlines = data.downlines
+          this.trivia = data.trivia
+          this.slot = data.slot
+          this.id = data.uid
+        })
+        db.collection('users').doc(user.uid).collection('lv1').get().then(snapshot => {
+          this.downlines = this.downlines + snapshot.size
+        })
+        db.collection('users').doc(user.uid).collection('lv2').get().then(snapshot => {
+          this.downlines = this.downlines + snapshot.size
+        })
+        db.collection('users').doc(user.uid).collection('lv3').get().then(snapshot => {
+          this.downlines = this.downlines + snapshot.size
+        })
+      } else {
+        this.$router.push('/login')
+      }
     })
   }
 }

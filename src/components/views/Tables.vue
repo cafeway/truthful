@@ -33,21 +33,20 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="downline in downlines" :key="downline.id" class="even" role="row">
-                        <td class="sorting_1">{{downline.username}}</td>
-                        <td>{{downline.downlineId}}</td>
-                        <td>{{downline.phonenumber}}</td>
-                        <td>{{ downline.amount}}</td>
+                      <tr v-for="downline in investments" :key="downline.id" class="even" role="row">
+                        <td class="sorting_1">{{downline.id}}</td>
+                        <td>{{downline.amount}}</td>
+                        <td>{{downline.state}}</td>
                         <td
                         >
                          <vue-countdown-timer
       @start_callback="startCallBack('event started')"
       @end_callback="endCallBack('event ended')"
-      :start-time="'2018-10-10 00:00:00'"
-      :end-time="1481450115"
+      :start-time="downline.start"
+      :end-time="downline.stop"
       :interval="1000"
-      :start-label="'Until start:'"
-      :end-label="'Until end:'"
+      :start-label="'Time to maturity:'"
+      :end-label="'Remaining:'"
       label-position="begin"
       :end-text="'Event ended!'"
       :day-txt="'days'"
@@ -56,6 +55,7 @@
       :seconds-txt="'seconds'">
     </vue-countdown-timer>
                         </td>
+                        <td>{{ downline.cashed}}</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -75,7 +75,7 @@
     </div>
     <!-- LEVEL TWO DOWNLINES -->
     <div class="row center-block">
-      <h2>DOWNLINES BONUS <i class="fa fa-users" aria-hidden="true"></i></h2>
+      <h2>DOWNLINES BONUS <i class="fa fa-money" aria-hidden="true"></i></h2>
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -100,7 +100,6 @@
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Downline Id</th>
                         <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Phone Number</th>
                         <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Amount</th>
-                         <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Activation Status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -109,7 +108,6 @@
                         <td>{{downline.downlineId}}</td>
                         <td>{{downline.phonenumber}}</td>
                         <td>{{ downline.amount}}</td>
-                        <td>null</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -153,17 +151,13 @@
                         <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Username</th>
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Downline Id</th>
                         <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Phone Number</th>
-                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Amount</th>
-                         <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Activation Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="downline in level3" :key="downline.id" class="even" role="row">
+                      <tr v-for="downline in downlines" :key="downline.id" class="even" role="row">
                         <td class="sorting_1">{{downline.username}}</td>
-                        <td>{{downline.downlineId}}</td>
+                        <td>{{downline.id}}</td>
                         <td>{{downline.phonenumber}}</td>
-                        <td>{{ downline.amount}}</td>
-                        <td>null</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -185,7 +179,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import firebase from 'firebase'
 // Require needed datatables modules
 require('datatables.net')
@@ -195,8 +188,17 @@ export default {
   data() {
     return {
       downlines: [],
-      level2: [],
-      level3: []
+      investments: [],
+      level3: [],
+      username: '',
+      balance: 0,
+      revenue: 0,
+      phonenumber: '',
+      auction: 0,
+      bitcoin: 0,
+      trivia: 0,
+      user_email: '',
+      slot: 0
     }
   },
   name: 'Tables',
@@ -208,27 +210,39 @@ export default {
       console.log(x)
     }
   },
-  mounted() {
-    this.$nextTick(() => {
-      $('#example1').DataTable()
-    })
+  mounted () {
     firebase.auth().onAuthStateChanged(user => {
-      let db = firebase.firestore()
-      db.collection('investments').where(user.uid).collection('lv1').get().then(snapshot => {
-        snapshot.forEach(doc => {
-          this.downlines.push(doc.data())
+      if (user) {
+        let db = firebase.firestore()
+        db.collection('users').doc(user.uid).get().then(snapshot => {
+          let data = snapshot.data()
+          this.balance = data.balance
+          this.revenue = data.revenue
+          this.phonenumber = data.phonenumber
+          this.auction = data.auction
+          this.bitcoin = data.bitcoin
+          this.downlines = data.downlines
+          this.trivia = data.trivia
+          this.slot = data.slot
         })
-      })
-      db.collection('users').doc(user.uid).collection('lv2').get().then(snapshot => {
-        snapshot.forEach(doc => {
-          this.level2.push(doc.data())
+        db.collection('investments').where('mail', '==', user.email).get().then(snapshot => {
+          snapshot.forEach((doc) => {
+            this.investments.push(doc.data())
+          })
         })
-      })
-      db.collection('users').doc(user.uid).collection('lv3').get().then(snapshot => {
-        snapshot.forEach(doc => {
-          this.level3.push(doc.data())
+        db.collection('users').doc(user.uid).collection('downlines').get().then(snapshot => {
+          snapshot.forEach((doc) => {
+            this.downlines.push(doc.data())
+          })
         })
-      })
+        db.collection('users').doc(user.uid).collection('bonus').get().then(snapshot => {
+          snapshot.forEach((doc) => {
+            this.downlines.push(doc.doc())
+          })
+        })
+      } else {
+        this.$router.push('/login')
+      }
     })
   }
 }
