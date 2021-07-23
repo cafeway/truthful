@@ -121,6 +121,10 @@ export default {
           phone: this.form.phonenumber,
           id: data.user.uid
         })
+        db.collection('users').doc(this.upline).collection('timeline').add({
+          message: this.form.username + 'joined using your invite link',
+          type: 'downline registration'
+        })
       })
       .catch(err => {
         alert(err.message)
