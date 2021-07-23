@@ -7,7 +7,7 @@
         <alert :dismissible="true"
                type="success"
                :iconClasses="['fa', 'fa-check']"
-               title="Imperium Cash comming soon on playstore">
+               title="promax Cash comming soon on playstore">
           <span>Click on icon to check it out in alpha mode.</span>
           <a href="#" target="_blank">
             <i class="fa fa-play fa-2x"></i>
