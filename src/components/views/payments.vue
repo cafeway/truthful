@@ -42,6 +42,9 @@
                   </td>
                   <td><img style="width:60px;height:60px" src="data:image/png;base64,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"></td>
                 </tr> 
+                <tr>
+                
+                </tr>
               </tbody>
             </table>
           </div>
@@ -49,8 +52,7 @@
         </div>
       </div>
     </div>
-
-
+    
   </section>
 </template>
 
@@ -101,7 +103,7 @@ export default {
   methods: {
     pay: function () {
       window.FlutterwaveCheckout({
-        public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
+        public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X ',
         tx_ref: 'registration fees' + new Date(),
         amount: 550,
         currency: 'KES',

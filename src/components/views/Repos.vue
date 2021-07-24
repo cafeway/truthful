@@ -70,7 +70,35 @@
     </article>
 
     <!--==================== CARD 3 ====================-->
-    
+     <article class="card__content grid">
+      <div class="card__pricing">
+        <div class="card__pricing-number">
+          <span class="card__pricing-symbol">$</span>19
+        </div>
+        <span class="card__pricing-month">/month</span>
+      </div>
+
+      <header class="card__header">
+        <div class="card__header-circle grid">
+         <span class="iconify" style="height:100px; width: 50px" data-icon="ci:paypal" data-inline="false"></span>
+        </div>
+          <hr>
+        <h1 class="card__header-title">TopUp Here</h1>
+      </header>
+ <span class="help-block">international topup</span>
+            <span class="help-block">Enter Amount</span>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input  v-model="form.amount" class="form-control" placeholder="Choose Amount" type="number" min="0" id="activated">
+              </div>
+     <hr>
+      <button class="card__button" @click="topup(2)">
+      <span class="iconify" style="height:15px; width:15px" data-icon="twemoji:flag-for-flag-kenya" data-inline="false"></span>
+      Deposit in Kenya</button>
+      <hr>
+      <hr>
+
+    </article>  
   </div>
 </section>
   </div>
@@ -105,10 +133,11 @@ export default {
       let username = this.username
       let phonenumber = this.phonenumber
       let email = this.email
+      let pesa = this.form.amount
       let db = firebase.firestore()
       if (this.form.rate >= 1 && this.form.rate <= 2) {
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-6adfe081d70c4de8b32b60ba48a6297a-X',
+          public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
           tx_ref: 'registration fees' + new Date(),
           amount: this.form.amount,
           currency: 'KES',
@@ -124,19 +153,20 @@ export default {
             let mail = email
             let phone = phonenumber
             let startdate = firebase.firestore.Timestamp.now().seconds
+            let pesa2 = parseFloat(pesa)
             if (x === 1) {
               db.collection('investments').add({
                 user: user,
                 phone: phone,
                 mail: mail,
-                amount: this.form.amount,
+                amount: pesa2,
                 id: Math.floor(Math.random() * 10000) + 1,
                 state: 'running',
                 cashed: 'false',
                 start: startdate,
                 stop: startdate + 86400,
                 mpesa: 'not sent',
-                profit: this.form.amount + (0.01 * this.form.amount)
+                profit: pesa2 + 0.1 * pesa2
               })
             } else if (x === 2) {
               db.collection('investments').add({
@@ -150,7 +180,7 @@ export default {
                 start: startdate,
                 stop: startdate + 172800,
                 mpesa: 'not sent',
-                profit: this.form.amount + (0.3 * this.form.amount)
+                profit: pesa2 + 0.3 * pesa2
               })
             } else {
               db.collection('investments').add({
@@ -188,12 +218,13 @@ export default {
         })
         let startdate = firebase.firestore.Timestamp.now().seconds
         if (x === 1) {
+          let value = parseFloat(this.form.amount)
           db.collection('investments').add({
             user: username,
             phone: phonenumber,
             mail: email,
-            amount: this.form.amount,
-            profit: this.form.amount + (0.01 * this.form.amount),
+            amount: value,
+            profit: value + value * 0.1,
             id: Math.floor(Math.random() * 10000) + 1,
             state: 'running',
             cashed: 'false',
@@ -207,7 +238,7 @@ export default {
             phone: phonenumber,
             mail: email,
             amount: this.form.amount,
-            profit: this.form.amount + (0.3 * this.form.amount),
+            profit: parseFloat(this.form.amount) + (0.1 * parseFloat(this.form.amount)),
             id: Math.floor(Math.random() * 10000) + 1,
             state: 'running',
             cashed: 'false',

@@ -154,10 +154,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="downline in downlines" :key="downline.id" class="even" role="row">
-                        <td class="sorting_1">{{downline.username}}</td>
-                        <td>{{downline.id}}</td>
-                        <td>{{downline.phonenumber}}</td>
+                      <tr v-for="d in invites" :key="d.id" class="even" role="row">
+                        <td class="sorting_1">{{d.name}}</td>
+                        <td>{{d.id}}</td>
+                        <td>{{d.phone}}</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -187,7 +187,6 @@ require('datatables.net-bs')
 export default {
   data() {
     return {
-      downlines: [],
       investments: [],
       level3: [],
       username: '',
@@ -198,7 +197,9 @@ export default {
       bitcoin: 0,
       trivia: 0,
       user_email: '',
-      slot: 0
+      slot: 0,
+      invites: [],
+      bonus: []
     }
   },
   name: 'Tables',
@@ -230,14 +231,14 @@ export default {
             this.investments.push(doc.data())
           })
         })
-        db.collection('users').doc(user.uid).collection('downlines').get().then(snapshot => {
-          snapshot.forEach((doc) => {
-            this.downlines.push(doc.data())
-          })
-        })
         db.collection('users').doc(user.uid).collection('bonus').get().then(snapshot => {
           snapshot.forEach((doc) => {
-            this.downlines.push(doc.doc())
+            this.bonus.push(doc.data())
+          })
+        })
+        db.collection('users').doc(user.uid).collection('downlines').get().then(snapshot => {
+          snapshot.forEach((doc) => {
+            this.invites.push(doc.data())
           })
         })
       } else {
