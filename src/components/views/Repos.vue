@@ -251,7 +251,7 @@ export default {
       let phonenumber = this.phonenumber
       let email = this.email
       let db = firebase.firestore()
-      if (this.form.rate >= 1 && this.form.rate <= 3 && this.form.amount <= this.balance) {
+      if (this.form.rate >= 1 && this.form.rate <= 3 && this.form.amount <= this.balance && this.form.amount > 0) {
         let newbalance = this.balance - this.form.amount
         db.collection('users').doc(this.id).update({
           balance: newbalance

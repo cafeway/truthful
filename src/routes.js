@@ -35,8 +35,8 @@ const routes = [
       }, {
         path: 'tables',
         component: TablesView,
-        name: 'Downlines',
-        meta: {description: 'Downlines'}
+        name: 'UserData',
+        meta: {description: 'Userdata'}
       }, {
         path: 'tasks',
         component: TasksView,
