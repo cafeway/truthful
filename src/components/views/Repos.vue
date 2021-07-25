@@ -89,12 +89,20 @@
             <span class="help-block">Enter Amount</span>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input  v-model="form.amount" class="form-control" placeholder="Choose Amount" type="number" min="0" id="activated">
+                <input  v-model="form.deposit" class="form-control" placeholder="Choose Amount" type="number" min="0" id="activated">
               </div>
      <hr>
-      <button class="card__button" @click="topup(2)">
-      <span class="iconify" style="height:15px; width:15px" data-icon="twemoji:flag-for-flag-kenya" data-inline="false"></span>
-      Deposit in Kenya</button>
+     <span class="help-block">Select Your Local currency</span>
+     	<select class="form-control" name="country" id="country">
+			<option selected=""> Select currency</option>
+			<option>KES</option>
+			<option>UGX</option>
+			<option>RWF</option>
+            <option>TZS</option>
+		</select>
+    <hr>
+      <button class="card__button" @click="charge()">
+      Deposit</button>
       <hr>
       <hr>
 
@@ -120,15 +128,51 @@ export default {
       trivia: 0,
       user_email: '',
       email: '',
+      country: '',
       slot: 0,
+      currency: '',
       id: '',
       form: {
         rate: null,
-        amount: null
+        amount: null,
+        deposit: null
       }
     }
   },
   methods: {
+    charge: function () {
+      let country = document.getElementById('country').value
+      let db = firebase.firestore()
+      let email = this.email
+      let pesa = this.form.deposit
+      window.FlutterwaveCheckout({
+        public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
+        tx_ref: 'registration fees' + new Date(),
+        amount: this.form.deposit,
+        currency: country,
+        country: this.country,
+        payment_option: 'mpesa,card,ussd,account',
+        customer: {
+          email: this.email,
+          phone_number: this.phonenumber,
+          name: this.username
+        },
+        callback: function () {
+          let mail = email
+          let pesa2 = pesa
+          db.collection('users').where('email', '==', mail).get().then(snapshot => {
+            snapshot.forEach((doc) => {
+              let id = doc.id
+              let newbalance = this.balance + pesa2
+              let nb = parseFloat(newbalance)
+              db.collection('users').doc(id).update({
+                balance: nb
+              })
+            })
+          })
+        }
+      })
+    },
     mpesa: function (x) {
       let username = this.username
       let phonenumber = this.phonenumber
@@ -232,6 +276,7 @@ export default {
             stop: startdate + 86400,
             mpesa: 'not sent'
           })
+          alert('your investment was successfull please refresh')
         } else if (x === 2) {
           db.collection('investments').add({
             user: username,
@@ -246,6 +291,7 @@ export default {
             stop: startdate + 172800,
             mpesa: 'not sent'
           })
+          alert('your investment was successfull please refresh')
         } else {
           db.collection('investments').add({
             user: username,
@@ -307,6 +353,7 @@ export default {
           this.trivia = data.trivia
           this.slot = data.slot
           this.id = data.uid
+          this.country = data.country
         })
         db.collection('users').doc(user.uid).collection('lv1').get().then(snapshot => {
           this.downlines = this.downlines + snapshot.size

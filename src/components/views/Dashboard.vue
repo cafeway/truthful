@@ -111,7 +111,7 @@ export default {
       downlines: 0,
       trivia: 0,
       user_email: '',
-      slot: 0
+      slot: 0,
     }
   },
   computed: {
