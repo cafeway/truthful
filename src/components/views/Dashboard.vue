@@ -7,7 +7,7 @@
         <alert :dismissible="true"
                type="success"
                :iconClasses="['fa', 'fa-check']"
-               title="promax Cash comming soon on playstore">
+               title="promax Cash is now in uganda,tanzania and rwanda.......topup then invest from your wallets">
           <span>Click on icon to check it out in alpha mode.</span>
           <a href="#" target="_blank">
             <i class="fa fa-play fa-2x"></i>
@@ -111,7 +111,7 @@ export default {
       downlines: 0,
       trivia: 0,
       user_email: '',
-      slot: 0,
+      slot: 0
     }
   },
   computed: {
