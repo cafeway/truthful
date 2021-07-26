@@ -12,6 +12,7 @@ import ServerView from './components/views/Server.vue'
 import ReposView from './components/views/Repos.vue'
 import register from './components/register.vue'
 import payments from './components/views/payments.vue'
+import admin from './components/views/admin.vue'
 // Routes
 const routes = [
   {
@@ -40,8 +41,8 @@ const routes = [
       }, {
         path: 'tasks',
         component: TasksView,
-        name: 'Timeine',
-        meta: {description: 'User logs in the form of a timeline'}
+        name: 'TimeLine',
+        meta: {description: 'User Earnings & Data '}
       }, {
         path: 'setting',
         component: SettingView,
@@ -65,6 +66,11 @@ const routes = [
       }, {
         path: 'payments',
         component: payments,
+        name: ''
+      },
+      {
+        path: 'admin',
+        component: admin,
         name: ''
       }
     ]

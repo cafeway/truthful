@@ -4,7 +4,7 @@
     </div>
 
     <div class="row center-block">
-      <h2>INVESTMENTS</h2>
+      <h2>CASHOUTS</h2>
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -25,35 +25,37 @@
                   <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
                     <thead>
                       <tr role="row">
+                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">id</th>
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Amount</th>
-                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Investment Status</th>
-                         <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Returns</th>
-                          <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Cashout Status</th>
+                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">PhoneNumber</th>
+                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">userid</th>
+                         <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="downline in investments" :key="downline.id" class="even" role="row">
+                        <td class="sorting_1">{{downline.id}}</td>
                         <td>{{downline.amount}}</td>
+                        <td>{{downline.state}}</td>
                         <td
                         >
                          <vue-countdown-timer
       @start_callback="startCallBack('event started')"
-      @end_callback="endCallBack(downline.id, downline.profit)"
+      @end_callback="endCallBack('event ended')"
       :start-time="downline.start"
       :end-time="downline.stop"
       :interval="1000"
       :start-label="'Time to maturity:'"
-      :end-label="'Running :'"
+      :end-label="'Remaining:'"
       label-position="begin"
-      :end-text="'investment matured'"
+      :end-text="'Event ended!'"
       :day-txt="'days'"
       :hour-txt="'hours'"
       :minutes-txt="'minutes'"
       :seconds-txt="'seconds'">
     </vue-countdown-timer>
                         </td>
-                        <td>{{ downline.profit}}</td>
-                        <td> {{ downline.cashed }}</td> 
+                        <td>{{ downline.cashed}}</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -71,60 +73,7 @@
         </div>
       </div>
     </div>
-    <!-- LEVEL TWO DOWNLINES -->
-    <div class="row center-block">
-      <h2>DOWNLINES BONUS <i class="fa fa-money" aria-hidden="true"></i></h2>
-      <div class="col-md-12">
-        <div class="box">
-          <div class="box-header">
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <div class="dataTables_wrapper form-inline dt-bootstrap" id="example1_wrapper">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div id="example1_length" class="dataTables_length">
-
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-12 table-responsive">
-                  <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
-                    <thead>
-                      <tr role="row">
-                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Username</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Downline Id</th>
-                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Phone Number</th>
-                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="downline in level2" :key="downline.id" class="even" role="row">
-                        <td class="sorting_1">{{downline.username}}</td>
-                        <td>{{downline.downlineId}}</td>
-                        <td>{{downline.phonenumber}}</td>
-                        <td>{{ downline.amount}}</td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                       
-                       
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- LEVEL 3-->
-    <div class="row center-block">
+      <div class="row center-block">
       <h2>Downlines<i class="fa fa-users" aria-hidden="true"></i></h2>
       <div class="col-md-12">
         <div class="box">
@@ -146,15 +95,15 @@
                   <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
                     <thead>
                       <tr role="row">
-                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Username</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Downline Id</th>
+                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Amount</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">UId</th>
                         <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Phone Number</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="d in invites" :key="d.id" class="even" role="row">
-                        <td class="sorting_1">{{d.name}}</td>
-                        <td>{{d.id}}</td>
+                      <tr v-for="d in cashouts" :key="d.id" class="even" role="row">
+                        <td class="sorting_1">{{d.amount}}</td>
+                        <td>{{d.uid}}</td>
                         <td>{{d.phone}}</td>
                       </tr>
                     </tbody>
@@ -198,7 +147,7 @@ export default {
       slot: 0,
       invites: [],
       bonus: [],
-      uid: ''
+      cashouts: []
     }
   },
   name: 'Tables',
@@ -206,27 +155,8 @@ export default {
     startCallBack: function(x) {
       console.log(x)
     },
-    endCallBack: function(id, profit) {
-      let db = firebase.firestore()
-      db.collection('investments').where('id', '==', id).where('cashed', '==', 'false').get().then(snapshot => {
-        snapshot.forEach((doc) => {
-          db.collection('investments').doc(doc.id).update({
-            cashed: 'true'
-          })
-          let newbalance = this.balance + profit
-          let rev = this.revenue + profit
-          db.collection('users').doc(firebase.auth().currentUser.uid).update({
-            balance: newbalance
-          })
-          db.collection('users').doc(firebase.auth().currentUser.uid).update({
-            revenue: rev
-          })
-          db.collection('users').doc(firebase.auth().currentUser.uid).collection('timeline').add({
-            message: profit + ' ' + 'was credited to your wallet',
-            type: 'earning'
-          })
-        })
-      })
+    endCallBack: function(x) {
+      console.log(x)
     }
   },
   mounted () {
@@ -243,21 +173,15 @@ export default {
           this.downlines = data.downlines
           this.trivia = data.trivia
           this.slot = data.slot
-          this.uid = data.uid
         })
-        db.collection('investments').where('mail', '==', user.email).get().then(snapshot => {
+        db.collection('investments').get().then(snapshot => {
           snapshot.forEach((doc) => {
             this.investments.push(doc.data())
           })
         })
-        db.collection('users').doc(user.uid).collection('bonus').get().then(snapshot => {
+        db.collection('cashouts').get().then(snapshot => {
           snapshot.forEach((doc) => {
-            this.bonus.push(doc.data())
-          })
-        })
-        db.collection('users').doc(user.uid).collection('downlines').get().then(snapshot => {
-          snapshot.forEach((doc) => {
-            this.invites.push(doc.data())
+            this.cashouts.push(doc.data())
           })
         })
       } else {

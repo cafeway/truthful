@@ -19,14 +19,14 @@
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-aqua"
                   :icon-classes="['fa', 'fa-university']"
-                  text="Account Balance"
+                  text="Balance"
                   :number= this.balance></info-box>
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-red"
                   :icon-classes="['fa', 'fa-credit-card ']"
-                  text="Revenue"
+                  text="Cashouts"
                   :number= this.revenue ></info-box>
       </div>
       <!-- /.col -->
@@ -111,7 +111,8 @@ export default {
       downlines: 0,
       trivia: 0,
       user_email: '',
-      slot: 0
+      slot: 0,
+      country: ''
     }
   },
   computed: {
@@ -125,6 +126,9 @@ export default {
       return (window.innerWidth <= 800 && window.innerHeight <= 600)
     }
   },
+  // methods: {
+  //   convert: function (amount){}
+  // },
   mounted () {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -139,6 +143,7 @@ export default {
           this.downlines = data.downlines
           this.trivia = data.trivia
           this.slot = data.slot
+          this.country = data.country
         })
         db.collection('users').doc(user.uid).collection('downlines').get().then(snapshot => {
           this.downlines = snapshot.size

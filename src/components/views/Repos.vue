@@ -207,6 +207,7 @@ export default {
                 id: Math.floor(Math.random() * 10000) + 1,
                 state: 'running',
                 cashed: 'false',
+                matured: false,
                 start: startdate,
                 stop: startdate + 86400,
                 mpesa: 'not sent',
@@ -221,6 +222,7 @@ export default {
                 id: Math.floor(Math.random() * 10000) + 1,
                 state: 'running',
                 cashed: 'false',
+                matured: false,
                 start: startdate,
                 stop: startdate + 172800,
                 mpesa: 'not sent',
@@ -235,6 +237,7 @@ export default {
                 id: Math.floor(Math.random() * 10000) + 1,
                 state: 'running',
                 cashed: 'false',
+                matured: false,
                 start: startdate,
                 stop: startdate + 345600,
                 mpesa: 'not sent'
@@ -272,6 +275,7 @@ export default {
             id: Math.floor(Math.random() * 10000) + 1,
             state: 'running',
             cashed: 'false',
+            matured: false,
             start: startdate,
             stop: startdate + 86400,
             mpesa: 'not sent'
@@ -287,6 +291,7 @@ export default {
             id: Math.floor(Math.random() * 10000) + 1,
             state: 'running',
             cashed: 'false',
+            matured: false,
             start: startdate,
             stop: startdate + 172800,
             mpesa: 'not sent'
@@ -301,6 +306,7 @@ export default {
             id: Math.floor(Math.random() * 10000) + 1,
             state: 'running',
             cashed: 'false',
+            matured: false,
             start: startdate,
             stop: startdate + 345600,
             mpesa: 'not sent'

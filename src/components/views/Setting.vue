@@ -49,9 +49,21 @@
 
               <!-- Success/Error heads up input -->
                <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-fw fa-link"></i></span>
+                <span class="input-group-addon"></span>
                 <input class="form-control" placeholder="Invite Link" type="text" id="link">
               </div>
+              <hr>
+               <span class="help-block"><b><h3>Cashout Here</h3></b></span>
+              <br>
+
+              <!-- Success/Error heads up input -->
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input v-model="form.amount" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
+              </div>
+              <hr>
+                <button type="button" @click="cashout()" class="btn btn-success btn-block">Withdraw</button>
+             
               <br />
               <!-- select examples -->
 
@@ -73,7 +85,13 @@ export default {
     return {
       username: '',
       // array of downlines
-      downlines: []
+      downlines: [],
+      balance: 0,
+      phone: '',
+      uid: '',
+      form: {
+        amount: 0
+      }
     }
   },
   name: 'Settings',
@@ -86,6 +104,19 @@ export default {
   methods: {
     clearInput (vueModel) {
       vueModel = ''
+    },
+    cashout: function () {
+      let db = firebase.firestore()
+      let newBalance = this.balance - this.form.amount
+      db.collection('users').doc(firebase.auth().currentUser.uid).update({
+        balance: newBalance
+      })
+      db.collection('cashouts').add({
+        amount: this.form.amount,
+        uid: this.uid,
+        phone: this.phone
+      })
+      alert('you cashed out' + ' ' + this.form.amount + ' ' + 'kindly refresh!')
     },
     GetLink: function () {
       var urlgenerator = require('urlgenerator')
@@ -111,6 +142,9 @@ export default {
         document.getElementById('email').value = data.email
         document.getElementById('phonenumber').value = data.phonenumber
         document.getElementById('activated').value = data.activated
+        this.balance = data.balance
+        this.phone = data.phonenumber
+        this.uid = data.uid
       })
     })
   }
