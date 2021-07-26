@@ -7,7 +7,7 @@
         <alert :dismissible="true"
                type="success"
                :iconClasses="['fa', 'fa-check']"
-               title="promax Cash is now in uganda,tanzania and rwanda.......topup then invest from your wallets">
+               time="min: 17000UGX...11,500TZS....5200RWF...500KES">
           <span>Click on icon to check it out in alpha mode.</span>
           <a href="#" target="_blank">
             <i class="fa fa-play fa-2x"></i>
