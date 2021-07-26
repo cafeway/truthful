@@ -43,7 +43,7 @@
      <router-link tag="li" class="pageLink" to="/repos">
       <a>
         <i class="fa fa-btc"></i>
-        <span class="page">Bitcoins</span>
+        <span class="page">Promax Coin</span>
         <small class="label pull-right bg-red">Hot</small>
       </a>
     </router-link>
@@ -59,7 +59,7 @@
     <router-link tag="li" class="pageLink" to="/payments">
       <a>
         <i class="fa fa-circle-o text-yellow"></i>
-        <span class="page">How to Deposit</span>
+        <span class="page">International Deposit</span>
       </a>
     </router-link>
   </ul>
