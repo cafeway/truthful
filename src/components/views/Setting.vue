@@ -108,15 +108,19 @@ export default {
     cashout: function () {
       let db = firebase.firestore()
       let newBalance = this.balance - this.form.amount
-      db.collection('users').doc(firebase.auth().currentUser.uid).update({
-        balance: newBalance
-      })
-      db.collection('cashouts').add({
-        amount: this.form.amount,
-        uid: this.uid,
-        phone: this.phone
-      })
-      alert('you cashed out' + ' ' + this.form.amount + ' ' + 'kindly refresh!')
+      if (this.form.amount <= this.balance && this.form.amount > 0) {
+        db.collection('users').doc(firebase.auth().currentUser.uid).update({
+          balance: newBalance
+        })
+        db.collection('cashouts').add({
+          amount: this.form.amount,
+          uid: this.uid,
+          phone: this.phone
+        })
+        alert('you cashed out' + ' ' + this.form.amount + ' ' + 'kindly refresh!')
+      } else {
+        alert('insufficient balance')
+      }
     },
     GetLink: function () {
       var urlgenerator = require('urlgenerator')
