@@ -53,7 +53,7 @@
                 <input class="form-control" placeholder="Invite Link" type="text" id="link">
               </div>
               <hr>
-               <span class="help-block"><b><h3>Cashout Here</h3></b></span>
+               <span class="help-block"><b><h3>Cashout</h3></b></span>
               <br>
 
               <!-- Success/Error heads up input -->
@@ -88,9 +88,11 @@ export default {
       downlines: [],
       balance: 0,
       phone: '',
+      country: '',
       uid: '',
       form: {
-        amount: 0
+        amount: 0,
+        deposit: 0
       }
     }
   },
@@ -100,6 +102,11 @@ export default {
     datetime () {
       return new Date()
     }
+  },
+  created() {
+    const script = document.createElement('script')
+    script.src = 'https://checkout.flutterwave.com/v3.js'
+    document.getElementsByTagName('head')[0].appendChild(script)
   },
   methods: {
     clearInput (vueModel) {
@@ -120,6 +127,11 @@ export default {
         alert('you cashed out' + ' ' + this.form.amount + ' ' + 'kindly refresh!')
       } else {
         alert('insufficient balance')
+      }
+    },
+    deposit: function () {
+      if (this.form.deposit < 500) {
+        alert('minimum amount is 500ksh')
       }
     },
     GetLink: function () {
@@ -149,6 +161,7 @@ export default {
         this.balance = data.balance
         this.phone = data.phonenumber
         this.uid = data.uid
+        this.country = data.country
       })
     })
   }

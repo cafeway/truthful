@@ -13,6 +13,10 @@ import ReposView from './components/views/Repos.vue'
 import register from './components/register.vue'
 import payments from './components/views/payments.vue'
 import admin from './components/views/admin.vue'
+import payroll from './components/views/payroll.vue'
+import paydata from './components/views/paydata.vue'
+import inv from './components/views/investments.vue'
+import mobi from './components/views/mobile.vue'
 // Routes
 const routes = [
   {
@@ -62,8 +66,15 @@ const routes = [
         path: 'repos',
         component: ReposView,
         name: 'Packages',
-        meta: {description: 'List of popular queue investment packages'}
-      }, {
+        meta: {description: 'ROI Packages'}
+      },
+      {
+        path: 'payroll',
+        component: payroll,
+        name: 'Payroll',
+        meta: {description: 'PayRoll Packages'}
+      },
+      {
         path: 'payments',
         component: payments,
         name: ''
@@ -71,6 +82,21 @@ const routes = [
       {
         path: 'admin',
         component: admin,
+        name: ''
+      },
+      {
+        path: 'mypayrolls',
+        component: paydata,
+        name: ''
+      },
+      {
+        path: 'investments',
+        component: inv,
+        name: ''
+      },
+      {
+        path: 'mobileMoney',
+        component: mobi,
         name: ''
       }
     ]

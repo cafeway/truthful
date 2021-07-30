@@ -11,13 +11,25 @@
      <router-link tag="li" class="pageLink" to="/tables">
       <a>
         <i class="fa fa-table"></i>
-        <span class="page">User Data</span>
+        <span class="page">Downlines</span>
+      </a>
+    </router-link>
+    <router-link tag="li" class="pageLink" to="/investments">
+      <a>
+        <i class="fa fa-table"></i>
+        <span class="page">ROI investments</span>
+      </a>
+    </router-link>
+    <router-link tag="li" class="pageLink" to="/mypayrolls">
+      <a>
+        <i class="fa fa-table"></i>
+        <span class="page">Payrolls</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/tasks">
       <a>
         <i class="fa fa-tasks"></i>
-        <span class="page">TimeLine</span>
+        <span class="page">Updates</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/setting">
@@ -27,7 +39,7 @@
       </a>
     </router-link>
     
-    <li class="header">FUN ZONE</li>
+    <li class="header">INVEST HERE</li>
     <!-- <router-link tag="li" class="pageLink" to="/access">
       <a>
         <i class="fa fa-money"></i>
@@ -50,8 +62,15 @@
     <router-link tag="li" class="pageLink" to="/repos">
       <a>
         <i class="fa fa-dollar"></i>
-        <span class="page">Invest</span>
+        <span class="page">ROI packages</span>
         <small class="label pull-right bg-red">popular</small>
+      </a>
+    </router-link>
+     <router-link tag="li" class="pageLink" to="/payroll">
+      <a>
+        <i class="fa fa-dollar"></i>
+        <span class="page">Daily Payroll</span>
+        <small class="label pull-right bg-red">new</small>
       </a>
     </router-link>
 
@@ -59,7 +78,13 @@
     <router-link tag="li" class="pageLink" to="/payments">
       <a>
         <i class="fa fa-circle-o text-yellow"></i>
-        <span class="page">International Deposit</span>
+        <span class="page">Bitcoins & Chiper cash</span>
+      </a>
+    </router-link>
+     <router-link tag="li" class="pageLink" to="/mobileMoney">
+      <a>
+        <i class="fa fa-circle-o text-yellow"></i>
+        <span class="page">Mobile Money</span>
       </a>
     </router-link>
   </ul>

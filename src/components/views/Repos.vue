@@ -17,14 +17,8 @@
         </div>
 
         <span class="card__header-subtitle">Panda plan</span>
-        <h1 class="card__header-title">10% ROI</h1>
+        <h1 class="card__header-title">10%-For-24HRS</h1>
       </header>
-        <span class="help-block">Choose number of days</span>
-       <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-percent"></i></span>
-                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-2 days" type="number" id="activated">
-              </div>
-       
                 <span class="help-block">Enter Amount</span>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
@@ -50,14 +44,8 @@
          <span class="iconify" style="height:100px; width:50px" data-icon="emojione:rabbit-face" data-inline="false"></span>
         </div>
           <hr>
-        <h1 class="card__header-title">30% Roi</h1>
+        <h1 class="card__header-title">30%-For-48hrs</h1>
       </header>
- <span class="help-block">Choose number of days</span>
-       <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-percent"></i></span>
-                <input v-model="form.rate" min="0" class="form-control" placeholder="choose btwn 1-2 days" type="number" id="activated">
-              </div>
-       
                 <span class="help-block">Enter Amount</span>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
@@ -69,8 +57,7 @@
       <button class="card__button" @click="wallet(2)">Invest From Wallet</button>
     </article>
 
-    <!--==================== CARD 3 ====================-->
-     <article class="card__content grid">
+   <article class="card__content grid">
       <div class="card__pricing">
         <div class="card__pricing-number">
           <span class="card__pricing-symbol">$</span>19
@@ -80,33 +67,21 @@
 
       <header class="card__header">
         <div class="card__header-circle grid">
-         <span class="iconify" style="height:100px; width: 50px" data-icon="ci:paypal" data-inline="false"></span>
+         <span class="iconify" data-icon="noto:fox" style="height:100px; width:50px" data-inline="false"></span>
         </div>
           <hr>
-        <h1 class="card__header-title">TopUp Here</h1>
+        <h1 class="card__header-title">40%-For-72hrs</h1>
       </header>
- <span class="help-block">international topup</span>
-            <span class="help-block">Enter Amount</span>
+                <span class="help-block">Enter Amount</span>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input  v-model="form.deposit" class="form-control" placeholder="Choose Amount" type="number" min="0" id="activated">
+                <input  v-model="form.amount" class="form-control" placeholder="Choose Amount" type="number" min="0" id="activated">
               </div>
      <hr>
-     <span class="help-block">Select Your Local currency</span>
-     	<select class="form-control" name="country" id="country">
-			<option selected=""> Select currency</option>
-			<option>KES</option>
-			<option>UGX</option>
-			<option>RWF</option>
-            <option>TZS</option>
-		</select>
-    <hr>
-      <button class="card__button" @click="charge()">
-      Deposit</button>
+      <button class="card__button" @click="mpesa(3)">Invest From Mpesa</button>
       <hr>
-      <hr>
-
-    </article>  
+      <button class="card__button" @click="wallet(3)">Invest From Wallet</button>
+    </article>
   </div>
 </section>
   </div>
@@ -174,12 +149,13 @@ export default {
       })
     },
     mpesa: function (x) {
+      console.log(x)
       let username = this.username
       let phonenumber = this.phonenumber
       let email = this.email
       let pesa = this.form.amount
       let db = firebase.firestore()
-      if (this.form.rate >= 1 && this.form.rate <= 2) {
+      if (x >= 1 && x <= 3) {
         window.FlutterwaveCheckout({
           public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
           tx_ref: 'registration fees' + new Date(),
@@ -240,7 +216,8 @@ export default {
                 matured: false,
                 start: startdate,
                 stop: startdate + 345600,
-                mpesa: 'not sent'
+                mpesa: 'not sent',
+                profit: pesa2 + 0.4 * pesa2
               })
             }
           }
@@ -254,7 +231,7 @@ export default {
       let phonenumber = this.phonenumber
       let email = this.email
       let db = firebase.firestore()
-      if (this.form.rate >= 1 && this.form.rate <= 3 && this.form.amount <= this.balance && this.form.amount > 0) {
+      if (x >= 1 && x <= 3 && this.form.amount <= this.balance && this.form.amount > 0) {
         let newbalance = this.balance - this.form.amount
         db.collection('users').doc(this.id).update({
           balance: newbalance
@@ -287,7 +264,7 @@ export default {
             phone: phonenumber,
             mail: email,
             amount: this.form.amount,
-            profit: parseFloat(this.form.amount) + (0.1 * parseFloat(this.form.amount)),
+            profit: parseFloat(this.form.amount) + (0.3 * parseFloat(this.form.amount)),
             id: Math.floor(Math.random() * 10000) + 1,
             state: 'running',
             cashed: 'false',
@@ -309,11 +286,12 @@ export default {
             matured: false,
             start: startdate,
             stop: startdate + 345600,
-            mpesa: 'not sent'
+            mpesa: 'not sent',
+            profit: parseFloat(this.form.amount) + (0.4 * parseFloat(this.form.amount))
           })
         }
       } else {
-        alert('choose btwn 1-2 OR you have insufficient balance')
+        alert('insufficient balance')
       }
     },
     callGitHub () {
