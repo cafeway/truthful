@@ -7,10 +7,10 @@
       <h4 class="plan-title">
         Starter
       </h4>
-      <div class="plan-cost"><span class="plan-price">$200ksh</span><span class="plan-type">/DAILY</span></div>
+      <div class="plan-cost"><span class="plan-price">$2</span><span class="plan-type">/DAILY</span></div>
     </header>
     <ul class="plan-features">
-      <li>Invest 1000 get 200 daily
+      <li>Invest $10 get $20 daily for 10 days
       </li>
     </ul>
     <div class="plan-select"><a  @click="invest(1000)">Select Plan</a></div>
@@ -20,10 +20,10 @@
       <h4 class="plan-title">
         Centrist
       </h4>
-      <div class="plan-cost"><span class="plan-price">$400ksh</span><span class="plan-type">/Daily</span></div>
+      <div class="plan-cost"><span class="plan-price">$4</span><span class="plan-type">/Daily</span></div>
     </header>
     <ul class="plan-features">
-      <li>Invest 2500 get 600 daily for 10 days
+      <li>Invest $25 get $6 daily for 10 days
       </li>
     </ul>
     <div class="plan-select"><a  @click="invest(2500)">Select Plan</a></div>
@@ -33,10 +33,10 @@
       <h4 class="plan-title">
         Basic
       </h4>
-      <div class="plan-cost"><span class="plan-price">$600ksh</span><span class="plan-type">/Daily</span></div>
+      <div class="plan-cost"><span class="plan-price">$6</span><span class="plan-type">/Daily</span></div>
     </header>
     <ul class="plan-features">
-      <li>Invest 3000 get 600 daily for 10 days
+      <li>Invest $30 get $6 daily for 10 days
       </li>
     </ul>
     <div class="plan-select"><a  @click="invest(3000)">Select Plan</a></div>
@@ -46,10 +46,10 @@
       <h4 class="plan-title">
         Professional
       </h4>
-      <div class="plan-cost"><span class="plan-price">$800ksh</span><span class="plan-type">/DAILY</span></div>
+      <div class="plan-cost"><span class="plan-price">$8</span><span class="plan-type">/DAILY</span></div>
     </header>
    <ul class="plan-features">
-      <li>Invest 5000 get 800 daily for 10 days
+      <li>Invest $50 get $8 daily for 10 days
       </li>
     </ul>
     <div class="plan-select"><a @click="invest(5000)">Select Plan</a></div>
@@ -59,10 +59,10 @@
       <h4 class="plan-title">
         Ultra
       </h4>
-      <div class="plan-cost"><span class="plan-price">$1000ksh</span><span class="plan-type">/DAILY</span></div>
+      <div class="plan-cost"><span class="plan-price">$10</span><span class="plan-type">/DAILY</span></div>
     </header>
    <ul class="plan-features">
-      <li>Invest 10000 get 2000 daily for 10 days
+      <li>Invest $100 get $20 daily for 10 days
       </li>
     </ul>
     <div class="plan-select"><a  @click="invest(10000)">Select Plan</a></div>
@@ -72,10 +72,10 @@
       <h4 class="plan-title">
         Forex Plan
       </h4>
-      <div class="plan-cost"><span class="plan-price">$15000ksh</span><span class="plan-type">/DAILY</span></div>
+      <div class="plan-cost"><span class="plan-price">$150</span><span class="plan-type">/DAILY</span></div>
     </header>
    <ul class="plan-features">
-      <li>Invest 100000 get 15000 daily for 30days
+      <li>Invest $1000 get $150 daily for 30days
       </li>
        <li>Contact admin for this package
       </li>
@@ -397,7 +397,7 @@ export default {
           alert('payroll successfully deloyed! kindly visit the payroll page')
         }
       } else {
-        alert('no')
+        alert('insufficient amount')
       }
     },
     callGitHub () {
