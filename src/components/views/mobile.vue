@@ -56,6 +56,14 @@
                 <button type="button" @click="rwanda()" class="btn btn-primary btn-block">Deposit from Rwanda Money</button>
              
               <br />
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input v-model="form.amount3" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
+              </div>
+              <hr>
+                <button type="button" @click="zambia()" class="btn btn-primary btn-block">Deposit from Zambia</button>
+             
+              <br />
               <span class="help-block"><b><h3>Tanzania
                 <span class="iconify" data-icon="twemoji:flag-for-flag-tanzania" data-inline="false" style="height:20px"></span>
                </h3></b></span>
@@ -90,6 +98,7 @@ export default {
         amount: 0,
         amount1: 0,
         amount2: 0,
+        amount3: 0,
         deposit: 0
       }
     }
@@ -191,6 +200,35 @@ export default {
         alert('the amount selected must be greater than 5000rwf')
       }
     },
+    zambia: function () {
+      let amount = this.form.amount3
+      let balance = this.balance
+      let db = firebase.firestore()
+      if (amount > 90) {
+        window.FlutterwaveCheckout({
+          public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
+          tx_ref: 'registration fees' + new Date(),
+          amount: amount,
+          currency: 'ZMW',
+          country: 'zambia',
+          payment_option: 'mpesa,card,ussd,account',
+          customer: {
+            email: this.email,
+            phone_number: this.phonenumber,
+            name: this.username
+          },
+          callback: function () {
+            let nb = (amount + balance) / 90
+            db.collection('users').doc(firebase.auth().currentUser.uid).update({
+              balance: nb
+            })
+          }
+        })
+      } else {
+        alert('the amount selected must be greater than 90ZWM')
+      }
+    },
+    
     tanzania: function () {
       alert('Contact admin to send to mpesa')
     },
