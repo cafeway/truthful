@@ -535,7 +535,7 @@ export default {
       })
     },
     endCallBack8: function(amount, id) {
-      let slot = this.slot
+      let bal = this.balance
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
         snapshot.forEach((doc) => {
