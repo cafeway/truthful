@@ -228,7 +228,6 @@ export default {
         alert('the amount selected must be greater than 90ZWM')
       }
     },
-    
     tanzania: function () {
       alert('Contact admin to send to mpesa')
     },

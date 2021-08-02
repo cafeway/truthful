@@ -287,13 +287,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d1: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })
@@ -312,13 +325,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d2: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })
@@ -337,13 +363,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d3: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })
@@ -362,13 +401,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d4: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })
@@ -387,13 +439,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d5: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })
@@ -412,13 +477,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d6: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })
@@ -437,13 +515,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d7: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })
@@ -462,13 +553,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d8: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })
@@ -488,13 +592,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d9: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })
@@ -503,7 +620,6 @@ export default {
     },
     endCallBack10: function(amount, id) {
       let bal = this.balance
-      let slot = this.slot
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
         snapshot.forEach((doc) => {
@@ -513,13 +629,26 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').doc(doc.id).update({
                 d10: true
               })
-              let nb = bal + amount
+              let bonus = amount * 0.1
+              let nb = bal + (amount - bonus)
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 balance: nb
               })
-              let ns = slot + amount
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                slot: ns
+              db.collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let c = bonus
+                let data = snapshot.data()
+                let upline = data.upline
+                db.collection('users').doc(upline).get().then(snapshot => {
+                  let data = snapshot.data()
+                  let balance = data.balance
+                  let bonus = data.slot
+                  let b = balance + c
+                  let nb = bonus + c
+                  db.collection('users').doc(upline).update({
+                    balance: b,
+                    slot: nb
+                  })
+                })
               })
             }
           })

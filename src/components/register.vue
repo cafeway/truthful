@@ -126,6 +126,7 @@ export default {
           message: this.form.username + 'joined using your invite link',
           type: 'downline registration'
         })
+        alert('account created successfully')
       })
       .catch(err => {
         alert(err.message)

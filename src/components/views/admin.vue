@@ -98,6 +98,7 @@
                         <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Amount</th>
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">UId</th>
                         <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Phone Number</th>
+                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 182px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -105,6 +106,7 @@
                         <td class="sorting_1">{{d.amount}}</td>
                         <td>{{d.uid}}</td>
                         <td>{{d.phone}}</td>
+                        <td><button type="button" @click="confirm(d.id)" class="btn btn-primary btn-block"> Confirm</button></td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -157,6 +159,14 @@ export default {
     },
     endCallBack: function(x) {
       console.log(x)
+    },
+    confirm: function (id) {
+      let db = firebase.firestore()
+      db.collection('cashouts').where('id', '==', id).get().then(snapshot => {
+        snapshot.forEach((doc) => {
+          db.collection('cashouts').doc(doc.id).delete()
+        })
+      })
     }
   },
   mounted () {
