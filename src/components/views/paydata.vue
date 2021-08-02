@@ -277,7 +277,6 @@ export default {
     },
     endCallBack: function(amount, id) {
       let bal = this.balance
-      let slot = this.slot
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
         snapshot.forEach((doc) => {
@@ -314,7 +313,6 @@ export default {
       })
     },
     endCallBack2: function(amount, id) {
-      let slot = this.slot
       let bal = this.balance
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
@@ -352,7 +350,6 @@ export default {
       })
     },
     endCallBack3: function(amount, id) {
-      let slot = this.slot
       let bal = this.balance
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
@@ -390,7 +387,6 @@ export default {
       })
     },
     endCallBack4: function(amount, id) {
-      let slot = this.slot
       let bal = this.balance
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
@@ -428,7 +424,6 @@ export default {
       })
     },
     endCallBack5: function(amount, id) {
-      let slot = this.slot
       let bal = this.balance
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
@@ -466,7 +461,6 @@ export default {
       })
     },
     endCallBack6: function(amount, id) {
-      let slot = this.slot
       let bal = this.balance
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
@@ -504,7 +498,6 @@ export default {
       })
     },
     endCallBack7: function(amount, id) {
-      let slot = this.slot
       let bal = this.balance
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
@@ -542,7 +535,6 @@ export default {
       })
     },
     endCallBack8: function(amount, id) {
-      let bal = this.balance
       let slot = this.slot
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
@@ -581,7 +573,6 @@ export default {
     },
     endCallBack9: function(amount, id) {
       let bal = this.balance
-      let slot = this.slot
       let db = firebase.firestore()
       db.collection('users').doc(firebase.auth().currentUser.uid).collection('payroll').where('id', '==', id).get().then(snapshot => {
         snapshot.forEach((doc) => {
