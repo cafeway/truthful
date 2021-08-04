@@ -1,45 +1,35 @@
 <template>
   <ul class="sidebar-menu">
-    <li class="header">TOOLS  </li>
     <router-link tag="li" class="pageLink" to="/">
       <a>
         <i class="fa fa-desktop"></i>
-        <span class="page">Dashboard</span>
+        <span class="page">Home</span>
       </a>
     </router-link>
-    <li class="header">YOUR DATA</li>
      <router-link tag="li" class="pageLink" to="/tables">
       <a>
         <i class="fa fa-table"></i>
-        <span class="page">Downlines</span>
+        <span class="page">Refferals & Bonus</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/investments">
       <a>
         <i class="fa fa-table"></i>
-        <span class="page">ROI investments</span>
+        <span class="page">1-3 Days investments</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/mypayrolls">
       <a>
         <i class="fa fa-table"></i>
-        <span class="page">Payrolls</span>
-      </a>
-    </router-link>
-    <router-link tag="li" class="pageLink" to="/tasks">
-      <a>
-        <i class="fa fa-tasks"></i>
-        <span class="page">Updates</span>
+        <span class="page">10 days investments</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/setting">
       <a>
         <i class="fa fa-cog"></i>
-        <span class="page">Profile</span>
+        <span class="page">Your Profile</span>
       </a>
     </router-link>
-    
-    <li class="header">INVEST HERE</li>
     <!-- <router-link tag="li" class="pageLink" to="/access">
       <a>
         <i class="fa fa-money"></i>
@@ -52,24 +42,17 @@
         <span class="page">Spin and Win</span>
       </a>
     </router-link>-->
-     <router-link tag="li" class="pageLink" to="/repos">
-      <a>
-        <i class="fa fa-btc"></i>
-        <span class="page">Promax Coin</span>
-        <small class="label pull-right bg-red">Hot</small>
-      </a>
-    </router-link>
     <router-link tag="li" class="pageLink" to="/repos">
       <a>
         <i class="fa fa-dollar"></i>
-        <span class="page">ROI packages</span>
+        <span class="page">1-3 Days packages</span>
         <small class="label pull-right bg-red">popular</small>
       </a>
     </router-link>
      <router-link tag="li" class="pageLink" to="/payroll">
       <a>
         <i class="fa fa-dollar"></i>
-        <span class="page">Daily Payroll</span>
+        <span class="page">10 Days packages</span>
         <small class="label pull-right bg-red">new</small>
       </a>
     </router-link>
@@ -78,13 +61,13 @@
     <router-link tag="li" class="pageLink" to="/payments">
       <a>
         <i class="fa fa-circle-o text-yellow"></i>
-        <span class="page">Bitcoins & Chiper cash</span>
+        <span class="page">Pay With Bitcoins</span>
       </a>
     </router-link>
      <router-link tag="li" class="pageLink" to="/mobileMoney">
       <a>
         <i class="fa fa-circle-o text-yellow"></i>
-        <span class="page">Mobile Money</span>
+        <span class="page">Pay With Mobile Money</span>
       </a>
     </router-link>
   </ul>

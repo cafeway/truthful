@@ -203,7 +203,7 @@ export default {
     zambia: function () {
       let amount = this.form.amount3
       let balance = this.balance
-      let db = firebase.firestore() 
+      let db = firebase.firestore()
       if (amount > 90) {
         window.FlutterwaveCheckout({
           public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',

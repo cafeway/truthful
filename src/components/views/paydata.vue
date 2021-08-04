@@ -26,7 +26,8 @@
                     <thead>
                       <tr role="row">
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">SlipNo</th>
-                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Payout</th>
+                             <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Capital</th>
+                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Daily Earnings</th>
                          <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Day1</th>
                           <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Day2</th>
                            <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Day3</th>
@@ -41,7 +42,8 @@
                     </thead>
                     <tbody>
                       <tr v-for="roll in payrolls" :key="roll.id" class="even" role="row">
-                        <td>{{roll.id}}</td>  
+                        <td>{{roll.id}}</td>
+                        <td>{{ roll.capital}}
                         <td>{{ roll.amount}}</td>
                         <td
                         >
