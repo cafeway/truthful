@@ -157,7 +157,7 @@ export default {
       let db = firebase.firestore()
       if (x >= 1 && x <= 3) {
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
+          public_key: 'FLWPUBK-58d009f25368bb2157760f27a748b444-X',
           tx_ref: 'registration fees' + new Date(),
           amount: this.form.amount,
           currency: 'KES',

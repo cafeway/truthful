@@ -122,7 +122,7 @@ export default {
       let db = firebase.firestore()
       if (amount > 500) {
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
+          public_key: 'FLWPUBK-58d009f25368bb2157760f27a748b444-X',
           tx_ref: 'registration fees' + new Date(),
           amount: amount,
           currency: 'KES',
@@ -150,7 +150,7 @@ export default {
       let db = firebase.firestore()
       if (amount > 17000) {
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
+          public_key: 'FLWPUBK-58d009f25368bb2157760f27a748b444-X',
           tx_ref: 'registration fees' + new Date(),
           amount: amount,
           currency: 'UGX',
@@ -178,7 +178,7 @@ export default {
       let db = firebase.firestore()
       if (amount > 5000) {
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
+          public_key: 'FLWPUBK-58d009f25368bb2157760f27a748b444-X',
           tx_ref: 'registration fees' + new Date(),
           amount: amount,
           currency: 'RWF',
@@ -206,7 +206,7 @@ export default {
       let db = firebase.firestore()
       if (amount > 90) {
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
+          public_key: 'FLWPUBK-58d009f25368bb2157760f27a748b444-X',
           tx_ref: 'registration fees' + new Date(),
           amount: amount,
           currency: 'ZMW',
