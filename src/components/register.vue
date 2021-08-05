@@ -47,6 +47,9 @@
 			<option>Rwanda</option>
             <option>Tanzania</option>
             <option>Zambia</option>
+            <option>Nigeria</option>
+            <option>Ghana</option>
+            <option>Burundi</option>
 		</select>
 	</div> <!-- form-group end.// -->
     <div class="form-group input-group">

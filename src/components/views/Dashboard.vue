@@ -7,7 +7,7 @@
         <alert :dismissible="true"
                type="success"
                :iconClasses="['fa', 'fa-check']"
-               title="minimum investment: 17000UGX...11,500TZS....5200RWF...500KES">
+               title="Contact Admins Incase of erros">
           <span>Click on icon to check it out in alpha mode.</span>
           <a href="#" target="_blank">
             <i class="fa fa-play fa-2x"></i>
