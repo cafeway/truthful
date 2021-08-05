@@ -162,7 +162,7 @@ export default {
             name: this.username
           },
           callback: function () {
-            let nb = (amount + balance) / 33
+            let nb = amount / 33 + balance
             db.collection('users').doc(firebase.auth().currentUser.uid).update({
               balance: nb
             })
@@ -218,7 +218,7 @@ export default {
             name: this.username
           },
           callback: function () {
-            let nb = (amount + balance) * 6
+            let nb = amount * 6 + balance
             db.collection('users').doc(firebase.auth().currentUser.uid).update({
               balance: nb
             })

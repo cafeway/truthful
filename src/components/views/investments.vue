@@ -25,15 +25,14 @@
                   <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
                     <thead>
                       <tr role="row">
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Amount</th>
-                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Investment Status</th>
-                         <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Returns</th>
-                          <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Cashout Status</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Amount expected</th>
+                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Due Date</th>
+                          <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Paid To Wallet</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="downline in investments" :key="downline.id" class="even" role="row">
-                        <td>{{downline.amount}}</td>
+                        <td>{{downline.profit}}</td>
                         <td
                         >
                          <vue-countdown-timer
@@ -43,16 +42,15 @@
       :end-time="downline.stop"
       :interval="1000"
       :start-label="'Time to maturity:'"
-      :end-label="'Running :'"
+      :end-label="''"
       label-position="begin"
-      :end-text="'investment matured'"
-      :day-txt="'days'"
-      :hour-txt="'hours'"
-      :minutes-txt="'minutes'"
-      :seconds-txt="'seconds'">
+      :end-text="'matured'"
+      :day-txt="'D'"
+      :hour-txt="'H'"
+      :minutes-txt="'M'"
+      :seconds-txt="'S'">
     </vue-countdown-timer>
                         </td>
-                        <td>{{ downline.profit}}</td>
                         <td> {{ downline.cashed }}</td> 
                       </tr>
                     </tbody>

@@ -6,22 +6,28 @@
         <span class="page">Home</span>
       </a>
     </router-link>
+    <router-link tag="li" class="pageLink" to="/setting">
+      <a>
+        <i class="fa fa-cog"></i>
+        <span class="page">Your Profile</span>
+      </a>
+    </router-link>
      <router-link tag="li" class="pageLink" to="/tables">
       <a>
-        <i class="fa fa-table"></i>
+        <i class="fa fa-link"></i>
         <span class="page">Refferals & Bonus</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/investments">
       <a>
-        <i class="fa fa-table"></i>
-        <span class="page">1-3 Days investments</span>
+        <i class="fa fa-database"></i>
+        <span class="page">ROI investments</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/mypayrolls">
       <a>
         <i class="fa fa-table"></i>
-        <span class="page">10 days investments</span>
+        <span class="page">Payroll investments</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/setting">
@@ -42,18 +48,11 @@
         <span class="page">Spin and Win</span>
       </a>
     </router-link>-->
-    <router-link tag="li" class="pageLink" to="/repos">
-      <a>
-        <i class="fa fa-dollar"></i>
-        <span class="page">1-3 Days packages</span>
-        <small class="label pull-right bg-red">popular</small>
-      </a>
-    </router-link>
      <router-link tag="li" class="pageLink" to="/payroll">
       <a>
-        <i class="fa fa-dollar"></i>
-        <span class="page">10 Days packages</span>
-        <small class="label pull-right bg-red">new</small>
+        <i class="fa fa-paypal"></i>
+        <span class="page">Investment Packages</span>
+        <small class="label pull-right bg-red">all packages</small>
       </a>
     </router-link>
 
@@ -61,13 +60,13 @@
     <router-link tag="li" class="pageLink" to="/payments">
       <a>
         <i class="fa fa-circle-o text-yellow"></i>
-        <span class="page">Pay With Bitcoins</span>
+        <span class="page">Deposit via Bitcoins</span>
       </a>
     </router-link>
      <router-link tag="li" class="pageLink" to="/mobileMoney">
       <a>
         <i class="fa fa-circle-o text-yellow"></i>
-        <span class="page">Pay With Mobile Money</span>
+        <span class="page">Depsit Via Mobile Money</span>
       </a>
     </router-link>
   </ul>

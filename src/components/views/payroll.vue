@@ -2,6 +2,57 @@
   <div>
    
 <div class="snip1265">
+<div class="plan">
+    <header><i class="ion-ios-star-outline"></i>
+      <h4 class="plan-title">
+        ROI Basic
+      </h4>
+      <div class="plan-cost"><span class="plan-price">%10</span><span class="plan-type">/DAY</span></div>
+    </header>
+    <ul class="plan-features">
+      <li>Make 10% interest in 24hrs
+      </li>
+    </ul>
+    <ul class="plan-features">
+      <li>Min $5 max $1000
+      </li>
+    </ul>
+    <div class="plan-select"><a  @click="ROI1()">Select Plan</a></div>
+  </div>
+  <div class="plan">
+    <header><i class="ion-ios-sunny-outline"></i>
+      <h4 class="plan-title">
+        ROI Pro
+      </h4>
+      <div class="plan-cost"><span class="plan-price">%25</span><span class="plan-type">/DAY</span></div>
+    </header>
+    <ul class="plan-features">
+      <li>Make 25% interest in 48hrs
+      </li>
+    </ul>
+    <ul class="plan-features">
+      <li>Min $5 max $1000
+      </li>
+    </ul>
+    <div class="plan-select"><a  @click="ROI2()">Select Plan</a></div>
+  </div>
+  <div class="plan">
+    <header><i class="ion-ios-moon-outline"></i>
+      <h4 class="plan-title">
+        ROI Utra
+      </h4>
+      <div class="plan-cost"><span class="plan-price">%35</span><span class="plan-type">/DAY</span></div>
+    </header>
+    <ul class="plan-features">
+      <li>Make 55% interest in 72hrs
+      </li>
+    </ul>
+    <ul class="plan-features">
+      <li>Min $5 max $1000
+      </li>
+    </ul>
+    <div class="plan-select"><a  @click="ROI3()">Select Plan</a></div>
+  </div>
   <div class="plan">
     <header><i class="ion-ios-navigate-outline"></i>
       <h4 class="plan-title">
@@ -15,6 +66,7 @@
     </ul>
     <div class="plan-select"><a  @click="invest(1000)">Select Plan</a></div>
   </div>
+  <br>
   <div class="plan">
     <header><i class="ion-ios-world"></i>
       <h4 class="plan-title">
@@ -23,7 +75,7 @@
       <div class="plan-cost"><span class="plan-price">$4</span><span class="plan-type">/Daily</span></div>
     </header>
     <ul class="plan-features">
-      <li>Invest $2500 and make $4 daily
+      <li>Invest $25 and make $4 daily
       </li>
     </ul>
     <div class="plan-select"><a  @click="invest(2500)">Select Plan</a></div>
@@ -83,13 +135,18 @@
     <div class="plan-select"><a >Select Plan</a></div>
   </div>
 </div>
+<invest/>
   </div>
-</template> 
+</template>
 <script>
+import invest from './investments.vue'
 import axios from 'axios'
 import firebase from 'firebase'
 export default {
   name: 'Repository',
+  components: {
+    invest
+  },
   data () {
     return {
       username: '',
@@ -114,6 +171,96 @@ export default {
     }
   },
   methods: {
+    ROI1: function () {
+      let phone = this.phonenumber
+      let email = this.email
+      let startdate = firebase.firestore.Timestamp.now().seconds
+      let amount = parseFloat(prompt('Enter Your Intended Capital'))
+      if (amount <= this.balance && amount >= 500) {
+        let db = firebase.firestore()
+        let nb = this.balance - amount
+        db.collection('users').doc(firebase.auth().currentUser.uid).update({
+          balance: nb
+        })
+        db.collection('investments').add({
+          user: firebase.auth().currentUser.uid,
+          phone: phone,
+          mail: email,
+          amount: amount,
+          id: Math.floor(Math.random() * 10000) + 1,
+          state: 'running',
+          cashed: 'false',
+          matured: false,
+          start: startdate,
+          stop: startdate + 86400,
+          mpesa: 'not sent',
+          profit: amount + 0.1 * amount
+        })
+        alert('Your Investment Was successfull!Visit The Investment Panel to Track It')
+      } else {
+        alert('kindly top up or enter an amount greated than 500')
+      }
+    },
+    ROI2: function () {
+      let phone = this.phonenumber
+      let email = this.email
+      let startdate = firebase.firestore.Timestamp.now().seconds
+      let amount = parseFloat(prompt('Enter Your Intended Capital'))
+      if (amount <= this.balance && amount >= 500) {
+        let db = firebase.firestore()
+        let nb = this.balance - amount
+        db.collection('users').doc(firebase.auth().currentUser.uid).update({
+          balance: nb
+        })
+        db.collection('investments').add({
+          user: firebase.auth().currentUser.uid,
+          phone: phone,
+          mail: email,
+          amount: amount,
+          id: Math.floor(Math.random() * 10000) + 1,
+          state: 'running',
+          cashed: 'false',
+          matured: false,
+          start: startdate,
+          stop: startdate + 172800,
+          mpesa: 'not sent',
+          profit: amount + 0.25 * amount
+        })
+        alert('Your Investment Was successfull!Visit The Investment Panel to Track It')
+      } else {
+        alert('kindly top up or enter an amount greated than 500')
+      }
+    },
+    ROI3: function () {
+      let phone = this.phonenumber
+      let email = this.email
+      let startdate = firebase.firestore.Timestamp.now().seconds
+      let amount = parseFloat(prompt('Enter Your Intended Capital'))
+      if (amount <= this.balance && amount >= 500) {
+        let db = firebase.firestore()
+        let nb = this.balance - amount
+        db.collection('users').doc(firebase.auth().currentUser.uid).update({
+          balance: nb
+        })
+        db.collection('investments').add({
+          user: firebase.auth().currentUser.uid,
+          phone: phone,
+          mail: email,
+          amount: amount,
+          id: Math.floor(Math.random() * 10000) + 1,
+          state: 'running',
+          cashed: 'false',
+          matured: false,
+          start: startdate,
+          stop: startdate + 345600,
+          mpesa: 'not sent',
+          profit: amount + 0.35 * amount
+        })
+        alert('Your Investment Was successfull!Visit The Investment Panel to Track It')
+      } else {
+        alert('kindly top up or enter an amount greated than 500')
+      }
+    },
     charge: function () {
       let country = document.getElementById('country').value
       let db = firebase.firestore()

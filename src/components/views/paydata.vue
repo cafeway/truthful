@@ -4,7 +4,7 @@
     </div>
 
     <div class="row center-block">
-      <h2>10 Day PAYROLLS</h2>
+      <h2>Payroll Data</h2>
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -25,9 +25,9 @@
                   <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
                     <thead>
                       <tr role="row">
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">SlipNo</th>
-                             <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Capital</th>
-                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Daily Earnings</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Capital</th>
+                             <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Expected Amount</th>
+                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Intrest</th>
                          <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Day1</th>
                           <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Day2</th>
                            <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Day3</th>
@@ -42,8 +42,8 @@
                     </thead>
                     <tbody>
                       <tr v-for="roll in payrolls" :key="roll.id" class="even" role="row">
-                        <td>{{roll.id}}</td>
-                        <td>{{ roll.capital}}
+                        <td>{{roll.capital}}</td>
+                        <td>{{ roll.amount * 10}}
                         <td>{{ roll.amount}}</td>
                         <td
                         >
@@ -74,7 +74,7 @@
       :start-label="'Time to maturity:'"
       :end-label="''"
       label-position="begin"
-      :end-text="'daily cashout matured'"
+      :end-text="'your  daily cashout matured'"
       :day-txt="'d'"
       :hour-txt="'h'"
       :minutes-txt="'m'"
@@ -92,7 +92,7 @@
       :start-label="'Time to maturity:'"
       :end-label="''"
       label-position="begin"
-      :end-text="'daily cashout matured'"
+      :end-text="'your daily cashout matured'"
       :day-txt="'d'"
       :hour-txt="'h'"
       :minutes-txt="'m'"
@@ -110,7 +110,7 @@
       :start-label="'Time to maturity:'"
       :end-label="''"
       label-position="begin"
-      :end-text="'daily cashout matured'"
+      :end-text="'your daily cashout matured'"
       :day-txt="'d'"
       :hour-txt="'h'"
       :minutes-txt="'m'"
@@ -128,7 +128,7 @@
       :start-label="'Time to maturity:'"
       :end-label="''"
       label-position="begin"
-      :end-text="'daily cashout matured'"
+      :end-text="'your daily cashout matured'"
       :day-txt="'d'"
       :hour-txt="'h'"
       :minutes-txt="'m'"
@@ -146,7 +146,7 @@
       :start-label="'Time to maturity:'"
       :end-label="''"
       label-position="begin"
-      :end-text="'daily cashout matured'"
+      :end-text="'your daily cashout matured'"
       :day-txt="'d'"
       :hour-txt="'h'"
       :minutes-txt="'m'"
@@ -164,7 +164,7 @@
       :start-label="'Time to maturity:'"
       :end-label="''"
       label-position="begin"
-      :end-text="'daily cashout matured'"
+      :end-text="'your daily cashout matured'"
       :day-txt="'d'"
       :hour-txt="'h'"
       :minutes-txt="'m'"
@@ -200,7 +200,7 @@
       :start-label="'Time to maturity:'"
       :end-label="''"
       label-position="begin"
-      :end-text="'daily cashout matured'"
+      :end-text="'your daily cashout matured'"
       :day-txt="'d'"
       :hour-txt="'h'"
       :minutes-txt="'m'"
@@ -218,7 +218,7 @@
       :start-label="'Time to maturity:'"
       :end-label="''"
       label-position="begin"
-      :end-text="'daily cashout matured'"
+      :end-text="'your daily cashout matured'"
       :day-txt="'d'"
       :hour-txt="'h'"
       :minutes-txt="'m'"
@@ -650,6 +650,7 @@ export default {
     }
   },
   mounted () {
+    alert('all payroll packages mature individually at the same time!On maturity kindly refresh to credit your wallet balance with the daily interest')
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         let db = firebase.firestore()

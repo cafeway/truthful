@@ -18,15 +18,15 @@
       <!-- Info boxes -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-aqua"
-                  :icon-classes="['fa', 'fa-university']"
-                  text="Balance"
+                  :icon-classes="['fa', 'fa-google-wallet']"
+                  text="Wallet Balance"
                   :number= this.balance></info-box>
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-red"
-                  :icon-classes="['fa', 'fa-credit-card ']"
-                  text="Cashouts"
+                  :icon-classes="['fa', 'fa-money']"
+                  text="Earnings"
                   :number= this.revenue ></info-box>
       </div>
       <!-- /.col -->
@@ -35,14 +35,14 @@
       <div class="clearfix visible-sm-block"></div>
       
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <info-box color-class="bg-green"
-                  :icon-classes="['fa', 'fa-database']"
+        <info-box color-class="bg-purple"
+                  :icon-classes="['fa', 'fa-link']"
                   text="Bonus"
                   :number= this.slot></info-box>
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <info-box color-class="bg-yellow"
+        <info-box color-class="bg-orange"
                   :icon-classes="['ion', 'ion-ios-people-outline']"
                   text="Downlines"
                   :number= this.downlines></info-box>
@@ -112,7 +112,9 @@ export default {
       trivia: 0,
       user_email: '',
       slot: 0,
-      country: ''
+      country: '',
+      pending: 0
+
     }
   },
   computed: {
