@@ -5,10 +5,10 @@
     <div class="row">
       <div class="col-xs-12">
         <alert :dismissible="true"
-               type="success"
+               type="warning"
                :iconClasses="['fa', 'fa-check']"
-               title="Contact Admins Incase of erros">
-          <span>Click on icon to check it out in alpha mode.</span>
+               title="Zido Investments">
+          <!-- <span>Click on icon to check it out in alpha mode.</span> -->
           <a href="#" target="_blank">
             <i class="fa fa-play fa-2x"></i>
           </a>

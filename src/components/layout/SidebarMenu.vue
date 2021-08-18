@@ -2,13 +2,13 @@
   <ul class="sidebar-menu">
     <router-link tag="li" class="pageLink" to="/">
       <a>
-        <i class="fa fa-desktop"></i>
+        <i class="fa fa-home  "></i>
         <span class="page">Home</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/setting">
       <a>
-        <i class="fa fa-cog"></i>
+        <i class="fa fa-user"></i>
         <span class="page">Your Profile</span>
       </a>
     </router-link>

@@ -2,7 +2,7 @@
 <template>
   <footer class="main-footer">
     <strong>Copyright &copy; {{ year }}
-    <a href="javascript:;">powered by brixt Technologies</a>.</strong>
+    <a href="javascript:;"></a>.</strong>
   </footer>
 </template>
 

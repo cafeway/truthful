@@ -6,33 +6,15 @@
 
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
-        <div class="pull-left image">
-          <img :src="user.avatar" />
-        </div>
         <div class="pull-left info">
           <div>
-            <p class="white">{{this.username}}</p>
+            <p class="white"> HELLO {{this.username.toUpperCase()}}</p>
           </div>
         </div>
       </div>
 
       <!-- search form (Optional) -->
-      <form v-on:submit.prevent class="sidebar-form" id="searchForm">
-        <div class="input-group" id="searchContainer">
-          <span class="input-group-btn">
-            <input type="text"
-            name="search"
-            id="search"
-            class="search form-control"
-            data-toggle="hideseek" p
-            laceholder="Search Menus"
-            data-list=".sidebar-menu">
-            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-              <i class="fa fa-search"></i>
-            </button>
-          </span>
-        </div>
-      </form>
+    
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
