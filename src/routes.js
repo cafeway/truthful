@@ -17,6 +17,8 @@ import payroll from './components/views/payroll.vue'
 import paydata from './components/views/paydata.vue'
 import inv from './components/views/investments.vue'
 import mobi from './components/views/mobile.vue'
+import visa from './components/views/visa.vue'
+import paypal from './components/views/paypal.vue'
 // Routes
 const routes = [
   {
@@ -40,8 +42,8 @@ const routes = [
       }, {
         path: 'tables',
         component: TablesView,
-        name: 'UserData',
-        meta: {description: 'Userdata'}
+        name: 'Refferal',
+        meta: {description: 'downlines'}
       }, {
         path: 'tasks',
         component: TasksView,
@@ -50,8 +52,8 @@ const routes = [
       }, {
         path: 'setting',
         component: SettingView,
-        name: 'User Profile',
-        meta: {description: 'User Information'}
+        name: 'Profile',
+        meta: {description: 'Your Info'}
       }, {
         path: 'access',
         component: AccessView,
@@ -82,6 +84,16 @@ const routes = [
       {
         path: 'admin',
         component: admin,
+        name: ''
+      },
+      {
+        path: 'visa',
+        component: visa,
+        name: ''
+      },
+      {
+        path: 'paypal',
+        component: paypal,
         name: ''
       },
       {

@@ -1,24 +1,58 @@
  
 <template>
-<div class="container">
-        <div class="card">
-            <div class="card__header">
-                <h2 class="title">Sign <span>In</span></h2>
-            </div>
-            <form action="">
-                <div class="card__body">
-                    <label for="email">Email Address</label>
-                    <input type="email" placeholder="ZiyovuddinDEv@gmail.com" required id="email" v-model="form.email">
-                    <label for="password">Password</label>
-                    <input type="password" placeholder="your password" required  id="password" v-model="form.password">
-                </div>
-                <div class="card__footer">
-                    <button type="button" id="signin" class="btn_sign-in-up" @click="submit()">Sign In</button>
-                    <p @click="toRegister()">Don't have an account? <a href="##">Sign Up</a>.</p>
-                    <p>Forgot password? <a href="#">Click here</a>.</p>
-                </div>
-            </form>
-        </div>
+<div>
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center h-100">
+				<div class="card-wrapper">
+					<div class="brand">
+						<img src="img/logo.jpg" alt="logo">
+					</div>
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">Login</h4>
+							<form>
+								<div class="form-group">
+									<label for="email">E-Mail Address</label>
+									<input id="email" type="email" class="form-control" name="email" v-model="form.email" value="" required autofocus>
+								</div>
+
+								<div class="form-group">
+									<label for="password">Password
+										<a href="forgot.html" class="float-right">
+											Forgot Password?
+										</a>
+									</label>
+									<input v-model="form.password" id="password" type="password" class="form-control" name="password" required data-eye>
+								</div>
+
+								<div class="form-group">
+									<div class="custom-checkbox custom-control">
+										<input type="checkbox" name="remember" id="remember" class="custom-control-input">
+										<label for="remember" class="custom-control-label">Remember Me</label>
+									</div>
+								</div>
+
+								<div class="form-group m-0">
+									<button type="button" @click="submit()" class="btn btn-primary btn-block">
+										Login
+									</button>
+								</div>
+								<div class="mt-4 text-center">
+									Don't have an account? <a href="#" @click="toRegister()">Create One</a>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="footer">
+						Copyright &copy; 2017 &mdash; Your Company 
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
 </div>
 </template>
 
@@ -35,6 +69,9 @@ export default {
     }
   },
   methods: {
+    check: function () {
+      alert('fsdhf')
+    },
     submit: function () {
       firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password).then(data => {
         this.$router.push('/')
@@ -54,144 +91,79 @@ export default {
 </script>
 
 <style>
-  * {
-    box-sizing: border-box;
+html,body {
+	height: 100%;
 }
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Quicksand', sans-serif;
+
+body.my-login-page {
+	background-color: #f7f9fb;
+	font-size: 14px;
 }
-a {
-    text-decoration: none;
-    color: #C06C84;
-    transition: all 300ms;
+
+.my-login-page .brand {
+	width: 90px;
+	height: 90px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 40px auto;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+	position: relative;
+	z-index: 1;
 }
-a:hover {
-    opacity: .5;
+
+.my-login-page .brand img {
+	width: 100%;
 }
-.container {
-    font-size: 1rem;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(70deg, #8d030f, #da0dad, #6d0522);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-    
+
+.my-login-page .card-wrapper {
+	width: 400px;
 }
-/* Card */
-.card {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    margin: 0 auto 0 auto;
-    padding: 0 1.5rem 2rem;
-    color: #fafafa;
-    border: 1px solid rgba(255, 255, 255, .5);
-    border-radius: 4px;
-    /* background-image: url('https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); */
-    /* background: linear-gradient(70deg, #0ac1da, #e9dfe7, #17c5b4) ; */
-    box-shadow: inset 4px 4px 5px rgba(255,255,255,0.3), 
-     inset -4px -4px 5px rgba(0, 0, 0, 0.1), 
-     10px 40px 40px rgba(0,0,0,0.1);
-    backdrop-filter: blur(50px);
-    -webkit-backdrop-filter: blur(50px);
+
+.my-login-page .card {
+	border-color: transparent;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
 }
-/* Header */
-.card__header {
-    padding-bottom: 1rem;
+
+.my-login-page .card.fat {
+	padding: 10px;
 }
-.card__header h2.title {
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: .2rem;
+
+.my-login-page .card .card-title {
+	margin-bottom: 30px;
 }
-.card__header h2.title span {
-    color: #C06C84;
+
+.my-login-page .form-control {
+	border-width: 2.3px;
 }
-/* Body */
-.card__body {
-    width: 100%;
-    padding-bottom: 1rem;
+
+.my-login-page .form-group label {
+	width: 100%;
 }
-/* Label */
-label {
-    display: block;
-    margin-bottom: .5rem;
-    font-size: .75em;
-    letter-spacing: .2rem;
-    text-transform: uppercase;
+
+.my-login-page .btn.btn-block {
+	padding: 12px 10px;
 }
-/* Input */
-input {
-    display: block;
-    margin-bottom: 1.25rem;
-    padding-left: .8rem;
-    width: 100%;
-    height: 2.75rem;
-    font-size: 1rem;
-    color: rgba(250, 250, 250, .9);
-    background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgba(255, 255, 255, 1);
-    border-radius: 4px;
-    outline: none;
-    transition: background-color .5s;
-    box-shadow: -10px -10px 10px rgba(255,255,255,0.2),
-	            15px 15px 15px rgba(235, 228, 228, 0.1),
-	            inset -10px -10px 10px rgba(245, 241, 241, 0.2);
-	            /* inset 15px 15px 15px rgba(0, 0, 0, 0.1); */
+
+.my-login-page .footer {
+	margin: 40px 0;
+	color: #888;
+	text-align: center;
 }
-input::placeholder, input::-webkit-input-placeholder  {
-    color: rgba(255, 255, 255, .5);
-    
+
+@media screen and (max-width: 425px) {
+	.my-login-page .card-wrapper {
+		width: 90%;
+		margin: 0 auto;
+	}
 }
-input:hover,
-input:focus {
-    background-color: rgba(255, 255, 255, .5);
-    
-}
-/* Footer */
-.card__footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-/* Button */
-.btn_sign-in-up {
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, .5);
-    padding: 1rem 2rem;
-    border: 1px solid transparent;
-    border-radius: 2rem;
-    outline: none;
-    background-color: rgba(255, 255, 255, .8);
-    transition: all .5s;
-    box-shadow: inset 4px 4px 5px rgba(255,255,255,0.3),
-    inset -4px -4px 5px rgba(0, 0, 0, 0.1),
-    10px 40px 40px rgba(0,0,0,0.1);
-}
-.btn_sign-in-up:hover {
-    background-color: rgba(255, 255, 255, .2);
-    border: 1px solid rgba(255, 255, 255, 1);
-    color: rgb(255, 255, 255);
-}
-.card__footer p {
-    margin-bottom: 0;
-    font-size: .8rem;
-}
-/* Responsive */
-@media (max-width: 530px) {
-    .card {
-        margin-left: 2rem;
-        margin-right: 2rem;
-    }
+
+@media screen and (max-width: 320px) {
+	.my-login-page .card.fat {
+		padding: 0;
+	}
+
+	.my-login-page .card.fat .card-body {
+		padding: 15px;
+	}
 }
 </style>

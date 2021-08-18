@@ -9,33 +9,27 @@
     <router-link tag="li" class="pageLink" to="/setting">
       <a>
         <i class="fa fa-user"></i>
-        <span class="page">Your Profile</span>
+        <span class="page">Profile</span>
       </a>
     </router-link>
      <router-link tag="li" class="pageLink" to="/tables">
       <a>
-        <i class="fa fa-link"></i>
-        <span class="page">Refferals & Bonus</span>
+        <i class="fa fa-flash"></i>
+        <span class="page">Earn Refferals</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/investments">
       <a>
-        <i class="fa fa-database"></i>
-        <span class="page">ROI investments</span>
+        <i class="fa fa-line-chart"></i>
+        <span class="page">Earn Interest</span>
       </a>
     </router-link>
-    <router-link tag="li" class="pageLink" to="/mypayrolls">
+    <!-- <router-link tag="li" class="pageLink" to="/mypayrolls">
       <a>
         <i class="fa fa-table"></i>
         <span class="page">Payroll investments</span>
       </a>
-    </router-link>
-    <router-link tag="li" class="pageLink" to="/setting">
-      <a>
-        <i class="fa fa-cog"></i>
-        <span class="page">Your Profile</span>
-      </a>
-    </router-link>
+    </router-link> -->
     <!-- <router-link tag="li" class="pageLink" to="/access">
       <a>
         <i class="fa fa-money"></i>
@@ -50,23 +44,28 @@
     </router-link>-->
      <router-link tag="li" class="pageLink" to="/payroll">
       <a>
-        <i class="fa fa-paypal"></i>
+        <i class="fa fa-star-o"></i>
         <span class="page">Investment Packages</span>
         <small class="label pull-right bg-red">all packages</small>
       </a>
     </router-link>
-
-    <li class="header">PAYMENT METHODS</li>
+    <hr>
     <router-link tag="li" class="pageLink" to="/payments">
       <a>
-        <i class="fa fa-circle-o text-yellow"></i>
-        <span class="page">Deposit via Bitcoins</span>
+        <i class="fa fa-btc text-green"></i>
+        <span class="page">Pay with Crypto</span>
+      </a>
+    </router-link>
+      <router-link tag="li" class="pageLink" to="/visa">
+      <a>
+        <i class="fa fa-cc-visa text-red"></i>
+        <span class="page">Pay with Visa</span>
       </a>
     </router-link>
      <router-link tag="li" class="pageLink" to="/mobileMoney">
       <a>
-        <i class="fa fa-circle-o text-yellow"></i>
-        <span class="page">Depsit Via Mobile Money</span>
+        <i class="fa fa-phone text-yellow"></i>
+        <span class="page">Pay with Mobile Money</span>
       </a>
     </router-link>
   </ul>

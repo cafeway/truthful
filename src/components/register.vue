@@ -138,8 +138,8 @@ export default {
   }
 }
 </script>
-
-<s.divider-text {
+<style>
+.divider-text {
     position: relative;
     text-align: center;
     margin-top: 15px;

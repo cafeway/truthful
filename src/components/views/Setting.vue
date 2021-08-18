@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1 class="text-center">Edit Profile</h1>
+    <h6 class="text-center">Investing your money for a better tomorrow</h6>
     <section class="content">
       <div class="row">
         <div class="col-md-12">
           <div class="box box-info">
             <!-- Input Addons -->
             <div class="box-header with-border">
-              <h3 class="box-title">User profile</h3>
+              <h3 class="box-title">Kyc</h3>
             </div>
 
             <div class="box-body">
@@ -53,17 +53,7 @@
                 <input class="form-control" placeholder="Invite Link" type="text" id="link">
               </div>
               <hr>
-               <span class="help-block"><b><h3>Cashout</h3></b></span>
-              <br>
-
-              <!-- Success/Error heads up input -->
-               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input v-model="form.amount" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
-              </div>
-              <hr>
-                <button type="button" @click="cashout()" class="btn btn-success btn-block">Withdraw</button>
-             
+               
               <br />
               <!-- select examples -->
 
@@ -154,6 +144,7 @@ export default {
       // fetch user data
       db.collection('users').doc(user.uid).get().then(snapshot => {
         let data = snapshot.data()
+        this.username = data.username
         document.getElementById('username').value = data.username
         document.getElementById('email').value = data.email
         document.getElementById('phonenumber').value = data.phonenumber

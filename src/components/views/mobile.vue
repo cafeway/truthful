@@ -7,15 +7,15 @@
           <div class="box box-info">
             <!-- Input Addons -->
             <div class="box-header with-border">
-              <h3 class="box-title">User wallet</h3>
+              <h4 class="box-title">The best investment ideas are here</h4>
             </div>
 
             <div class="box-body">
               <!-- calendar group -->
 
               <!-- with characthers -->
-               <span class="help-block"><b><h3>Kenya
-               <span class="iconify" data-icon="twemoji:flag-for-flag-kenya" style="height:20px;" data-inline="false"></span>
+               <span class="help-block"><b><h3>Mobile Money
+               <span class="iconify" data-icon="emojione:mobile-phone-with-arrow" style="height:30px;width:30px"></span>
                </h3></b></span>
               <br>
 
@@ -25,49 +25,7 @@
                 <input v-model="form.amount" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
               </div>
               <hr>
-                <button type="button" @click="kenya()" class="btn btn-success btn-block">Deposit from Mpesa</button>
-             
-              <hr />
-             <span class="help-block"><b><h3>Uganda
-               <span class="iconify" data-icon="twemoji:flag-for-flag-uganda" data-inline="false" style="height:20px"></span>
-               </h3></b></span>
-              <br>
-
-              <!-- Success/Error heads up input -->
-               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input v-model="form.amount1" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
-              </div>
-              <hr>
-                <button type="button" @click="uganda()" class="btn btn-danger btn-block">Deposit from Mtn/Airtel</button>
-             
-              <br />
-               <span class="help-block"><b><h3>Rwanda
-                <span class="iconify" data-icon="twemoji:flag-for-flag-rwanda" data-inline="false" style="height:20px"></span>
-               </h3></b></span>
-              <br>
-
-              <!-- Success/Error heads up input -->
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input v-model="form.amount2" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
-              </div>
-              <hr>
-                <button type="button" @click="rwanda()" class="btn btn-primary btn-block">Deposit from Rwanda Money</button>
-             
-              <br />
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input v-model="form.amount3" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
-              </div>
-              <hr>
-                <button type="button" @click="zambia()" class="btn btn-primary btn-block">Deposit from Zambia</button>
-             
-              <br />
-              <span class="help-block"><b><h3>Tanzania
-                <span class="iconify" data-icon="twemoji:flag-for-flag-tanzania" data-inline="false" style="height:20px"></span>
-               </h3></b></span>
-               <button type="button" @click="tanzania()" class="btn btn-warning btn-block">Deposit from Vodacom</button>
+                <button type="button" @click="kenya()" class="btn btn-primary btn-block">Deposit From Mobile Money</button>
               <!-- select examples -->
 
               <!-- /input-group -->
@@ -122,7 +80,7 @@ export default {
       let db = firebase.firestore()
       if (amount > 500) {
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-58d009f25368bb2157760f27a748b444-X',
+          public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
           tx_ref: 'registration fees' + new Date(),
           amount: amount,
           currency: 'KES',
@@ -259,7 +217,7 @@ export default {
     GetLink: function () {
       var urlgenerator = require('urlgenerator')
       var createURLwithParameters = urlgenerator.createURLwithParameters
-      var baseURL = 'https://promaxcash.netlify.app/register'
+      var baseURL = 'https://zido.netlify.app/register'
       var uid = firebase.auth().currentUser.uid
       var parameters = {'id': uid}
       var finalUrl = createURLwithParameters(baseURL, parameters)

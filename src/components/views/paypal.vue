@@ -1,24 +1,31 @@
 <template>
   <div>
-    <h1 class="text-center">Crypto Currency Deposit</h1>
+    <h1 class="text-center">Mobile Money Deposit</h1>
     <section class="content">
       <div class="row">
-      <img src="">
         <div class="col-md-12">
           <div class="box box-info">
             <!-- Input Addons -->
             <div class="box-header with-border">
-              <h3 class="box-title">We Accept Payments Using Crypto Coins </h3>
+              <h3 class="box-title">User wallet</h3>
             </div>
 
             <div class="box-body">
               <!-- calendar group -->
-              <div>
-                 <button type="button" class="btn btn-warning btn-block">  <a class="donate-with-crypto"
-     href="https://commerce.coinbase.com/checkout/71bd04bf-daa3-44ae-a172-39691098ff9e">
-    Deposit Crypto
-  </a></button>
-</div>
+
+              <!-- with characthers -->
+               <span class="help-block"><b><h3>Kenya
+               <span class="iconify" data-icon="twemoji:flag-for-flag-kenya" style="height:20px;" data-inline="false"></span>
+               </h3></b></span>
+              <br>
+
+              <!-- Success/Error heads up input -->
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input v-model="form.amount" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
+              </div>
+              <hr>
+                <button type="button" @click="kenya()" class="btn btn-success btn-block">Deposit from Mpesa</button>
               <!-- select examples -->
 
               <!-- /input-group -->
@@ -63,7 +70,7 @@ export default {
   },
   created() {
     const script = document.createElement('script')
-    script.src = 'https://commerce.coinbase.com/v1/checkout.js?version=201807'
+    script.src = 'https://checkout.flutterwave.com/v3.js'
     document.getElementsByTagName('head')[0].appendChild(script)
   },
   methods: {
@@ -210,7 +217,7 @@ export default {
     GetLink: function () {
       var urlgenerator = require('urlgenerator')
       var createURLwithParameters = urlgenerator.createURLwithParameters
-      var baseURL = 'https://promaxcash.netlify.app/register'
+      var baseURL = 'https://zido.netlify.app/register'
       var uid = firebase.auth().currentUser.uid
       var parameters = {'id': uid}
       var finalUrl = createURLwithParameters(baseURL, parameters)
