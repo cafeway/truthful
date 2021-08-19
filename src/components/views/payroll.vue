@@ -6,7 +6,7 @@
             <div class="pricing-table-header">
                 <h4><strong>BASIC</strong></h4>
             </div>
-            <div class="price"><strong>10%</strong> / DAY</div>
+            <div class="price"><strong>Earn 10%</strong> / DAY</div>
             <div class="pricing-body">
                 <ul class="pricing-table-ul">
                 </ul><a href="#" class="view-more" @click="ROI1()">Invest</a></div>
@@ -17,7 +17,7 @@
             <div class="pricing-table-header">
                 <h4><strong>PREMIUM</strong></h4>
             </div>
-            <div class="price"><strong>25%</strong> / 2DAYS</div>
+            <div class="price"><strong>Earn 25%</strong> / 2DAYS</div>
             <div class="pricing-body">
                 <ul class="pricing-table-ul">
                 </ul><a href="#" class="view-more" @click="ROI2()">Invest</a></div>
@@ -28,7 +28,7 @@
             <div class="pricing-table-header">
                 <h4><strong>BUSINESS</strong></h4>
             </div>
-            <div class="price"><strong>35% </strong> / 3DAYS</div>
+            <div class="price"><strong>Earn 35% </strong> / 3DAYS</div>
             <div class="pricing-body">
                 <ul class="pricing-table-ul">
                 </ul><a href="#" class="view-more" @click="ROI3()">Invest</a></div>
