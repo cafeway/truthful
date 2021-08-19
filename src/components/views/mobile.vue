@@ -78,7 +78,7 @@ export default {
       let amount = this.form.amount
       let balance = this.balance
       let db = firebase.firestore()
-      if (amount > 500) {
+      if (amount > 0) {
         window.FlutterwaveCheckout({
           public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
           tx_ref: 'registration fees' + new Date(),
@@ -91,11 +91,15 @@ export default {
             phone_number: this.phonenumber,
             name: this.username
           },
-          callback: function () {
+          callback: function (data) {
             let nb = amount + balance
-            db.collection('users').doc(firebase.auth().currentUser.uid).update({
-              balance: nb
-            })
+            if (data.status === 'successful') {
+              db.collection('users').doc(firebase.auth().currentUser.uid).update({
+                balance: nb
+              })
+            } else {
+              alert('cancelled')
+            }
           }
         })
       } else {

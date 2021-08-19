@@ -17,7 +17,6 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <messages-menu></messages-menu>
-          <user-menu :user="user"></user-menu>
         </ul>
       </div>
     </nav>

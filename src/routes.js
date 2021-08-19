@@ -67,14 +67,14 @@ const routes = [
       }, {
         path: 'repos',
         component: ReposView,
-        name: 'Packages',
+        name: 'ROI packages',
         meta: {description: 'ROI Packages'}
       },
       {
         path: 'payroll',
         component: payroll,
-        name: 'Payroll',
-        meta: {description: 'PayRoll Packages'}
+        name: '',
+        meta: {description: 'Choose Your Favourite Package'}
       },
       {
         path: 'payments',

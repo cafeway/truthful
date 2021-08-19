@@ -4,7 +4,7 @@
     </div>
 
     <div class="row center-block">
-      <h2>INVESTMENTS</h2>
+      <h4>YOUR EARNINGS</h4>
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -26,14 +26,13 @@
                     <thead>
                       <tr role="row">
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Amount expected</th>
-                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Due Date</th>
-                          <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Paid To Wallet</th>
+                        <th aria-label="Engine version: activate to sort column ascending" style="width: 142px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Time To Maturity </th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="downline in investments" :key="downline.id" class="even" role="row">
-                        <td>{{downline.profit}}</td>
-                        <td
+                        <td v-if="downline.state == 'running'" style="color:blue">{{downline.profit}}</td>
+                        <td v-if="downline.state == 'running'" style="color:blue"
                         >
                          <vue-countdown-timer
       @start_callback="startCallBack('event started')"
@@ -51,7 +50,25 @@
       :seconds-txt="'S'">
     </vue-countdown-timer>
                         </td>
-                        <td> {{ downline.cashed }}</td> 
+                          <td v-if="downline.state == 'matured'" style="color:red">{{downline.profit}}</td>
+                        <td v-if="downline.state == 'matured'" style="color:blue"
+                        >
+                         <vue-countdown-timer
+      @start_callback="startCallBack('event started')"
+      @end_callback="endCallBack(downline.id, downline.profit)"
+      :start-time="downline.start"
+      :end-time="downline.stop"
+      :interval="1000"
+      :start-label="'Time to maturity:'"
+      :end-label="''"
+      label-position="begin"
+      :end-text="'matured'"
+      :day-txt="'D'"
+      :hour-txt="'H'"
+      :minutes-txt="'M'"
+      :seconds-txt="'S'">
+    </vue-countdown-timer>
+                        </td>
                       </tr>
                     </tbody>
                     <tfoot>

@@ -1,5 +1,40 @@
 <template>
 <div>
+<div class="row">
+    <div class="col-md-4 col-sm-6">
+        <div class="pricing-table-3 basic">
+            <div class="pricing-table-header">
+                <h4><strong>BASIC</strong></h4>
+            </div>
+            <div class="price"><strong>10%</strong> / DAY</div>
+            <div class="pricing-body">
+                <ul class="pricing-table-ul">
+                </ul><a href="#" class="view-more" @click="ROI1()">View More</a></div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="pricing-table-3 premium">
+            <div class="pricing-table-header">
+                <h4><strong>PREMIUM</strong></h4>
+            </div>
+            <div class="price"><strong>25%</strong> / 2DAYS</div>
+            <div class="pricing-body">
+                <ul class="pricing-table-ul">
+                </ul><a href="#" class="view-more" @click="ROI2()">View More</a></div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <div class="pricing-table-3 business">
+            <div class="pricing-table-header">
+                <h4><strong>BUSINESS</strong></h4>
+            </div>
+            <div class="price"><strong>35% </strong> / 3DAYS</div>
+            <div class="pricing-body">
+                <ul class="pricing-table-ul">
+                </ul><a href="#" class="view-more" @click="ROI3()">View More</a></div>
+        </div>
+    </div>
+</div>
 </div>
 </template>
 <script>
@@ -40,7 +75,7 @@ export default {
       let email = this.email
       let startdate = firebase.firestore.Timestamp.now().seconds
       let amount = parseFloat(prompt('Enter Your Intended Capital'))
-      if (amount <= this.balance && amount >= 500) {
+      if (amount <= this.balance && amount >= 499) {
         let db = firebase.firestore()
         let nb = this.balance - amount
         db.collection('users').doc(firebase.auth().currentUser.uid).update({
@@ -60,9 +95,9 @@ export default {
           mpesa: 'not sent',
           profit: amount + 0.1 * amount
         })
-        alert('Your Investment Was successfull!Visit The Investment Panel to Track It')
+        alert('Investment Successfuly queued')
       } else {
-        alert('kindly top up or enter an amount greated than 500')
+        alert('min investment is 500')
       }
     },
     ROI2: function () {
@@ -70,7 +105,7 @@ export default {
       let email = this.email
       let startdate = firebase.firestore.Timestamp.now().seconds
       let amount = parseFloat(prompt('Enter Your Intended Capital'))
-      if (amount <= this.balance && amount >= 500) {
+      if (amount <= this.balance && amount >= 499) {
         let db = firebase.firestore()
         let nb = this.balance - amount
         db.collection('users').doc(firebase.auth().currentUser.uid).update({
@@ -90,9 +125,9 @@ export default {
           mpesa: 'not sent',
           profit: amount + 0.25 * amount
         })
-        alert('Your Investment Was successfull!Visit The Investment Panel to Track It')
+        alert('Investment Successfuly queued')
       } else {
-        alert('kindly top up or enter an amount greated than 500')
+        alert('min investment is 500')
       }
     },
     ROI3: function () {
@@ -100,7 +135,7 @@ export default {
       let email = this.email
       let startdate = firebase.firestore.Timestamp.now().seconds
       let amount = parseFloat(prompt('Enter Your Intended Capital'))
-      if (amount <= this.balance && amount >= 500) {
+      if (amount <= this.balance && amount >= 499) {
         let db = firebase.firestore()
         let nb = this.balance - amount
         db.collection('users').doc(firebase.auth().currentUser.uid).update({
@@ -120,9 +155,9 @@ export default {
           mpesa: 'not sent',
           profit: amount + 0.35 * amount
         })
-        alert('Your Investment Was successfull!Visit The Investment Panel to Track It')
+        alert('Investment Successfuly queued')
       } else {
-        alert('kindly top up or enter an amount greated than 500')
+        alert('Min investment is 500')
       }
     },
     charge: function () {
@@ -474,139 +509,230 @@ export default {
 </script>
 
 <style>
-@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
-@import url(https://fonts.googleapis.com/css?family=Montserrat:800);
-.snip1265 {
-  font-family: 'Raleway', Arial, sans-serif;
-  color: #ffffff;
-  text-align: left;
-  font-size: 16px;
-  width: 100%;
-  max-width: 1000px;
-  margin: 50px 10px 10px;
+@charset "utf-8";
+/* CSS Document */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,500,400,300,800);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,300,400);
+
+body{ 
+    background-color:#f0f3f6;
+  overflow-x: hidden;
+
 }
-.snip1265 .plan {
-  margin: 0;
-  width: 25%;
-  position: relative;
-  float: left;
-  background-color: #262626;
-  border: 1px solid #1e1e1e;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+h1,h2,h3,h4,h5,h6,div,input,p,a{
+    font-family: "Open Sans";  
+    margin:0px; 
 }
-.snip1265 .plan:hover,
-.snip1265 .plan.hover {
-  background-color: #1c1c1c;
+
+h3{ 
+    font-size:22px;
 }
-.snip1265 .plan:hover i,
-.snip1265 .plan.hover i {
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
+.container-fluid,.container { 
+    margin:auto;
+  padding:0px 15px;
+  max-width:1200px;
 }
-.snip1265 * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.25s ease-out;
-  transition: all 0.25s ease-out;
+label{
+  font-weight:500;
 }
-.snip1265 header {
-  position: relative;
-  padding: 20px 10px;
+.form-group{
+  margin-bottom:5px;
 }
-.snip1265 header i {
-  font-size: 56px;
-  margin: 0 15px;
-  color: #f39c12;
-  display: inline-block;
-  float: left;
+
+
+input,textarea,select,button{ 
+    margin: 5px 0px ;
+    font-size:13px !important; 
+    border-radius:0px;
 }
-.snip1265 .plan-title {
-  top: 0;
-  font-weight: 800;
-  margin: 10px 0 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+input[type=text],input[type=password],textarea,input[type=email],select,textarea{ 
+    width: 100%; 
+    border:1px solid #DADADA; 
+    padding: 5px 10px;  
+    height:45px;  
 }
-.snip1265 .plan-cost {
-  margin: 0;
-  opacity: 0.2;
+input[type=submit],input[type=button],input[type=reset],button{
+    border:none; 
+    font-size: 11px;  
+  border-radius:3px;
+  height:45px;
+  color:#FFF;
 }
-.snip1265 .plan-price {
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-weight: 800;
-  font-size: 1.3em;
+
+.btn:hover,.btn:focus{  
+    cursor:pointer; 
+    color:#FFF;
 }
-.snip1265 .plan-type {
-  opacity: 0.8;
-  font-size: 0.7em;
-  text-transform: uppercase;
+input[type=radio]{
+    margin:0px;
+    padding:0px; 
+    height:auto;
 }
-.snip1265 .plan-features {
-  padding: 0;
-  margin: 0 0 40px;
-  text-align: center;
-  list-style: outside none none;
-  font-size: 0.8em;
-  text-align: left;
+.form-control{ 
+    box-shadow:none !important;  
+  border-radius:0px;
 }
-.snip1265 .plan-features li {
-  padding: 5px 5%;
-  font-weight: 500;
-  opacity: 0.5;
-  border-left: 5px solid #f39c12;
-  margin: 2px 20px;
+.form-control:focus{
+    border:1px solid #CCC;
 }
-.snip1265 .plan-select {
-  background-color: rgba(0, 0, 0, 0.2);
-  text-align: center;
+.btn:focus{
+  box-shadow:none !important;
 }
-.snip1265 .plan-select a {
-  color: #ffffff;
-  text-decoration: none;
-  padding: 15px 20px;
-  margin: 20px;
-  border-radius: 40px;
-  font-size: 0.75em;
-  font-weight: 800;
-  text-transform: uppercase;
-  display: inline-block;
-  background-color: #f39c12;
-}
-.snip1265 .plan-select a:hover {
-  background-color: #262626;
-}
-.snip1265 .featured {
-  margin-top: -10px;
-  background-color: #262626;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-.snip1265 .featured .plan-select a {
-  margin: 30px 20px;
-}
-@media only screen and (max-width: 767px) {
-  .snip1265 .plan {
-    width: 50%;
-  }
-  .snip1265 .plan-title,
-  .snip1265 .plan-select a {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  .snip1265 .plan-select a,
-  .snip1265 .featured .plan-select a {
-    margin: 20px;
-  }
-  .snip1265 .featured {
-    margin-top: 0;
-  }
-}
-@media only screen and (max-width: 440px) {
-  .snip1265 .plan {
+
+textarea{ 
     width: 100%;
-  }
+}
+input[type=reset]{ 
+    margin-left: 10px;
+}
+textarea{
+  min-height:100px;
+}
+a{ 
+    color: inherit;
+}
+a:hover,a:focus{ 
+    text-decoration: none !important; 
+    color: inherit !important;
+}
+ul{
+    margin: 0px; 
+    padding: 0px; 
+    list-style: none;
+}
+.relative{ 
+    position: relative;
+}
+.absolute{ 
+    position: absolute;
+}
+.fixed{ 
+    position: fixed;
+}
+
+.pricing-table-container{
+  padding:50px 0px;
+}
+.description{
+  padding:15px 0px;
+}
+.description a{
+  padding:10px;
+  font-size:13px;
+  display:block;
+  font-weight:bold;
+  border-bottom:1px solid #DDD;
+}
+.description a.active{
+  background-color:#FFF;
+  padding-left:25px;
+}
+/* DEMO 01 */
+.pricing-table-3{
+  background-color:#FFF;
+  margin:15px auto;
+  box-shadow:0px 0px 25px rgba(0,0,0,0.1);
+  max-width:300px;
+  border-radius:0px 10px 0px 10px;
+  overflow:hidden;
+  position:relative;
+  min-height:250px;
+  transition:all ease-in-out 0.25s;
+}
+.pricing-table-3:hover{
+  transform:scale(1.1,1.1);
+  cursor:pointer;
+}
+
+.pricing-table-3.basic .price{
+  background-color:#28b6f6;
+  color:#FFF;
+}
+.pricing-table-3.premium .price{
+  background-color:#ff9f00;
+  color:#FFF;
+}
+.pricing-table-3.business .price{
+  background-color:#c3185c;
+  color:#FFF;
+}
+
+.pricing-table-3 .pricing-table-header{
+  background-color:#212121;
+  color:#FFF;
+  padding:20px 0px 0px 20px;
+  position:absolute;
+  z-index:5;
+}
+.pricing-table-3 .pricing-table-header p{
+  font-size:12px;
+  opacity:0.7;
+}
+.pricing-table-3 .pricing-table-header::before{
+  content:"";
+  position:absolute;
+  left:-50px;
+  right:-180px;
+  height:125px;
+  top:-50px;
+  background-color:#212121;
+  z-index:-1;
+  transform:rotate(-20deg)
+}
+
+.pricing-table-3 .price{
+  position:absolute;
+  top:0px;
+  text-align:right;
+  padding:110px 20px 0px 0px;
+  right:0px;
+  left:0px;
+  font-size:20px;
+  z-index:4;
+}
+.pricing-table-3 .price::before{
+  content:"";
+  position:absolute;
+  left:0px;
+  right:0px;
+  height:100px;
+  bottom:-25px;
+  background-color:inherit;
+  transform:skewY(10deg);
+  z-index:-1;
+  box-shadow:0px 5px 0px 5px rgba(0,0,0,0.05);
 }
 
 
+.pricing-table-3 .pricing-body{
+  padding:20px;
+  padding-top:200px;  
+}
+.pricing-table-3 .pricing-table-ul li{
+  color:rgba(0,0,0,0.7);
+  font-size:13px;
+  padding:10px;
+  border-bottom:1px solid rgba(0,0,0,0.1);
+}
+.pricing-table-3 .pricing-table-ul .fa{
+  margin-right:10px;
+}
+.pricing-table-3.basic .pricing-table-ul .fa{
+  color:#28b6f6;
+}
+.pricing-table-3.premium .pricing-table-ul .fa{
+  color:#ff9f00;
+}
+.pricing-table-3.business .pricing-table-ul .fa{
+  color:#c3185c;
+}
+.pricing-table-3 .view-more{
+  margin:10px 20px;
+  display:block;
+  text-align:center;
+  background-color:#212121;
+  padding:10px 0px;
+  color:#FFF;
+}
 </style>

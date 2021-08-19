@@ -15,13 +15,13 @@
      <router-link tag="li" class="pageLink" to="/tables">
       <a>
         <i class="fa fa-flash"></i>
-        <span class="page">Earn Refferals</span>
+        <span class="page">Refferal Earnings</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/investments">
       <a>
         <i class="fa fa-line-chart"></i>
-        <span class="page">Earn Interest</span>
+        <span class="page">Investment Earnings</span>
       </a>
     </router-link>
     <!-- <router-link tag="li" class="pageLink" to="/mypayrolls">
