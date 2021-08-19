@@ -18,14 +18,14 @@
       <!-- Info boxes -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-aqua"
-                  :icon-classes="['fa', 'fa-google-wallet']"
-                  text="Wallet Balance"
+                  :icon-classes="['fa', 'fa-money']"
+                  text="Balance"
                   :number= this.balance></info-box>
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-red"
-                  :icon-classes="['fa', 'fa-money']"
+                  :icon-classes="['fa', 'fa-diamond']"
                   text="Earnings"
                   :number= this.revenue ></info-box>
       </div>
@@ -36,14 +36,14 @@
       
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-purple"
-                  :icon-classes="['fa', 'fa-link']"
-                  text="Bonus"
+                  :icon-classes="['fa', 'fa-heart']"
+                  text="Earned"
                   :number= this.slot></info-box>
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-orange"
-                  :icon-classes="['ion', 'ion-ios-people-outline']"
+                  :icon-classes="['fa', 'fa-bullhorn']"
                   text="Downlines"
                   :number= this.downlines></info-box>
       </div>
