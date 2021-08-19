@@ -9,7 +9,7 @@
             <div class="price"><strong>10%</strong> / DAY</div>
             <div class="pricing-body">
                 <ul class="pricing-table-ul">
-                </ul><a href="#" class="view-more" @click="ROI1()">View More</a></div>
+                </ul><a href="#" class="view-more" @click="ROI1()">Invest</a></div>
         </div>
     </div>
     <div class="col-md-4 col-sm-6">
@@ -20,7 +20,7 @@
             <div class="price"><strong>25%</strong> / 2DAYS</div>
             <div class="pricing-body">
                 <ul class="pricing-table-ul">
-                </ul><a href="#" class="view-more" @click="ROI2()">View More</a></div>
+                </ul><a href="#" class="view-more" @click="ROI2()">Invest</a></div>
         </div>
     </div>
     <div class="col-md-4 col-sm-12">
@@ -31,7 +31,7 @@
             <div class="price"><strong>35% </strong> / 3DAYS</div>
             <div class="pricing-body">
                 <ul class="pricing-table-ul">
-                </ul><a href="#" class="view-more" @click="ROI3()">View More</a></div>
+                </ul><a href="#" class="view-more" @click="ROI3()">Invest</a></div>
         </div>
     </div>
 </div>
