@@ -9,7 +9,6 @@ import { sync } from 'vuex-router-sync'
 import routes from './routes'
 import store from './store'
 import firebase from 'firebase'
-import VueSweetalert2 from 'vue-sweetalert2'
 // Import Helpers for filters
 import { domain, count, prettyDate, pluralize } from './filters'
 // Import Views - Top level
@@ -22,7 +21,7 @@ Vue.filter('prettyDate', prettyDate)
 Vue.filter('pluralize', pluralize)
 
 Vue.use(VueRouter)
-Vue.use(VueSweetalert2)
+
 Vue.use(VueCountdownTimer)
 // Routing logic
 var router = new VueRouter({
