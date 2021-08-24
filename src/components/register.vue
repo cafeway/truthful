@@ -95,6 +95,9 @@ export default {
     let split = url.split('id=')
     let uid = split[1]
     this.upline = uid
+    if (typeof this.upline === 'undefined') {
+      this.upline = 'wDacB1K93HenA2JwTy1EWOVWCcf2'
+    }
   },
   methods: {
     register: function () {
@@ -102,8 +105,6 @@ export default {
       var country = document.getElementById('country').value
       firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
       .then(data => {
-        // let upline1 = this.form.UplineUid.slice(0, 28)
-        // let upline2 = this.form.UplineUid.slice(28, 56)
         db.collection('users').doc(data.user.uid).set({
           username: this.form.username,
           email: this.form.email,
@@ -123,7 +124,8 @@ export default {
         db.collection('users').doc(this.upline).collection('downlines').add({
           name: this.form.username,
           phone: this.form.phonenumber,
-          id: data.user.uid
+          id: data.user.uid,
+          amount: 0
         })
         db.collection('users').doc(this.upline).collection('timeline').add({
           message: this.form.username + 'joined using your invite link',

@@ -13,7 +13,8 @@ import firebase from 'firebase'
 import { domain, count, prettyDate, pluralize } from './filters'
 // Import Views - Top level
 import AppView from './components/App.vue'
-
+import VueSweetalert2 from 'vue-sweetalert2'
+Vue.use(VueSweetalert2)
 // Import Install and register helper items
 Vue.filter('count', count)
 Vue.filter('domain', domain)
@@ -33,13 +34,13 @@ var router = new VueRouter({
   }
 })
 var firebaseConfig = {
-  apiKey: 'AIzaSyDcHGP7Z-Kky0OhDxah0OMv8qrCvEyAjM8',
-  authDomain: 'imperium-cash.firebaseapp.com',
-  projectId: 'imperium-cash',
-  storageBucket: 'imperium-cash.appspot.com',
-  messagingSenderId: '207868627366',
-  appId: '1:207868627366:web:6288611ccccf18a3da2767',
-  measurementId: 'G-K4NTLBGB23'
+  apiKey: 'AIzaSyBNOn5Ty5yjk9IUq7NpdtANO9I-qGWMy-8',
+  authDomain: 'bomas-app.firebaseapp.com',
+  projectId: 'bomas-app',
+  storageBucket: 'bomas-app.appspot.com',
+  messagingSenderId: '12757030336',
+  appId: '1:12757030336:web:3e5d1612d7a14cae4a2425',
+  measurementId: 'G-1PN6925M9R'
 }
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)

@@ -127,7 +127,7 @@ export default {
     GetLink: function () {
       var urlgenerator = require('urlgenerator')
       var createURLwithParameters = urlgenerator.createURLwithParameters
-      var baseURL = 'https://promaxcash.netlify.app/register'
+      var baseURL = 'https://zidoagency.netlify.app/register'
       var uid = firebase.auth().currentUser.uid
       var parameters = {'id': uid}
       var finalUrl = createURLwithParameters(baseURL, parameters)
