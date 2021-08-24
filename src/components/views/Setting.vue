@@ -53,7 +53,7 @@
                 <input class="form-control" placeholder="Invite Link" type="text" id="link">
               </div>
               <hr>
-               
+               <button v-if="!activated" class="btn-danger btn btn-lg btn-block" @click="activate()">Activate</button>
               <br />
               <!-- select examples -->
 
@@ -79,7 +79,10 @@ export default {
       balance: 0,
       phone: '',
       country: '',
+      email: '',
       uid: '',
+      activated: '',
+      currency: '',
       form: {
         amount: 0,
         deposit: 0
@@ -132,6 +135,70 @@ export default {
       var parameters = {'id': uid}
       var finalUrl = createURLwithParameters(baseURL, parameters)
       document.getElementById('link').value = finalUrl
+    },
+    activate: function () {
+      let email = this.email
+      let phone = this.phone
+      let username = this.username
+      let registrationfee = 500
+      switch (this.country) {
+        case 'Kenya':
+          registrationfee = 500
+          break
+        case 'Rwanda':
+          registrationfee = 4600
+          break
+        case 'Uganda':
+          registrationfee = 16000
+          break
+        case 'Tanzania':
+          registrationfee = 10500
+          break
+        case 'Zambia':
+          registrationfee = 888
+          break
+        case 'Nigeria':
+          registrationfee = 1900
+          break
+        case 'Ghana':
+          registrationfee = 30
+          break
+        case 'South Africa':
+          registrationfee = 72
+          break
+        case 'Malawi':
+          registrationfee = 3800
+          break
+        default:
+          break
+      }
+      let db = firebase.firestore()
+      if (registrationfee > 0) {
+        window.FlutterwaveCheckout({
+          public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
+          tx_ref: 'registration fees' + new Date(),
+          amount: registrationfee,
+          currency: this.currency,
+          country: this.country,
+          payment_option: 'mpesa,card,ussd,account',
+          customer: {
+            email: email,
+            phone_number: phone,
+            name: username
+          },
+          callback: function (data) {
+            if (data.status === 'successful') {
+              db.collection('users').doc(firebase.auth().currentUser.uid).update({
+                activated: true
+              })
+            } else {
+              alert('cancelled')
+            }
+          }
+        })
+      } else {
+        alert('the amount selected must be greater  than 500ksh')
+      }
     }
   },
   mounted() {
@@ -153,6 +220,9 @@ export default {
         this.phone = data.phonenumber
         this.uid = data.uid
         this.country = data.country
+        this.activated = data.activated
+        this.currency = data.currency
+        this.email = data.email
       })
     })
   }

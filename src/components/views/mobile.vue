@@ -52,6 +52,7 @@ export default {
       phone: '',
       country: '',
       uid: '',
+      currency: '',
       form: {
         amount: 0,
         amount1: 0,
@@ -83,8 +84,8 @@ export default {
           public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
           tx_ref: 'registration fees' + new Date(),
           amount: amount,
-          currency: 'KES',
-          country: 'kenya',
+          currency: this.currency,
+          country: this.country,
           payment_option: 'mpesa,card,ussd,account',
           customer: {
             email: this.email,
@@ -244,6 +245,8 @@ export default {
         this.country = data.country
         this.email = data.email
         this.username = data.username
+        this.country = data.country
+        this.currency = data.country
       })
     })
   }

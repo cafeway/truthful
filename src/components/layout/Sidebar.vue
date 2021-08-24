@@ -8,7 +8,7 @@
       <div class="user-panel">
         <div class="pull-left info">
           <div>
-            <p class="white"> HELLO {{this.username.toUpperCase()}}</p>
+            <h4 class="white"> Balance {{this.balance}} <small> {{ this.currency}}</small>  </h4>
           </div>
         </div>
       </div>
@@ -30,7 +30,9 @@ import firebase from 'firebase'
 export default {
   data() {
     return {
-      username: ''
+      username: '',
+      currency: '',
+      balance: 0
     }
   },
   name: 'Sidebar',
@@ -46,6 +48,8 @@ export default {
       db.collection('users').doc(user.uid).get().then(snapshot => {
         let data = snapshot.data()
         this.username = data.username
+        this.balance = data.balance
+        this.currency = data.currency
       })
     })
   }

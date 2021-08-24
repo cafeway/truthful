@@ -19,14 +19,14 @@
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-aqua"
                   :icon-classes="['fa', 'fa-money']"
-                  text="Balance"
+                  text="wallet"
                   :number= this.balance></info-box>
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-red"
                   :icon-classes="['fa', 'fa-diamond']"
-                  text="Earnings"
+                  text="Cashouts"
                   :number= this.revenue ></info-box>
       </div>
       <!-- /.col -->
@@ -37,7 +37,7 @@
       <div class="col-md-3 col-sm-6 col-xs-12">
         <info-box color-class="bg-purple"
                   :icon-classes="['fa', 'fa-heart']"
-                  text="Earned"
+                  text="Bonus"
                   :number= this.slot></info-box>
       </div>
       <!-- /.col -->
@@ -113,7 +113,8 @@ export default {
       user_email: '',
       slot: 0,
       country: '',
-      pending: 0
+      pending: 0,
+      currency: ''
 
     }
   },
@@ -146,6 +147,7 @@ export default {
           this.trivia = data.trivia
           this.slot = data.slot
           this.country = data.country
+          this.currency = data.currency
         })
         db.collection('users').doc(user.uid).collection('downlines').get().then(snapshot => {
           this.downlines = snapshot.size

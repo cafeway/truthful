@@ -47,9 +47,10 @@
 			<option>Rwanda</option>
             <option>Tanzania</option>
             <option>Zambia</option>
-            <option>Nigeria</option>
+            <option>Malawi</option>
             <option>Ghana</option>
-            <option>Burundi</option>
+            <option>Nigeria</option>
+            <option>South Africa</option>
 		</select>
 	</div> <!-- form-group end.// -->
     <div class="form-group input-group">
@@ -79,6 +80,7 @@ export default {
   data(router) {
     return {
       upline: '',
+      currency: '',
       lv1: '',
       lv2: '',
       form: {
@@ -101,8 +103,39 @@ export default {
   },
   methods: {
     register: function () {
-      let db = firebase.firestore()
       var country = document.getElementById('country').value
+      switch (country) {
+        case 'Kenya':
+          this.currency = 'KES'
+          break
+        case 'Rwanda':
+          this.currency = 'RWF'
+          break
+        case 'Uganda':
+          this.currency = 'UGX'
+          break
+        case 'Tanzania':
+          this.currency = 'TZS'
+          break
+        case 'Zambia':
+          this.currency = 'ZMW'
+          break
+        case 'Nigeria':
+          this.currency = 'NGN'
+          break
+        case 'Ghana':
+          this.currency = 'GHS'
+          break
+        case 'South Africa':
+          this.currency = 'ZAR'
+          break
+        case 'Malawi':
+          this.currency = 'MWk'
+          break
+        default:
+          break
+      }
+      let db = firebase.firestore()
       firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
       .then(data => {
         db.collection('users').doc(data.user.uid).set({
@@ -119,9 +152,10 @@ export default {
           auction: 0,
           slot: 0,
           uid: data.user.uid,
-          upline: this.upline
+          upline: this.upline,
+          currency: this.currency
         })
-        db.collection('users').doc(this.upline).collection('downlines').add({
+        db.collection('users').doc(this.upline).collection('downlines').doc(data.user.uid).set({
           name: this.form.username,
           phone: this.form.phonenumber,
           id: data.user.uid,
