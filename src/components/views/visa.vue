@@ -102,23 +102,6 @@ export default {
     clearInput (vueModel) {
       vueModel = ''
     },
-    cashout: function () {
-      let db = firebase.firestore()
-      let newBalance = this.balance - this.form.amount
-      if (this.form.amount <= this.balance && this.form.amount > 0) {
-        db.collection('users').doc(firebase.auth().currentUser.uid).update({
-          balance: newBalance
-        })
-        db.collection('cashouts').add({
-          amount: this.form.amount,
-          uid: this.uid,
-          phone: this.phone
-        })
-        alert('you cashed out' + ' ' + this.form.amount + ' ' + 'kindly refresh!')
-      } else {
-        alert('insufficient balance')
-      }
-    },
     deposit: function () {
       if (this.form.deposit < 500) {
         alert('minimum amount is 500ksh')

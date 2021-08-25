@@ -5,7 +5,6 @@
 
     <!-- LEVEL 3-->
     <div class="row center-block">
-      <h2>Downlines<i class="fa fa-users" aria-hidden="true"></i></h2>
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">

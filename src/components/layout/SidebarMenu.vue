@@ -12,16 +12,22 @@
         <span class="page">Profile</span>
       </a>
     </router-link>
+    <router-link tag="li" class="pageLink" to="/paypal">
+      <a>
+        <i class="fa fa-dollar"></i>
+        <span class="page">Cashout</span>
+      </a>
+    </router-link>
      <router-link tag="li" class="pageLink" to="/tables">
       <a>
-        <i class="fa fa-flash"></i>
+        <i class="fa fa-bullhorn"></i>
         <span class="page">Refferal Earnings</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/investments">
       <a>
-        <i class="fa fa-line-chart"></i>
-        <span class="page">Investment Earnings</span>
+        <i class="fa fa-clock-o"></i>
+        <span class="page">Investment History</span>
       </a>
     </router-link>
     <!-- <router-link tag="li" class="pageLink" to="/mypayrolls">
@@ -44,8 +50,8 @@
     </router-link>-->
      <router-link tag="li" class="pageLink" to="/payroll">
       <a>
-        <i class="fa fa-star-o"></i>
-        <span class="page">Investment Packages</span>
+        <i class="fa fa-money"></i>
+        <span class="page">Investment Here</span>
         <small class="label pull-right bg-red">all packages</small>
       </a>
     </router-link>

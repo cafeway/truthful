@@ -25,7 +25,7 @@
                 <input v-model="form.amount" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
               </div>
               <hr>
-                <button type="button" @click="kenya()" class="btn btn-primary btn-block">Deposit From Mobile Money</button>
+                <button type="button" @click="cashout()" class="btn btn-primary btn-block">Deposit From Mobile Money</button>
               <!-- select examples -->
 
               <!-- /input-group -->
@@ -75,128 +75,6 @@ export default {
     document.getElementsByTagName('head')[0].appendChild(script)
   },
   methods: {
-    kenya: function () {
-      let amount = this.form.amount
-      let balance = this.balance
-      let db = firebase.firestore()
-      if (amount > 0) {
-        window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
-          tx_ref: 'registration fees' + new Date(),
-          amount: amount,
-          currency: this.currency,
-          country: this.country,
-          payment_option: 'mpesa,card,ussd,account',
-          customer: {
-            email: this.email,
-            phone_number: this.phonenumber,
-            name: this.username
-          },
-          callback: function (data) {
-            let nb = amount + balance
-            if (data.status === 'successful') {
-              db.collection('users').doc(firebase.auth().currentUser.uid).update({
-                balance: nb
-              })
-            } else {
-              alert('cancelled')
-            }
-          }
-        })
-      } else {
-        alert('the amount selected must be greater  than 500ksh')
-      }
-    },
-    uganda: function () {
-      let amount = this.form.amount1
-      let balance = this.balance
-      let db = firebase.firestore()
-      if (amount > 17000) {
-        window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-58d009f25368bb2157760f27a748b444-X',
-          tx_ref: 'registration fees' + new Date(),
-          amount: amount,
-          currency: 'UGX',
-          country: 'uganda',
-          payment_option: 'mpesa,card,ussd,account',
-          customer: {
-            email: this.email,
-            phone_number: this.phonenumber,
-            name: this.username
-          },
-          callback: function () {
-            let nb = amount / 33 + balance
-            db.collection('users').doc(firebase.auth().currentUser.uid).update({
-              balance: nb
-            })
-          }
-        })
-      } else {
-        alert('the amount selected must be greater than 170000ugx')
-      }
-    },
-    rwanda: function () {
-      let amount = this.form.amount2
-      let balance = this.balance
-      let db = firebase.firestore()
-      if (amount > 5000) {
-        window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-58d009f25368bb2157760f27a748b444-X',
-          tx_ref: 'registration fees' + new Date(),
-          amount: amount,
-          currency: 'RWF',
-          country: 'rwanda',
-          payment_option: 'mpesa,card,ussd,account',
-          customer: {
-            email: this.email,
-            phone_number: this.phonenumber,
-            name: this.username
-          },
-          callback: function () {
-            let nb = (amount + balance) / 10
-            db.collection('users').doc(firebase.auth().currentUser.uid).update({
-              balance: nb
-            })
-          }
-        })
-      } else {
-        alert('the amount selected must be greater than 5000rwf')
-      }
-    },
-    zambia: function () {
-      let amount = this.form.amount3
-      let balance = this.balance
-      let db = firebase.firestore()
-      if (amount > 90) {
-        window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-58d009f25368bb2157760f27a748b444-X',
-          tx_ref: 'registration fees' + new Date(),
-          amount: amount,
-          currency: 'ZMW',
-          country: 'zambia',
-          payment_option: 'mpesa,card,ussd,account',
-          customer: {
-            email: this.email,
-            phone_number: this.phonenumber,
-            name: this.username
-          },
-          callback: function () {
-            let nb = amount * 6 + balance
-            db.collection('users').doc(firebase.auth().currentUser.uid).update({
-              balance: nb
-            })
-          }
-        })
-      } else {
-        alert('the amount selected must be greater than 90ZWM')
-      }
-    },
-    tanzania: function () {
-      alert('Contact admin to send to mpesa')
-    },
-    clearInput (vueModel) {
-      vueModel = ''
-    },
     cashout: function () {
       let db = firebase.firestore()
       let newBalance = this.balance - this.form.amount
@@ -212,11 +90,6 @@ export default {
         alert('you cashed out' + ' ' + this.form.amount + ' ' + 'kindly refresh!')
       } else {
         alert('insufficient balance')
-      }
-    },
-    deposit: function () {
-      if (this.form.deposit < 500) {
-        alert('minimum amount is 500ksh')
       }
     },
     GetLink: function () {
