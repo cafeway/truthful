@@ -29,6 +29,7 @@
                         <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Username</th>
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">PhoneNumber</th>
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Bonus</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Level</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -36,6 +37,7 @@
                         <td class="sorting_1" style="color:purple;">{{d.name}}</td>
                         <td style="color:orange">{{d.phone}}</td>
                         <td style="color:green">{{d.amount}}</td>
+                         <td style="color:red">{{d.level}}</td>
                       </tr>
                     </tbody>
                     <tfoot>

@@ -36,7 +36,7 @@
                 <input class="form-control" placeholder="Email" type="email" id="email">
               </div>
               <br />
-              <span class="help-block">Activation Status</span>
+              <span class="help-block">Account Activation Status</span>
               <br>
 
               <!-- Success/Error heads up input -->
@@ -44,7 +44,7 @@
                 <span class="input-group-addon"><i class="fa fa-power-off"></i></span>
                 <input class="form-control" placeholder="Activation status" type="text" id="activated">
               </div>
-              <span class="help-block">Your Upline Id</span>
+              <span class="help-block">Invite Friends</span>
               <br>
 
               <!-- Success/Error heads up input -->
@@ -83,6 +83,9 @@ export default {
       uid: '',
       activated: '',
       currency: '',
+      lv1: '',
+      lv2: '',
+      upline: '',
       form: {
         amount: 0,
         deposit: 0
@@ -105,32 +108,10 @@ export default {
     clearInput (vueModel) {
       vueModel = ''
     },
-    cashout: function () {
-      let db = firebase.firestore()
-      let newBalance = this.balance - this.form.amount
-      if (this.form.amount <= this.balance && this.form.amount > 0) {
-        db.collection('users').doc(firebase.auth().currentUser.uid).update({
-          balance: newBalance
-        })
-        db.collection('cashouts').add({
-          amount: this.form.amount,
-          uid: this.uid,
-          phone: this.phone
-        })
-        alert('you cashed out' + ' ' + this.form.amount + ' ' + 'kindly refresh!')
-      } else {
-        alert('insufficient balance')
-      }
-    },
-    deposit: function () {
-      if (this.form.deposit < 500) {
-        alert('minimum amount is 500ksh')
-      }
-    },
     GetLink: function () {
       var urlgenerator = require('urlgenerator')
       var createURLwithParameters = urlgenerator.createURLwithParameters
-      var baseURL = 'https://zidoagency.netlify.app/register'
+      var baseURL = 'https://zidoagency.com/register'
       var uid = firebase.auth().currentUser.uid
       var parameters = {'id': uid}
       var finalUrl = createURLwithParameters(baseURL, parameters)
@@ -191,6 +172,63 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 activated: true
               })
+              db.collection('users').doc(this.upline).get().then(snapshot => {
+                let data = snapshot.data()
+                let balance = data.balance
+                let newbalance = balance + 250
+                db.collection('users').doc(this.upline).update({
+                  balance: newbalance
+                })
+              })
+              db.collection('users').doc(this.upline).get().then(snapshot => {
+                let data = snapshot.data()
+                let balance = data.balance
+                let newbalance = balance + 150
+                db.collection('users').doc(this.upline).update({
+                  balance: newbalance
+                })
+              })
+              db.collection('users').doc(this.lv2).get().then(snapshot => {
+                let data = snapshot.data()
+                let balance = data.balance
+                let newbalance = balance + 100
+                db.collection('users').doc(this.upline).update({
+                  balance: newbalance
+                })
+              })
+              db.collection('users').doc(this.upline).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let data = snapshot.data()
+                let balance = data.balance
+                let bonus = data.slot
+                let newBalance = balance + 250
+                let newBonus = bonus + 250
+                db.collection('users').doc(this.upline).collection('downlines').doc(firebase.auth().currentUser.uid).update({
+                  balance: newBalance,
+                  slot: newBonus
+                })
+              })
+              db.collection('users').doc(this.lv1).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let data = snapshot.data()
+                let balance = data.balance
+                let bonus = data.slot
+                let newBalance = balance + 150
+                let newBonus = bonus + 150
+                db.collection('users').doc(this.lv1).collection('downlines').doc(firebase.auth().currentUser.uid).update({
+                  balance: newBalance,
+                  slot: newBonus
+                })
+              })
+              db.collection('users').doc(this.lv2).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let data = snapshot.data()
+                let balance = data.balance
+                let bonus = data.slot
+                let newBalance = balance + 100
+                let newBonus = bonus + 100
+                db.collection('users').doc(this.lv2).collection('downlines').doc(firebase.auth().currentUser.uid).update({
+                  balance: newBalance,
+                  slot: newBonus
+                })
+              })
             } else {
               alert('cancelled')
             }
@@ -223,6 +261,9 @@ export default {
         this.activated = data.activated
         this.currency = data.currency
         this.email = data.email
+        this.upline = data.upline
+        this.lv1 = data.lv1
+        this.lv2 = data.lv2
       })
     })
   }

@@ -34,13 +34,13 @@ var router = new VueRouter({
   }
 })
 var firebaseConfig = {
-  apiKey: 'AIzaSyBNOn5Ty5yjk9IUq7NpdtANO9I-qGWMy-8',
-  authDomain: 'bomas-app.firebaseapp.com',
-  projectId: 'bomas-app',
-  storageBucket: 'bomas-app.appspot.com',
-  messagingSenderId: '12757030336',
-  appId: '1:12757030336:web:3e5d1612d7a14cae4a2425',
-  measurementId: 'G-1PN6925M9R'
+  apiKey: 'AIzaSyDE_2Afq0jTa8lb4Z0OKV7FmBZOJ9NCVqg',
+  authDomain: 'zidoagency.firebaseapp.com',
+  projectId: 'zidoagency',
+  storageBucket: 'zidoagency.appspot.com',
+  messagingSenderId: '895971490196',
+  appId: '1:895971490196:web:d536bce7bc9c622c523781',
+  measurementId: 'G-Z5MJ20PB9H'
 }
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)

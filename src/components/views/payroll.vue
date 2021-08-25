@@ -1,41 +1,40 @@
 <template>
-<div>
-<div class="row">
-    <div class="col-md-4 col-sm-6">
-        <div class="pricing-table-3 basic">
-            <div class="pricing-table-header">
-                <h4><strong>BASIC</strong></h4>
+  <div>
+    <h6 class="text-center">Investing your money for a better tomorrow</h6>
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-info">
+            <!-- Input Addons -->
+            <div class="box-header with-border">
+              <h3 class="box-title">Zido Agencies East Africa</h3>
             </div>
-            <div class="price"><strong>Earn 10%</strong> / DAY</div>
-            <div class="pricing-body">
-                <ul class="pricing-table-ul">
-                </ul><a href="#" class="view-more" @click="ROI1()">Invest</a></div>
-        </div>
-    </div>
-    <div class="col-md-4 col-sm-6">
-        <div class="pricing-table-3 premium">
-            <div class="pricing-table-header">
-                <h4><strong>PREMIUM</strong></h4>
+              <br>
+            <div class="box-body">
+              <!-- Success/Error heads up input -->
+              <label>Choose a Package</label>
+               <div class="input-group">
+                <span class="input-group-addon"></span>
+                
+<select name="cars" id="investments">
+  <option value="10">Choose 10% Per Day</option>
+  <option value="25">Choose 25% Per Day</option>
+  <option value="35">Choose 35% Per Day</option>
+</select>
+              </div>
+              <hr>
+               <button class="btn-success btn btn-lg btn-block" @click="invest()">Invest</button>
+              <br />
+              <!-- select examples -->
+
+              <!-- /input-group -->
             </div>
-            <div class="price"><strong>Earn 25%</strong> / 2DAYS</div>
-            <div class="pricing-body">
-                <ul class="pricing-table-ul">
-                </ul><a href="#" class="view-more" @click="ROI2()">Invest</a></div>
+            <!-- /.box-body -->
+          </div>
         </div>
-    </div>
-    <div class="col-md-4 col-sm-12">
-        <div class="pricing-table-3 business">
-            <div class="pricing-table-header">
-                <h4><strong>BUSINESS</strong></h4>
-            </div>
-            <div class="price"><strong>Earn 35% </strong> / 3DAYS</div>
-            <div class="pricing-body">
-                <ul class="pricing-table-ul">
-                </ul><a href="#" class="view-more" @click="ROI3()">Invest</a></div>
-        </div>
-    </div>
-</div>
-</div>
+      </div>
+    </section>
+  </div>
 </template>
 <script>
 import invest from './investments.vue'
@@ -70,6 +69,22 @@ export default {
     }
   },
   methods: {
+    invest: function () {
+      let plan = document.getElementById('investments').value
+      switch (plan) {
+        case '10':
+          this.ROI1()
+          break
+        case '25':
+          this.ROI2()
+          break
+        case '35':
+          this.ROI3()
+          break
+        default:
+          break
+      }
+    },
     ROI1: function () {
       let phone = this.phonenumber
       let email = this.email
@@ -160,39 +175,6 @@ export default {
         alert('Min investment is 500')
       }
     },
-    charge: function () {
-      let country = document.getElementById('country').value
-      let db = firebase.firestore()
-      let email = this.email
-      let pesa = this.form.deposit
-      window.FlutterwaveCheckout({
-        public_key: 'FLWPUBK-5f67453df7e9775baa8cae9bdc0de688-X',
-        tx_ref: 'registration fees' + new Date(),
-        amount: this.form.deposit,
-        currency: country,
-        country: this.country,
-        payment_option: 'mpesa,card,ussd,account',
-        customer: {
-          email: this.email,
-          phone_number: this.phonenumber,
-          name: this.username
-        },
-        callback: function () {
-          let mail = email
-          let pesa2 = pesa
-          db.collection('users').where('email', '==', mail).get().then(snapshot => {
-            snapshot.forEach((doc) => {
-              let id = doc.id
-              let newbalance = this.balance + pesa2
-              let nb = parseFloat(newbalance)
-              db.collection('users').doc(id).update({
-                balance: nb
-              })
-            })
-          })
-        }
-      })
-    },
     mpesa: function (x) {
       console.log(x)
       let username = this.username
@@ -271,7 +253,7 @@ export default {
         alert('choose btwn 1-2 days')
       }
     },
-    invest: function (amount) {
+    invest2: function (amount) {
       console.log(amount)
       console.log(this.balance)
       let db = firebase.firestore()

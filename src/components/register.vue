@@ -98,7 +98,7 @@ export default {
     let uid = split[1]
     this.upline = uid
     if (typeof this.upline === 'undefined') {
-      this.upline = 'wDacB1K93HenA2JwTy1EWOVWCcf2'
+      this.upline = '6JJ5SAWdG8VOcmKazCie5cXVbnq2'
     }
   },
   methods: {
@@ -130,12 +130,17 @@ export default {
           this.currency = 'ZAR'
           break
         case 'Malawi':
-          this.currency = 'MWk'
+          this.currency = 'MWK'
           break
         default:
           break
       }
       let db = firebase.firestore()
+      db.collection('users').doc(this.upline).get().then(snapshot => {
+        let data = snapshot.data()
+        this.lv1 = data.lv1
+        this.lv2 = data.lv2
+      })
       firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
       .then(data => {
         db.collection('users').doc(data.user.uid).set({
@@ -159,13 +164,32 @@ export default {
           name: this.form.username,
           phone: this.form.phonenumber,
           id: data.user.uid,
-          amount: 0
+          amount: 0,
+          currency: this.currency,
+          level: 1
+        })
+        db.collection('users').doc(this.lv1).collection('downlines').doc(data.user.uid).set({
+          name: this.form.username,
+          phone: this.form.phonenumber,
+          id: data.user.uid,
+          amount: 0,
+          currency: this.currency,
+          level: 2
+        })
+        db.collection('users').doc(this.lv2).collection('downlines').doc(data.user.uid).set({
+          name: this.form.username,
+          phone: this.form.phonenumber,
+          id: data.user.uid,
+          amount: 0,
+          currency: this.currency,
+          level: 3
         })
         db.collection('users').doc(this.upline).collection('timeline').add({
           message: this.form.username + 'joined using your invite link',
           type: 'downline registration'
         })
         alert('account created successfully')
+        this.$router.push('/login')
       })
       .catch(err => {
         alert(err.message)
