@@ -12,8 +12,10 @@
 
             <div class="box-body">
               <!-- calendar group -->
-              <br />
-
+           
+              <hr>
+               <button v-if="!activated" class="btn-primary btn btn-lg btn-block" @click="activate()">Activate</button>
+              <hr />
               <!-- with characthers -->
               <div class="input-group">
                 <span class="input-group-addon">
@@ -52,9 +54,7 @@
                 <span class="input-group-addon"></span>
                 <input class="form-control" placeholder="Invite Link" type="text" id="link">
               </div>
-              <hr>
-               <button v-if="!activated" class="btn-primary btn btn-lg btn-block" @click="activate()">Activate</button>
-              <br />
+              
               <!-- select examples -->
 
               <!-- /input-group -->
