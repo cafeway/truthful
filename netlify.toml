@@ -1,0 +1,19 @@
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+[[redirects]]
+  from = "https://zidoagency.com/register"
+  to = "/register"
+  status = 200
+  edge_handler = "filterRequests"
+[[redirects]]
+  from = "https://zidoagency.com/register"
+  to = "/login"
+  status = 200
+  edge_handler = "filterRequests"
+[[redirects]]
+  from = "/register"
+  to = "/login"
+  status = 200
+  edge_handler = "filterRequests"

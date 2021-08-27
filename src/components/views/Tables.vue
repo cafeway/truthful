@@ -1,10 +1,7 @@
 <template>
   <section class="content">
-    <div class="row center-block">
-    </div>
-
     <!-- LEVEL 3-->
-    <div class="row center-block">
+    <div class="row center-block"  v-if="this.activated">
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -26,17 +23,18 @@
                     <thead>
                       <tr role="row">
                         <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 167px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">Username</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">PhoneNumber</th>
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Bonus</th>
                         <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Level</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 207px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting">Claim Bonus</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="d in invites" :key="d.id" class="even" role="row">
                         <td class="sorting_1" style="color:purple;">{{d.name}}</td>
-                        <td style="color:orange">{{d.phone}}</td>
-                        <td style="color:green">{{d.amount}}</td>
+                        <td style="color:green">${{d.amount}}</td>
                          <td style="color:red">{{d.level}}</td>
+                           <td v-if="!d.redeemed"><button @click="claim(d.id, d.amount)" class="btn btn-primary btn-sm"> claim</button> </td>
+                           <td v-else >bonus awarded</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -53,6 +51,16 @@
           </div>
         </div>
       </div>
+    </div>
+       <div class="row center-block" v-else>
+    <div >
+    <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Well done!</h4>
+  <p>Aww yeah, you successfully created an account and logged in But You have to activate it to Earn</p>
+  <hr>
+  <a class="mb-0" @click="toProfile()">Click Here To activate</a>
+</div>
+    </div>
     </div>
   </section>
 </template>
@@ -75,15 +83,69 @@ export default {
       auction: 0,
       bitcoin: 0,
       trivia: 0,
+      currency: '',
       user_email: '',
       slot: 0,
       invites: [],
       bonus: [],
-      uid: ''
+      uid: '',
+      activated: false
     }
   },
   name: 'Tables',
   methods: {
+    toProfile: function () {
+      this.$router.push('/setting')
+    },
+    claim: function (id, amount) {
+      let db = firebase.firestore()
+      switch (this.currency) {
+        case 'KES':
+          amount = amount * 100
+          break
+        case 'Rwanda':
+          amount = amount * 1000
+          break
+        case 'Uganda':
+          amount = amount * 3400
+          break
+        case 'Tanzania':
+          amount = amount * 2200
+          break
+        case 'Zambia':
+          amount = amount * 16
+          break
+        case 'Nigeria':
+          amount = amount * 410
+          break
+        case 'Ghana':
+          amount = amount * 7
+          break
+        case 'South Africa':
+          amount = amount * 14
+          break
+        case 'Malawi':
+          amount = amount * 800
+          break
+        default:
+          break
+      }
+      db.collection('users').doc(this.uid).get().then(snapshot => {
+        let data = snapshot.data()
+        let balance = data.balance
+        let slot = data.slot
+        let newSlot = slot + amount
+        let newBalance = balance + amount
+        db.collection('users').doc(firebase.auth().currentUser.uid).update({
+          balance: newBalance,
+          slot: newSlot
+        })
+      })
+      db.collection('users').doc(firebase.auth().currentUser.uid).collection('downlines').doc(id).update({
+        redeemed: true
+      })
+      alert('You have earned' + ' ' + amount + ' ' + this.currency)
+    },
     startCallBack: function(x) {
       console.log(x)
     },
@@ -125,6 +187,8 @@ export default {
           this.trivia = data.trivia
           this.slot = data.slot
           this.uid = data.uid
+          this.currency = data.currency
+          this.activated = data.activated
         })
         db.collection('investments').where('mail', '==', user.email).get().then(snapshot => {
           snapshot.forEach((doc) => {

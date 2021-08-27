@@ -1,7 +1,7 @@
 <template>
   <div>
     <h6 class="text-center">Investing your money for a better tomorrow</h6>
-    <section class="content">
+    <section class="content" v-if="this.activated">
       <div class="row">
         <div class="col-md-12">
           <div class="box box-info">
@@ -34,6 +34,14 @@
         </div>
       </div>
     </section>
+    <div v-else>
+    <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Well done!</h4>
+  <p>Aww yeah, you successfully created an account and logged in But You have to activate it to Earn</p>
+  <hr>
+  <a class="mb-0" @click="toProfile()">Click Here To activate</a>
+</div>
+    </div>
   </div>
 </template>
 <script>
@@ -70,29 +78,20 @@ export default {
     }
   },
   methods: {
+    toProfile: function () {
+      this.$router.push('/setting')
+    },
     invest: function () {
       let plan = document.getElementById('investments').value
       switch (plan) {
         case '10':
-          if (this.activated) {
-            this.ROI1()
-          } else {
-            alert('Your account is inactive.Kindly Activate to Invest')
-          }
+          this.ROI1()
           break
         case '25':
-          if (this.activated) {
-            this.ROI2()
-          } else {
-            alert('Your account is inactive.Kindly Activate to Invest')
-          }
+          this.ROI2()
           break
         case '35':
-          if (this.activated) {
-            this.ROI3()
-          } else {
-            alert('Your account is inactive.Kindly Activate to Invest')
-          }
+          this.ROI3()
           break
         default:
           break

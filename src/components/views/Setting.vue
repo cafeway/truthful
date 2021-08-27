@@ -53,7 +53,7 @@
                 <input class="form-control" placeholder="Invite Link" type="text" id="link">
               </div>
               <hr>
-               <button v-if="!activated" class="btn-danger btn btn-lg btn-block" @click="activate()">Activate</button>
+               <button v-if="!activated" class="btn-primary btn btn-lg btn-block" @click="activate()">Activate</button>
               <br />
               <!-- select examples -->
 
@@ -153,11 +153,10 @@ export default {
       }
       let db = firebase.firestore()
       if (registrationfee > 0) {
-        let u = Upline
         let Lv1 = lv1
         let Lv2 = lv2
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK_TEST-8e95c49754822b682301b1585f82b425-X',
+          public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
           tx_ref: 'registration fees' + new Date(),
           amount: registrationfee,
           currency: this.currency,
@@ -173,34 +172,10 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 activated: true
               })
-              db.collection('users').doc(u).get().then(snapshot => {
-                let data = snapshot.data()
-                let balance = data.balance
-                let newbalance = balance + 200
-                db.collection('users').doc(u).update({
-                  balance: newbalance
-                })
-              })
-              db.collection('users').doc(Lv1).get().then(snapshot => {
-                let data = snapshot.data()
-                let balance = data.balance
-                let newbalance = balance + 100
-                db.collection('users').doc(Lv1).update({
-                  balance: newbalance
-                })
-              })
-              db.collection('users').doc(Lv2).get().then(snapshot => {
-                let data = snapshot.data()
-                let balance = data.balance
-                let newbalance = balance + 50
-                db.collection('users').doc(Lv2).update({
-                  balance: newbalance
-                })
-              })
               db.collection('users').doc(Upline).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
                 let data = snapshot.data()
                 let amount = data.amount
-                let newAmount = amount + 200
+                let newAmount = amount + 2
                 db.collection('users').doc(Upline).collection('downlines').doc(firebase.auth().currentUser.uid).update({
                   amount: newAmount
                 })
@@ -208,7 +183,7 @@ export default {
               db.collection('users').doc(Lv1).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
                 let data = snapshot.data()
                 let amount = data.amount
-                let newAmount = amount + 100
+                let newAmount = amount + 1
                 db.collection('users').doc(Lv1).collection('downlines').doc(firebase.auth().currentUser.uid).update({
                   amount: newAmount
                 })
@@ -216,7 +191,7 @@ export default {
               db.collection('users').doc(Lv2).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
                 let data = snapshot.data()
                 let amount = data.amount
-                let newAmount = amount + 50
+                let newAmount = amount + 0.5
                 db.collection('users').doc(Lv2).collection('downlines').doc(firebase.auth().currentUser.uid).update({
                   amount: newAmount
                 })

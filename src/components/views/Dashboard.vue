@@ -2,7 +2,7 @@
   <!-- Main content -->
   <section class="content">
     <!-- GitHub hint -->
-    <div class="row">
+    <div class="row" v-if="this.activated">
       <div class="col-xs-12">
         <alert :dismissible="true"
                type="warning"
@@ -48,6 +48,14 @@
                   :number= this.downlines></info-box>
       </div>
       <!-- /.col -->
+    </div>
+    <div v-else>
+    <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Well done!</h4>
+  <p>Aww yeah, you successfully created an account and logged in But You have to activate it to Earn</p>
+  <hr>
+  <a class="mb-0" @click="toProfile()">Click Here To activate</a>
+</div>
     </div>
     <!-- /.row -->
 
@@ -114,7 +122,8 @@ export default {
       slot: 0,
       country: '',
       pending: 0,
-      currency: ''
+      currency: '',
+      activated: false
 
     }
   },
@@ -132,6 +141,11 @@ export default {
   // methods: {
   //   convert: function (amount){}
   // },
+  methods: {
+    toProfile: function () {
+      this.$router.push('/setting')
+    }
+  },
   mounted () {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -148,6 +162,7 @@ export default {
           this.slot = data.slot
           this.country = data.country
           this.currency = data.currency
+          this.activated = data.activated
         })
         db.collection('users').doc(user.uid).collection('downlines').get().then(snapshot => {
           this.downlines = snapshot.size

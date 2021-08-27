@@ -168,7 +168,8 @@ export default {
           id: data.user.uid,
           amount: 0,
           currency: this.currency,
-          level: 1
+          level: 1,
+          redeemed: false
         })
         db.collection('users').doc(this.lv1).collection('downlines').doc(data.user.uid).set({
           name: this.form.username,
@@ -176,7 +177,8 @@ export default {
           id: data.user.uid,
           amount: 0,
           currency: this.currency,
-          level: 2
+          level: 2,
+          redeemed: false
         })
         db.collection('users').doc(this.lv2).collection('downlines').doc(data.user.uid).set({
           name: this.form.username,
@@ -184,7 +186,8 @@ export default {
           id: data.user.uid,
           amount: 0,
           currency: this.currency,
-          level: 3
+          level: 3,
+          redeemed: false
         })
         db.collection('users').doc(this.upline).collection('timeline').add({
           message: this.form.username + 'joined using your invite link',

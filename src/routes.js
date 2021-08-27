@@ -19,6 +19,7 @@ import inv from './components/views/investments.vue'
 import mobi from './components/views/mobile.vue'
 import visa from './components/views/visa.vue'
 import paypal from './components/views/paypal.vue'
+import activate from './components/views/activate.vue'
 // Routes
 const routes = [
   {
@@ -110,6 +111,10 @@ const routes = [
         path: 'mobileMoney',
         component: mobi,
         name: ''
+      },
+      {
+        path: 'activate',
+        component: activate
       }
     ]
   }, {

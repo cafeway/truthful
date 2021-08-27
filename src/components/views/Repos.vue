@@ -401,7 +401,7 @@ export default {
   :root {
     --biggest-font-size: 2.125rem;
     --h2-font-size: 1.5rem;
-    --normal-font-size: 1rem;
+    --normal-font-size: 1.2rem;
     --small-font-size: .875rem;
     --smaller-font-size: .813rem;
     --tiny-font-size: .688rem;
