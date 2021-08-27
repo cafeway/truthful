@@ -11,18 +11,15 @@
               <!-- calendar group -->
 
               <!-- with characthers -->
-               <span class="help-block"><b><h3>Pay with Mobile Money
-              <span class="iconify" data-icon="emojione:phone" style="height:30px; width:30px"></span>
-               </h3></b></span>
-              <br>
+             
 
               <!-- Success/Error heads up input -->
-               <div class="input-group">
+               <!-- <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input v-model="form.amount" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
-              </div>
+                <input class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
+              </div> -->
               <hr>
-                <button type="button" @click="charge()" class="btn btn-success btn-block">Deposit from Phone</button>
+                <button type="button" @click="charge()" class="btn btn-success btn-block">Activate</button>
               <!-- select examples -->
 
               <!-- /input-group -->
@@ -50,14 +47,7 @@ export default {
       country: '',
       currency: '',
       uid: '',
-      minimum: 0,
-      form: {
-        amount: 0,
-        amount1: 0,
-        amount2: 0,
-        amount3: 0,
-        deposit: 0
-      }
+      minimum: 0
     }
   },
   name: 'Settings',
@@ -74,6 +64,9 @@ export default {
   },
   methods: {
     charge: function () {
+      alert(this.currency)
+    },
+    charger: function () {
       switch (this.currency) {
         case 'KES':
           this.minimum = 500
@@ -119,7 +112,7 @@ export default {
       let amount = this.form.amount
       let balance = this.balance
       let db = firebase.firestore()
-      if (this.form.amount > this.minimum) {
+      if (this.minimum > 0) {
         window.FlutterwaveCheckout({
           public_key: 'FLWPUBK_TEST-8e95c49754822b682301b1585f82b425-X',
           tx_ref: 'registration fees' + new Date(),

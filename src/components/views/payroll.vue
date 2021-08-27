@@ -47,6 +47,7 @@ export default {
   },
   data () {
     return {
+      activated: false,
       username: '',
       balance: 0,
       revenue: 0,
@@ -73,13 +74,25 @@ export default {
       let plan = document.getElementById('investments').value
       switch (plan) {
         case '10':
-          this.ROI1()
+          if (this.activated) {
+            this.ROI1()
+          } else {
+            alert('Your account is inactive.Kindly Activate to Invest')
+          }
           break
         case '25':
-          this.ROI2()
+          if (this.activated) {
+            this.ROI2()
+          } else {
+            alert('Your account is inactive.Kindly Activate to Invest')
+          }
           break
         case '35':
-          this.ROI3()
+          if (this.activated) {
+            this.ROI3()
+          } else {
+            alert('Your account is inactive.Kindly Activate to Invest')
+          }
           break
         default:
           break
@@ -472,6 +485,7 @@ export default {
           this.slot = data.slot
           this.id = data.uid
           this.country = data.country
+          this.activated = data.activated
         })
         db.collection('users').doc(user.uid).collection('lv1').get().then(snapshot => {
           this.downlines = this.downlines + snapshot.size

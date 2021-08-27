@@ -98,7 +98,7 @@ export default {
     let uid = split[1]
     this.upline = uid
     if (typeof this.upline === 'undefined') {
-      this.upline = '6JJ5SAWdG8VOcmKazCie5cXVbnq2'
+      this.upline = 'iDs5Igo4dtOVFicaFafRjkAYLdf1'
     }
   },
   methods: {
@@ -158,7 +158,9 @@ export default {
           slot: 0,
           uid: data.user.uid,
           upline: this.upline,
-          currency: this.currency
+          currency: this.currency,
+          lv1: this.lv1,
+          lv2: this.lv2
         })
         db.collection('users').doc(this.upline).collection('downlines').doc(data.user.uid).set({
           name: this.form.username,

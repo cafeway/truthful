@@ -74,14 +74,22 @@
         <span class="page">Pay with Mobile Money</span>
       </a>
     </router-link>
+    <hr>
+     <router-link tag="li" class="pageLink" to="/login" @click="logout()">
+      <a>
+        <i class="fa fa-sign-out text-yellow"></i>
+        <span class="page">Sign Out</span>
+      </a>
+    </router-link>
   </ul>
 </template>
 <script>
+import firebase from 'firebase'
 export default {
   name: 'SidebarMenu',
   methods: {
-    toCasino: function () {
-      window.location.href('https://mpesa-modal.herokuapp.com')
+    logout: function () {
+      firebase.auth().signOut()
     }
   }
 }

@@ -48,6 +48,7 @@ export default {
       email: '',
       phone: '',
       country: '',
+      currency: '',
       uid: '',
       form: {
         amount: 0,
@@ -134,7 +135,7 @@ export default {
         this.email = data.email
         this.username = data.username
         this.country = data.country
-        this.currency = data.country
+        this.currency = data.currency
       })
     })
   }

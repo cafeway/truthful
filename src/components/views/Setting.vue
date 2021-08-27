@@ -99,11 +99,6 @@ export default {
       return new Date()
     }
   },
-  created() {
-    const script = document.createElement('script')
-    script.src = 'https://checkout.flutterwave.com/v3.js'
-    document.getElementsByTagName('head')[0].appendChild(script)
-  },
   methods: {
     clearInput (vueModel) {
       vueModel = ''
@@ -118,6 +113,9 @@ export default {
       document.getElementById('link').value = finalUrl
     },
     activate: function () {
+      let lv1 = this.lv1
+      let Upline = this.upline
+      let lv2 = this.lv2
       let email = this.email
       let phone = this.phone
       let username = this.username
@@ -136,7 +134,7 @@ export default {
           registrationfee = 10500
           break
         case 'Zambia':
-          registrationfee = 888
+          registrationfee = 85
           break
         case 'Nigeria':
           registrationfee = 1900
@@ -155,8 +153,11 @@ export default {
       }
       let db = firebase.firestore()
       if (registrationfee > 0) {
+        let u = Upline
+        let Lv1 = lv1
+        let Lv2 = lv2
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
+          public_key: 'FLWPUBK_TEST-8e95c49754822b682301b1585f82b425-X',
           tx_ref: 'registration fees' + new Date(),
           amount: registrationfee,
           currency: this.currency,
@@ -172,61 +173,52 @@ export default {
               db.collection('users').doc(firebase.auth().currentUser.uid).update({
                 activated: true
               })
-              db.collection('users').doc(this.upline).get().then(snapshot => {
+              db.collection('users').doc(u).get().then(snapshot => {
                 let data = snapshot.data()
                 let balance = data.balance
-                let newbalance = balance + 250
-                db.collection('users').doc(this.upline).update({
+                let newbalance = balance + 200
+                db.collection('users').doc(u).update({
                   balance: newbalance
                 })
               })
-              db.collection('users').doc(this.upline).get().then(snapshot => {
-                let data = snapshot.data()
-                let balance = data.balance
-                let newbalance = balance + 150
-                db.collection('users').doc(this.upline).update({
-                  balance: newbalance
-                })
-              })
-              db.collection('users').doc(this.lv2).get().then(snapshot => {
+              db.collection('users').doc(Lv1).get().then(snapshot => {
                 let data = snapshot.data()
                 let balance = data.balance
                 let newbalance = balance + 100
-                db.collection('users').doc(this.upline).update({
+                db.collection('users').doc(Lv1).update({
                   balance: newbalance
                 })
               })
-              db.collection('users').doc(this.upline).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+              db.collection('users').doc(Lv2).get().then(snapshot => {
                 let data = snapshot.data()
                 let balance = data.balance
-                let bonus = data.slot
-                let newBalance = balance + 250
-                let newBonus = bonus + 250
-                db.collection('users').doc(this.upline).collection('downlines').doc(firebase.auth().currentUser.uid).update({
-                  balance: newBalance,
-                  slot: newBonus
+                let newbalance = balance + 50
+                db.collection('users').doc(Lv2).update({
+                  balance: newbalance
                 })
               })
-              db.collection('users').doc(this.lv1).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+              db.collection('users').doc(Upline).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
                 let data = snapshot.data()
-                let balance = data.balance
-                let bonus = data.slot
-                let newBalance = balance + 150
-                let newBonus = bonus + 150
-                db.collection('users').doc(this.lv1).collection('downlines').doc(firebase.auth().currentUser.uid).update({
-                  balance: newBalance,
-                  slot: newBonus
+                let amount = data.amount
+                let newAmount = amount + 200
+                db.collection('users').doc(Upline).collection('downlines').doc(firebase.auth().currentUser.uid).update({
+                  amount: newAmount
                 })
               })
-              db.collection('users').doc(this.lv2).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+              db.collection('users').doc(Lv1).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
                 let data = snapshot.data()
-                let balance = data.balance
-                let bonus = data.slot
-                let newBalance = balance + 100
-                let newBonus = bonus + 100
-                db.collection('users').doc(this.lv2).collection('downlines').doc(firebase.auth().currentUser.uid).update({
-                  balance: newBalance,
-                  slot: newBonus
+                let amount = data.amount
+                let newAmount = amount + 100
+                db.collection('users').doc(Lv1).collection('downlines').doc(firebase.auth().currentUser.uid).update({
+                  amount: newAmount
+                })
+              })
+              db.collection('users').doc(Lv2).collection('downlines').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+                let data = snapshot.data()
+                let amount = data.amount
+                let newAmount = amount + 50
+                db.collection('users').doc(Lv2).collection('downlines').doc(firebase.auth().currentUser.uid).update({
+                  amount: newAmount
                 })
               })
             } else {
@@ -243,6 +235,9 @@ export default {
     let recaptchaScript = document.createElement('script')
     recaptchaScript.setAttribute('src', '.../assets/js/lz.js')
     document.head.appendChild(recaptchaScript)
+    const script = document.createElement('script')
+    script.src = 'https://checkout.flutterwave.com/v3.js'
+    document.getElementsByTagName('head')[0].appendChild(script)
     firebase.auth().onAuthStateChanged(user => {
       let db = firebase.firestore()
       this.GetLink()

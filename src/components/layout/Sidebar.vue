@@ -8,7 +8,7 @@
       <div class="user-panel">
         <div class="pull-left info">
           <div>
-            <h4 class="white"> Balance {{this.balance}} <small> {{ this.currency}}</small>  </h4>
+            <h4 class="white"> Balance {{this.balance}} <small> {{ this.currency }}</small>  </h4>
           </div>
         </div>
       </div>
@@ -32,7 +32,8 @@ export default {
     return {
       username: '',
       currency: '',
-      balance: 0
+      balance: 0,
+      activated: false
     }
   },
   name: 'Sidebar',
@@ -50,6 +51,7 @@ export default {
         this.username = data.username
         this.balance = data.balance
         this.currency = data.currency
+        this.activated = data.activated
       })
     })
   }

@@ -33,18 +33,18 @@ var router = new VueRouter({
     return savedPosition || { x: 0, y: 0 }
   }
 })
-var firebaseConfig = {
-  apiKey: 'AIzaSyDE_2Afq0jTa8lb4Z0OKV7FmBZOJ9NCVqg',
-  authDomain: 'zidoagency.firebaseapp.com',
-  projectId: 'zidoagency',
-  storageBucket: 'zidoagency.appspot.com',
-  messagingSenderId: '895971490196',
-  appId: '1:895971490196:web:d536bce7bc9c622c523781',
-  measurementId: 'G-Z5MJ20PB9H'
+const firebaseConfig = {
+  apiKey: 'AIzaSyA7vCds1jGFyq5Q85BK3uYmR3twUEIjbpM',
+  authDomain: 'zido-agency.firebaseapp.com',
+  projectId: 'zido-agency',
+  storageBucket: 'zido-agency.appspot.com',
+  messagingSenderId: '826467871784',
+  appId: '1:826467871784:web:3a657dfc006145c1d0591d',
+  measurementId: 'G-2CR6CGQQFH'
 }
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
-firebase.analytics()
 // Some middleware to help us ensure the user is authenticated.
 router.beforeEach((to, from, next) => {
   if (
