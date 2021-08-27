@@ -34,7 +34,7 @@ export default {
   font-size: 15px;
 }
 .navbar-custom-menu > .navbar-nav > li.notifications-menu > .dropdown-menu > li > ul.menu li > a > h4 small {
-  font-size: 10px;
+  font-size: 25px;
 }
 .navbar-custom-menu > .navbar-nav > li.notifications-menu > .dropdown-menu > li > ul.menu li > a > p {
   font-size: 12px;

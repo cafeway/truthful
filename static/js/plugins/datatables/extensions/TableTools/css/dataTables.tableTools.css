@@ -58,7 +58,7 @@ a.DTTT_button {
 	border: 1px solid #999;
 	cursor: pointer;
 	*cursor: hand;
-	font-size: 0.88em;
+	font-size: 1.88em;
 	color: black !important;
 
 	-webkit-border-radius: 2px;
@@ -355,7 +355,7 @@ div.DTTT_collection a.DTTT_button {
 }
 
 .DTTT_print_info p {
-	font-size: 14px;
+	font-size: 20px;
 	line-height: 20px;
 }
 
