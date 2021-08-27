@@ -27,7 +27,7 @@
     <router-link tag="li" class="pageLink" to="/investments">
       <a>
         <i class="fa fa-clock-o"></i>
-        <span class="page">Investment History</span>
+        <span class="page">Sacco Earnings</span>
       </a>
     </router-link>
     <!-- <router-link tag="li" class="pageLink" to="/mypayrolls">
