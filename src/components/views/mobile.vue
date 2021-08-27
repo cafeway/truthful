@@ -121,7 +121,7 @@ export default {
       let db = firebase.firestore()
       if (this.form.amount > this.minimum) {
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
+          public_key: 'FLWPUBK_TEST-8e95c49754822b682301b1585f82b425-X',
           tx_ref: 'registration fees' + new Date(),
           amount: this.form.amount,
           currency: this.currency,
