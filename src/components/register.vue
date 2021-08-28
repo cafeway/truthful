@@ -98,7 +98,7 @@ export default {
     let uid = split[1]
     this.upline = uid
     if (typeof this.upline === 'undefined') {
-      this.upline = 'iDs5Igo4dtOVFicaFafRjkAYLdf1'
+      this.upline = 'v4ktNk13xCWIlmNxQqphzFXcSJO2'
     }
   },
   methods: {
