@@ -103,7 +103,7 @@ export default {
         case 'KES':
           amount = amount * 100
           break
-        case 'Rwanda':
+        case 'RWF':
           amount = amount * 1000
           break
         case 'UGX':
