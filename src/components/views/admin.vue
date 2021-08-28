@@ -102,7 +102,7 @@
                       <tr v-for="d in useraccounts" :key="d.id" class="even" role="row">
                         <td class="sorting_1">{{d.email}}</td>
                         <td>{{d.username}}</td>
-                        <td><button type="button" @click="activate(d.email)" class="btn btn-primary btn-block">Activate</button></td>
+                        <td><button type="button" @click="activate(d.email, d.uid)" class="btn btn-primary btn-block">Activate</button></td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -153,7 +153,7 @@
                         <td class="sorting_1">{{d.amount}}</td>
                         <td>{{d.uid}}</td>
                         <td>{{d.phone}}</td>
-                        <td><button type="button" @click="confirm(d.id, d.uid)" class="btn btn-primary btn-block"> Confirm</button></td>
+                        <td><button type="button" @click="confirm(d.id)" class="btn btn-primary btn-block"> Confirm</button></td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -212,30 +212,30 @@ export default {
             let upline = data.upline
             let lv1 = data.lv1
             let lv2 = data.lv2
-            db.collection('users').doc(id).update({
+            db.collection('users').doc(doc.id).update({
               activated: true
             })
-            db.collection('users').doc(upline).collection('downlines').doc(id).get().then(snapshot => {
+            db.collection('users').doc(upline).collection('downlines').doc(doc.id).get().then(snapshot => {
               let data = snapshot.data()
               let amount = data.amount
               let newAmount = amount + 2
-              db.collection('users').doc(upline).collection('downlines').doc(id).update({
+              db.collection('users').doc(upline).collection('downlines').doc(doc.id).update({
                 amount: newAmount
               })
             })
-            db.collection('users').doc(lv1).collection('downlines').doc(id).get().then(snapshot => {
+            db.collection('users').doc(lv1).collection('downlines').doc(doc.id).get().then(snapshot => {
               let data = snapshot.data()
               let amount = data.amount
               let newAmount = amount + 1
-              db.collection('users').doc(lv1).collection('downlines').doc(id).update({
+              db.collection('users').doc(lv1).collection('downlines').doc(doc.id).update({
                 amount: newAmount
               })
             })
-            db.collection('users').doc(lv2).collection('downlines').doc(id).get().then(snapshot => {
+            db.collection('users').doc(lv2).collection('downlines').doc(doc.id).get().then(snapshot => {
               let data = snapshot.data()
               let amount = data.amount
               let newAmount = amount + 0.5
-              db.collection('users').doc(lv2).collection('downlines').doc(id).update({
+              db.collection('users').doc(lv2).collection('downlines').doc(doc.id).update({
                 amount: newAmount
               })
             })
