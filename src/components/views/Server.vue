@@ -1,18 +1,36 @@
 <template>
   <div>
-    <h1 class="text-center">Our Environment</h1>
     <section class="content">
-      <div class="row" v-if="servers">
-        <div class="col-md-4" v-for="server in servers">
-          <div v-bind:class="'box box-' + server.status">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-info">
+            <!-- Input Addons -->
             <div class="box-header with-border">
-              <i v-bind:class="'fa fa-' + server.icon + ' fa-2x'"></i>
-              <h3 class="box-title">{{server.name}}</h3>
+              <h4 class="box-title">The best investment ideas are here</h4>
             </div>
-            <div class="box-body">
 
-              <span>{{server.description}}</span>
+            <div class="box-body">
+              <!-- calendar group -->
+
+              <!-- with characthers -->
+               <span class="help-block"><b><h3>
+               <span class="iconify" data-icon="emojione:mobile-phone-with-arrow" style="height:30px;width:30px"></span>
+               </h3></b></span>
+              <br>
+
+              <!-- Success/Error heads up input -->
+               <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input v-model="form.email" class="form-control" placeholder="Enter user email" type="email" min="0">
+                <input v-model="form.amount" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
+              </div>
+              <hr>
+                <button type="button" @click="cashout()" class="btn btn-primary btn-block">Update User Balance</button>
+              <!-- select examples -->
+
+              <!-- /input-group -->
             </div>
+            <!-- /.box-body -->
           </div>
         </div>
       </div>
@@ -20,17 +38,103 @@
   </div>
 </template>
 <script>
-  import {servers} from '../../demo'
-
-  export default {
-    name: 'Servers',
-    data () {
-      return {
-        servers
+require('moment')
+import datepicker from 'vue-date-picker'
+import firebase from 'firebase'
+export default {
+  data() {
+    return {
+      // array of downlines
+      downlines: [],
+      balance: 0,
+      username: '',
+      email: '',
+      phone: '',
+      country: '',
+      uid: '',
+      currency: '',
+      upline: '',
+      lv1: '',
+      lv2: '',
+      form: {
+        amount: 0,
+        amount1: 0,
+        amount2: 0,
+        amount3: 0,
+        deposit: 0,
+        email: ''
       }
     }
+  },
+  name: 'Settings',
+  components: { datepicker },
+  computed: {
+    datetime () {
+      return new Date()
+    }
+  },
+  created() {
+    const script = document.createElement('script')
+    script.src = 'https://checkout.flutterwave.com/v3.js'
+    document.getElementsByTagName('head')[0].appendChild(script)
+  },
+  methods: {
+    cashout: function () {
+      let amount = this.form.amount
+      let db = firebase.firestore()
+      db.collection('users').where('email', '==', this.form.email).get().then(snapshot => {
+        snapshot.forEach((doc) => {
+          db.collection('users').doc(doc.id).get().then(snapshot => {
+            let data = snapshot.data()
+            let balance = data.balance
+            let NewBalance = balance + parseFloat(amount)
+            db.collection('users').doc(doc.id).update({
+              balance: NewBalance
+            })
+          })
+        })
+      })
+      alert('balance updated successfully')
+    },
+    GetLink: function () {
+      var urlgenerator = require('urlgenerator')
+      var createURLwithParameters = urlgenerator.createURLwithParameters
+      var baseURL = 'https://zido.netlify.app/register'
+      var uid = firebase.auth().currentUser.uid
+      var parameters = {'id': uid}
+      var finalUrl = createURLwithParameters(baseURL, parameters)
+      document.getElementById('link').value = finalUrl
+    }
+  },
+  mounted() {
+    let recaptchaScript = document.createElement('script')
+    recaptchaScript.setAttribute('src', 'https://code.iconify.design/1/1.0.7/iconify.min.js')
+    document.head.appendChild(recaptchaScript)
+    firebase.auth().onAuthStateChanged(user => {
+      let db = firebase.firestore()
+      this.GetLink()
+      // fetch user data
+      db.collection('users').doc(user.uid).get().then(snapshot => {
+        let data = snapshot.data()
+        this.balance = data.balance
+        this.phone = data.phonenumber
+        this.uid = data.uid
+        this.country = data.country
+        this.email = data.email
+        this.username = data.username
+        this.country = data.country
+        this.currency = data.country
+        this.upline = data.upline
+        this.lv1 = data.lv1
+        this.lv2 = data.lv2
+      })
+    })
   }
+}
 </script>
 
 <style>
+.datetime-picker input {
+  height: 4em !important;
+}
 </style>

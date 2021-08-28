@@ -61,10 +61,9 @@ const routes = [
         name: 'Access',
         meta: {description: 'Example of using maps'}
       }, {
-        path: 'server',
+        path: 'userBalance',
         component: ServerView,
-        name: 'Servers',
-        meta: {description: 'List of our servers', requiresAuth: true}
+        name: 'Servers'
       }, {
         path: 'repos',
         component: ReposView,

@@ -122,7 +122,7 @@ export default {
       let registrationfee = 500
       switch (this.country) {
         case 'Kenya':
-          registrationfee = 500
+          registrationfee = 1
           break
         case 'Rwanda':
           registrationfee = 4600

@@ -52,6 +52,9 @@ export default {
       country: '',
       uid: '',
       currency: '',
+      upline: '',
+      lv1: '',
+      lv2: '',
       form: {
         amount: 0,
         amount1: 0,
@@ -119,6 +122,9 @@ export default {
         this.username = data.username
         this.country = data.country
         this.currency = data.country
+        this.upline = data.upline
+        this.lv1 = data.lv1
+        this.lv2 = data.lv2
       })
     })
   }
