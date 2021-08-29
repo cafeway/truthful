@@ -156,7 +156,7 @@ export default {
         let Lv1 = lv1
         let Lv2 = lv2
         window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
+          public_key:FLWPUBK-b4dde582334fbbab4bbe3ca5f0742893-X,
           tx_ref: 'registration fees' + new Date(),
           amount: registrationfee,
           currency: this.currency,
