@@ -12,7 +12,7 @@
 
             <div class="box-body">
               <!-- calendar group -->
-           
+
               <hr>
                <button v-if="!activated" class="btn-primary btn btn-lg btn-block" @click="activate()">Activate</button>
               <hr />
@@ -54,7 +54,7 @@
                 <span class="input-group-addon"></span>
                 <input class="form-control" placeholder="Invite Link" type="text" id="link">
               </div>
-              
+
               <!-- select examples -->
 
               <!-- /input-group -->
@@ -156,7 +156,7 @@ export default {
         let Lv1 = lv1
         let Lv2 = lv2
         window.FlutterwaveCheckout({
-          public_key:'FLWPUBK-b4dde582334fbbab4bbe3ca5f0742893-X', 
+          public_key: 'FLWPUBK-b4dde582334fbbab4bbe3ca5f0742893-X',
           tx_ref: 'registration fees' + new Date(),
           amount: registrationfee,
           currency: this.currency,
