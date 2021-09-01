@@ -103,28 +103,28 @@ export default {
         case 'KES':
           amount = amount * 100
           break
-        case 'Rwanda':
+        case 'RWF':
           amount = amount * 1000
           break
-        case 'Uganda':
+        case 'UGX':
           amount = amount * 3400
           break
-        case 'Tanzania':
+        case 'TZS':
           amount = amount * 2200
           break
-        case 'Zambia':
+        case 'ZWM':
           amount = amount * 16
           break
-        case 'Nigeria':
+        case 'NGN':
           amount = amount * 410
           break
-        case 'Ghana':
+        case 'GHX':
           amount = amount * 7
           break
-        case 'South Africa':
+        case 'ZAR':
           amount = amount * 14
           break
-        case 'Malawi':
+        case 'MWF':
           amount = amount * 800
           break
         default:
