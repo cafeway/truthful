@@ -1,4 +1,4 @@
- 
+
 <template>
 <div>
 <body class="my-login-page">
@@ -42,11 +42,11 @@
 								<div class="mt-4 text-center">
 									Don't have an account? <a href="#" @click="toRegister()">Create One</a>
 								</div>
+								<div class="mt-4 text-center">
+									<a href="#" @click="reset()">Click here to reset Password</a>
+								</div>
 							</form>
 						</div>
-					</div>
-					<div class="footer">
-						Copyright &copy; 2017 &mdash; Your Company 
 					</div>
 				</div>
 			</div>
@@ -82,6 +82,12 @@ export default {
           text: err.message
         })
       })
+    },
+    reset: function () {
+      let email = prompt('enter your email to reset your password')
+      firebase.auth().sendPasswordResetEmail(email).then(
+        alert('A password was sent to your email box')
+      )
     },
     toRegister: function () {
       this.$router.push('/register')
