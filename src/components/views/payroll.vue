@@ -1,13 +1,13 @@
 <template>
   <div>
     <h6 class="text-center">Investing your money for a better tomorrow</h6>
-    <section class="content" v-if="this.activated">
+    <section class="content" v-if="this.act>
       <div class="row">
         <div class="col-md-12">
           <div class="box box-info">
             <!-- Input Addons -->
             <div class="box-header with-border">
-              <h3 class="box-title">Zido Agencies East Africa</h3>
+              <h3 class="box-title">LongLifeTradingBot</h3>
             </div>
               <br>
             <div class="box-body">
@@ -18,8 +18,8 @@
                 
 <select name="cars" id="investments">
   <option value="10">Choose 10% Per Day</option>
-  <option value="25">Choose 25% Per Day</option>
-  <option value="35">Choose 35% Per Day</option>
+  <option value="25">Choose 25% for 2 Days</option>
+  <option value="35">Choose 50% for 5 Days</option>
 </select>
               </div>
               <hr>
@@ -34,15 +34,7 @@
         </div>
       </div>
     </section>
-    <div v-else>
-    <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Well done!</h4>
-  <p>Aww yeah, you successfully created an account and logged in But You have to activate it to Earn</p>
-  <hr>
-  <a class="mb-0" @click="toProfile()">Click Here To activate</a>
-</div>
-    </div>
-  </div>
+  
 </template>
 <script>
 import invest from './investments.vue'
@@ -178,7 +170,7 @@ export default {
           cashed: 'false',
           matured: false,
           start: startdate,
-          stop: startdate + 345600,
+          stop: startdate + 432000,
           mpesa: 'not sent',
           profit: amount + 0.35 * amount
         })
