@@ -2,7 +2,7 @@
   <!-- Main content -->
   <section class="content">
     <!-- GitHub hint -->
-    <div class="row" v-if="this.activated">
+    <div class="row">
       <div class="col-xs-12">
         <alert :dismissible="true"
                type="warning"
@@ -49,14 +49,7 @@
       </div>
       <!-- /.col -->
     </div>
-    <div v-else>
-    <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Well done!</h4>
-  <p>Aww yeah, you successfully created an account and logged in But You have to activate it to Earn</p>
-  <hr>
-  <a class="mb-0" @click="toProfile()">Click Here To activate</a>
-</div>
-    </div>
+   
     <!-- /.row -->
 
     <!-- <div class="col-xs-12">
