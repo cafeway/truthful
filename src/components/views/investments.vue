@@ -3,7 +3,7 @@
     <div class="row center-block">
     </div>
 
-    <div class="row center-block" v-if="this.activated">
+    <div class="row center-block">
       <h4>YOUR EARNINGS</h4>
       <div class="col-md-12">
         <div class="box">
@@ -86,14 +86,7 @@
         </div>
       </div>
     </div>
-     <div v-else>
-    <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Well done!</h4>
-  <p>Aww yeah, you successfully created an account and logged in But You have to activate it to Earn</p>
-  <hr>
-  <a class="mb-0" @click="toProfile()">Click Here To activate</a>
-</div>
-    </div>
+
   </section>
 </template>
 
