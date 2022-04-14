@@ -1,7 +1,7 @@
 <template>
   <section class="content">
     <!-- LEVEL 3-->
-    <div class="row center-block"  v-if="this.activated">
+    <div class="row center-block">
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -51,16 +51,6 @@
           </div>
         </div>
       </div>
-    </div>
-       <div class="row center-block" v-else>
-    <div >
-    <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Well done!</h4>
-  <p>Aww yeah, you successfully created an account and logged in But You have to activate it to Earn</p>
-  <hr>
-  <a class="mb-0" @click="toProfile()">Click Here To activate</a>
-</div>
-    </div>
     </div>
   </section>
 </template>
