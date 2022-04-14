@@ -7,7 +7,7 @@
         <alert :dismissible="true"
                type="warning"
                :iconClasses="['fa', 'fa-check']"
-               title="Zido Investments">
+               title="LongLifeTrading">
           <!-- <span>Click on icon to check it out in alpha mode.</span> -->
           <a href="#" target="_blank">
             <i class="fa fa-play fa-2x"></i>
