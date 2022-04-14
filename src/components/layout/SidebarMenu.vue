@@ -27,7 +27,7 @@
     <router-link tag="li" class="pageLink" to="/investments">
       <a>
         <i class="fa fa-clock-o"></i>
-        <span class="page">Sacco Earnings</span>
+        <span class="page">Your Earnings</span>
       </a>
     </router-link>
     <!-- <router-link tag="li" class="pageLink" to="/mypayrolls">
@@ -52,28 +52,23 @@
       <a>
         <i class="fa fa-money"></i>
         <span class="page">Investment in Sacco</span>
-        <small class="label pull-right bg-red">all packages</small>
+        <small class="label pull-right bg-red">hot</small>
       </a>
     </router-link>
     <hr>
     <router-link tag="li" class="pageLink" to="/payments">
       <a>
         <i class="fa fa-btc text-green"></i>
-        <span class="page">Pay with Crypto</span>
+        <span class="page">Deposit with Crypto</span>
       </a>
     </router-link>
       <router-link tag="li" class="pageLink" to="/visa">
       <a>
         <i class="fa fa-cc-visa text-red"></i>
-        <span class="page">Pay with Visa</span>
+        <span class="page">Deposit with Mpesa</span>
       </a>
     </router-link>
-     <router-link tag="li" class="pageLink" to="/mobileMoney">
-      <a>
-        <i class="fa fa-phone text-yellow"></i>
-        <span class="page">Pay with Mobile Money</span>
-      </a>
-    </router-link>
+    
     <hr>
      <router-link tag="li" class="pageLink" to="/login" @click="logout()">
       <a>
