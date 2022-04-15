@@ -34,13 +34,13 @@ var router = new VueRouter({
   }
 })
 const firebaseConfig = {
-  apiKey: 'AIzaSyA7vCds1jGFyq5Q85BK3uYmR3twUEIjbpM',
-  authDomain: 'zido-agency.firebaseapp.com',
-  projectId: 'zido-agency',
-  storageBucket: 'zido-agency.appspot.com',
-  messagingSenderId: '826467871784',
-  appId: '1:826467871784:web:3a657dfc006145c1d0591d',
-  measurementId: 'G-2CR6CGQQFH'
+  apiKey: 'AIzaSyAlzlAlFGvPsqUS5wDoW3kRmqjg-E3ubCI,
+  authDomain: 'longlifetrading-6e417.firebaseapp.com,
+  projectId: 'longlifetrading-6e417',
+  storageBucket: 'longlifetrading-6e417.appspot.com',
+  messagingSenderId: '729569899229',
+  appId: '1:729569899229:web:58fae2d5a6bd26db1de134',
+  measurementId: 'G-4JDL2ZW81B'
 }
 
 // Initialize Firebase
