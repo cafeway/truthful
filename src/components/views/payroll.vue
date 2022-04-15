@@ -19,7 +19,7 @@
 <select name="cars" id="investments">
   <option value="10">Choose 10% Per Day</option>
   <option value="25">Choose 25% for 2 Days</option>
-  <option value="35">Choose 50% for 5 Days</option>
+  <option value="35">Choose 50% for 4 Days</option>
 </select>
               </div>
               <hr>
@@ -170,7 +170,7 @@ export default {
           cashed: 'false',
           matured: false,
           start: startdate,
-          stop: startdate + 432000,
+          stop: startdate + 345600,
           mpesa: 'not sent',
           profit: amount + 0.35 * amount
         })
