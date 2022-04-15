@@ -22,7 +22,7 @@
                 <input v-model="form.amount" class="form-control" placeholder="Enter The mpesa code" type="number" id="link" min="0">
               </div>
               <hr>
-                <button type="button" @click="kenya()" class="btn btn-success btn-block">Deposit from Bank</button>
+                <button type="button" @click="kenya()" class="btn btn-success btn-block">Verify</button>
               <!-- select examples -->
 
               <!-- /input-group -->
