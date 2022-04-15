@@ -76,6 +76,7 @@ export default {
        firebase.firestore().collection('transactions').where('code', '==', this.form.amount).get().then(snapshot => {
          snapshot.forEach(doc => {
            if (doc.data().redeemed){
+             let voucher = doc.id
              alert('this code has aready been redeemed')
            }else {
              let amount = doc.data().amount
@@ -87,7 +88,10 @@ export default {
                  'balance': new_balance
                })
              })
-             alert('this code has noten redeemed')
+             firebase.firestore().collection('users').doc(voucher).update({
+               redeemed: true
+             })
+             alert('Your Deposit Has Been Verified ')
            }
          })
        })
