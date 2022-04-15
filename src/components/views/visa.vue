@@ -78,6 +78,15 @@ export default {
            if (doc.data().redeemed){
              alert('this code has aready been redeemed')
            }else {
+             let amount = doc.data().amount
+             firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
+               let data = snapshot.data()
+               let balance = data.balance
+               let new_balance = amount + balance
+               firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).update({
+                 'balance': new_balance
+               })
+             })
              alert('this code has noten redeemed')
            }
          })
