@@ -35,7 +35,7 @@ var router = new VueRouter({
 })
 const firebaseConfig = {
   apiKey: 'AIzaSyAlzlAlFGvPsqUS5wDoW3kRmqjg-E3ubCI,
-  authDomain: 'longlifetrading-6e417.firebaseapp.com,
+  authDomain: 'longlifetrading-6e417.firebaseapp.com',
   projectId: 'longlifetrading-6e417',
   storageBucket: 'longlifetrading-6e417.appspot.com',
   messagingSenderId: '729569899229',
