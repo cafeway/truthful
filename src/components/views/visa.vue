@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center">Bank Deposit</h1>
+    <h1 class="text-center">Tiil no: 9186687</h1>
     <section class="content">
       <div class="row">
         <div class="col-md-12">
