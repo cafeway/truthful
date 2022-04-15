@@ -11,7 +11,7 @@
               <!-- calendar group -->
 
               <!-- with characthers -->
-               <span class="help-block"><b><h3>Pay with Card
+               <span class="help-block"><b><h3>Confirm Payment Here
               <span class="iconify" data-icon="emojione:credit-card" style="height:30px; width:30px"></span>
                </h3></b></span>
               <br>
@@ -19,7 +19,7 @@
               <!-- Success/Error heads up input -->
                <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input v-model="form.amount" class="form-control" placeholder="Enter Amount" type="number" id="link" min="0">
+                <input v-model="form.amount" class="form-control" placeholder="Enter The mpesa code" type="number" id="link" min="0">
               </div>
               <hr>
                 <button type="button" @click="kenya()" class="btn btn-success btn-block">Deposit from Bank</button>
@@ -51,7 +51,7 @@ export default {
       currency: '',
       uid: '',
       form: {
-        amount: 0,
+        amount: '',
         amount1: 0,
         amount2: 0,
         amount3: 0,
@@ -73,35 +73,15 @@ export default {
   },
   methods: {
     kenya: function () {
-      let amount = this.form.amount
-      let balance = this.balance
-      let db = firebase.firestore()
-      if (amount > 0) {
-        window.FlutterwaveCheckout({
-          public_key: 'FLWPUBK-b20ae78c91c8b3287e618da55e995c05-X',
-          tx_ref: 'registration fees' + new Date(),
-          amount: amount,
-          currency: this.currency,
-          country: this.country,
-          payment_option: 'card',
-          customer: {
-            email: this.email,
-            phone_number: this.phonenumber,
-            name: this.username
-          },
-          callback: function () {
-            let nb = amount + balance
-            db.collection('users').doc(firebase.auth().currentUser.uid).update({
-              balance: nb
-            })
-          }
-        })
-      } else {
-        alert('the amount selected must be greater  than 500ksh')
-      }
-    },
-    clearInput (vueModel) {
-      vueModel = ''
+       firebase.firestore().collection('transactions').where('code', '==', this.form.amount).get().then(snapshot => {
+         snapshot.forEach(doc => {
+           if (doc.data().redeemed){
+             alert('this code has aready been redeemed')
+           }else {
+             alert('this code has noten redeemed')
+           }
+         })
+       })
     },
     deposit: function () {
       if (this.form.deposit < 500) {
