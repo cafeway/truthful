@@ -93,13 +93,7 @@ export default {
     }
   },
   mounted() {
-    let url = window.location.href
-    let split = url.split('id=')
-    let uid = split[1]
-    this.upline = uid
-    if (typeof this.upline === 'undefined') {
-      this.upline = 'v4ktNk13xCWIlmNxQqphzFXcSJO2'
-    }
+    
   },
   methods: {
     register: function () {
@@ -136,11 +130,6 @@ export default {
           break
       }
       let db = firebase.firestore()
-      db.collection('users').doc(this.upline).get().then(snapshot => {
-        let data = snapshot.data()
-        this.lv1 = data.lv1
-        this.lv2 = data.lv2
-      })
       firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
       .then(data => {
         db.collection('users').doc(data.user.uid).set({
@@ -157,41 +146,7 @@ export default {
           auction: 0,
           slot: 0,
           uid: data.user.uid,
-          upline: this.upline,
           currency: this.currency,
-          lv1: this.lv1,
-          lv2: this.lv2
-        })
-        db.collection('users').doc(this.upline).collection('downlines').doc(data.user.uid).set({
-          name: this.form.username,
-          phone: this.form.phonenumber,
-          id: data.user.uid,
-          amount: 0,
-          currency: this.currency,
-          level: 1,
-          redeemed: false
-        })
-        db.collection('users').doc(this.lv1).collection('downlines').doc(data.user.uid).set({
-          name: this.form.username,
-          phone: this.form.phonenumber,
-          id: data.user.uid,
-          amount: 0,
-          currency: this.currency,
-          level: 2,
-          redeemed: false
-        })
-        db.collection('users').doc(this.lv2).collection('downlines').doc(data.user.uid).set({
-          name: this.form.username,
-          phone: this.form.phonenumber,
-          id: data.user.uid,
-          amount: 0,
-          currency: this.currency,
-          level: 3,
-          redeemed: false
-        })
-        db.collection('users').doc(this.upline).collection('timeline').add({
-          message: this.form.username + 'joined using your invite link',
-          type: 'downline registration'
         })
         alert('account created successfully')
         this.$router.push('/login')
