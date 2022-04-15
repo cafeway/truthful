@@ -33,8 +33,6 @@
                         <td class="sorting_1" style="color:purple;">{{d.name}}</td>
                         <td style="color:green">${{d.amount}}</td>
                          <td style="color:red">{{d.level}}</td>
-                           <td v-if="!d.redeemed"><button @click="claim(d.id, d.amount)" class="btn btn-primary btn-sm"> claim</button> </td>
-                           <td v-else >bonus awarded</td>
                       </tr>
                     </tbody>
                     <tfoot>
