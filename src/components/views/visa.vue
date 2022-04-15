@@ -19,7 +19,7 @@
               <!-- Success/Error heads up input -->
                <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                <input v-model="form.amount" class="form-control" placeholder="Enter The mpesa code" type="number" id="link" min="0">
+                <input v-model="form.amount" class="form-control" placeholder="Enter The mpesa code" id="link">
               </div>
               <hr>
                 <button type="button" @click="kenya()" class="btn btn-success btn-block">Verify</button>
