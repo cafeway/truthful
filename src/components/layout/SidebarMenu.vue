@@ -51,7 +51,7 @@
      <router-link tag="li" class="pageLink" to="/payroll">
       <a>
         <i class="fa fa-money"></i>
-        <span class="page">Investment in Sacco</span>
+        <span class="page">Packages</span>
         <small class="label pull-right bg-red">hot</small>
       </a>
     </router-link>
