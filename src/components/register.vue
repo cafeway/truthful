@@ -93,7 +93,10 @@ export default {
     }
   },
   mounted() {
-    
+    let url = window.location.href
+    let split = url.split('id=')
+    let uid = split[1]
+    this.upline = uid
   },
   methods: {
     register: function () {
@@ -147,10 +150,16 @@ export default {
           slot: 0,
           uid: data.user.uid,
           currency: this.currency,
+          upline: this.upline
         })
         alert('account created successfully')
         this.$router.push('/login')
       })
+       db.collection('users').doc(this.upline).collection('downlines').add({
+         'name': this.form.username,
+         'level': 1,
+         'amount': 0
+       })
       .catch(err => {
         alert(err.message)
       })
