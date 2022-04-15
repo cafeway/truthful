@@ -94,7 +94,7 @@ export default {
       let email = this.email
       let startdate = firebase.firestore.Timestamp.now().seconds
       let amount = parseFloat(prompt('Enter Your Intended Capital'))
-      if (amount <= this.balance && amount >= 499) {
+      if (amount <= this.balance && amount >= 299) {
         let db = firebase.firestore()
         let nb = this.balance - amount
         db.collection('users').doc(firebase.auth().currentUser.uid).update({
@@ -124,7 +124,7 @@ export default {
       let email = this.email
       let startdate = firebase.firestore.Timestamp.now().seconds
       let amount = parseFloat(prompt('Enter Your Intended Capital'))
-      if (amount <= this.balance && amount >= 499) {
+      if (amount <= this.balance && amount >= 299) {
         let db = firebase.firestore()
         let nb = this.balance - amount
         db.collection('users').doc(firebase.auth().currentUser.uid).update({
@@ -154,7 +154,7 @@ export default {
       let email = this.email
       let startdate = firebase.firestore.Timestamp.now().seconds
       let amount = parseFloat(prompt('Enter Your Intended Capital'))
-      if (amount <= this.balance && amount >= 499) {
+      if (amount <= this.balance && amount >= 299) {
         let db = firebase.firestore()
         let nb = this.balance - amount
         db.collection('users').doc(firebase.auth().currentUser.uid).update({
