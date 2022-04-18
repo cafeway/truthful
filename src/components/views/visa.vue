@@ -87,11 +87,12 @@ export default {
                firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).update({
                  'balance': new_balance
                })
+                firebase.firestore().collection('transactions').doc(voucher).update({
+                  redeemed: true
+                })
+               alert('Your Deposit Has Been Verified ')
              })
-             firebase.firestore().collection('transactions').doc(voucher).update({
-               redeemed: true
-             })
-             alert('Your Deposit Has Been Verified ')
+            
            }
          })
        })
