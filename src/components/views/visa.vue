@@ -88,7 +88,7 @@ export default {
                  'balance': new_balance
                })
              })
-             firebase.firestore().collection('users').doc(voucher).update({
+             firebase.firestore().collection('transactions').doc(voucher).update({
                redeemed: true
              })
              alert('Your Deposit Has Been Verified ')
