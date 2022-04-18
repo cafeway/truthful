@@ -75,8 +75,8 @@ export default {
     kenya: function () {
        firebase.firestore().collection('transactions').where('code', '==', this.form.amount).get().then(snapshot => {
          snapshot.forEach(doc => {
+         let voucher = doc.id
            if (doc.data().redeemed){
-             let voucher = doc.id
              alert('this code has aready been redeemed')
            }else if(!doc.data().redeemed){
              let amount = doc.data().amount
