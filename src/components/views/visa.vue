@@ -78,7 +78,7 @@ export default {
            if (doc.data().redeemed){
              let voucher = doc.id
              alert('this code has aready been redeemed')
-           }else {
+           }else if(!doc.data().redeemed){
              let amount = doc.data().amount
              firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).get().then(snapshot => {
                let data = snapshot.data()
